@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Source Serif 4", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-bg: #FAFAF8;
+  --color-surface: #F4F3F0;
+  --color-text: #1A1A1A;
+  --color-muted: #6B6B6B;
+  --color-border: #E5E3DF;
+  --color-accent: #2B6B5E;
+  --color-accent-hover: #1F4F45;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h1 { font-weight: 700; }
+  h2 { font-weight: 600; }
+  h3 { font-weight: 600; }
+
+  a {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+    text-decoration-color: var(--color-accent-hover);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+  }
+
+  ::selection {
+    background-color: #2B6B5E22;
+  }
+}

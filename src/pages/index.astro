@@ -1,0 +1,74 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Prashant Shah">
+  <section class="pt-8 pb-20">
+    <h1 class="text-5xl leading-tight mb-4" transition:name="page-title">
+      Prashant Shah
+    </h1>
+    <p class="text-xl text-[var(--color-muted)] max-w-[520px] mb-10">
+      I build software that works for the people using it.
+    </p>
+
+    <ul class="space-y-2 text-[0.95rem] text-[var(--color-muted)] mb-8">
+      <li>Built production systems at Trimble and Novartis</li>
+      <li>Research: emotion-aware retrieval with knowledge graphs</li>
+      <li>Graduating May 2026</li>
+    </ul>
+
+    <a
+      href="/resume.pdf"
+      class="inline-block text-sm font-heading font-medium text-[var(--color-accent)] no-underline border border-[var(--color-accent)] rounded px-4 py-2 hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-150"
+    >
+      Download Resume
+    </a>
+  </section>
+
+  <section class="border-t border-[var(--color-border)] pt-16 pb-8">
+    <h2 class="text-2xl mb-10">Selected Work</h2>
+
+    <div class="space-y-10">
+      <article>
+        <h3 class="text-lg mb-1">
+          <a href="/work" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
+            The Canvas Agent
+          </a>
+        </h3>
+        <p class="text-[var(--color-muted)]">
+          A tool-calling AI agent over LMS data with 9 typed tools, parameterized SQL, and persistent memory via pgvector. Won HackRamapo.
+        </p>
+      </article>
+
+      <article>
+        <h3 class="text-lg mb-1">
+          <a href="/work" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
+            Trimble
+          </a>
+        </h3>
+        <p class="text-[var(--color-muted)]">
+          Production configuration management platform in C#/.NET and Azure for a distributed broker architecture.
+        </p>
+      </article>
+
+      <article>
+        <h3 class="text-lg mb-1">
+          <a href="/research" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
+            The Research
+          </a>
+        </h3>
+        <p class="text-[var(--color-muted)]">
+          What happens when user intent contradicts content semantics? Resolving affective conflict in retrieval with knowledge graphs.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="border-t border-[var(--color-border)] pt-12 pb-4">
+    <p class="text-sm text-[var(--color-muted)]">
+      <span class="font-heading font-medium text-[var(--color-text)]">Currently:</span>
+      Finishing up research and looking for full-time roles starting Summer 2026.
+      <a href="/now" class="ml-1">See what I'm up to</a>
+    </p>
+  </section>
+</Base>

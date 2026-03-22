@@ -1,0 +1,27 @@
+---
+const links = [
+  { href: "https://github.com/prashantshah", label: "GitHub" },
+  { href: "https://linkedin.com/in/prashantshah", label: "LinkedIn" },
+  { href: "mailto:hello@prashantshah.dev", label: "Email" },
+];
+---
+
+<footer class="border-t border-[var(--color-border)] mt-24">
+  <div class="mx-auto flex max-w-[960px] items-center justify-between px-6 py-8 text-sm text-[var(--color-muted)]">
+    <span>Prashant Shah</span>
+    <ul class="flex gap-5">
+      {links.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            target={href.startsWith("mailto") ? undefined : "_blank"}
+            rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+            class="text-[var(--color-muted)] no-underline hover:text-[var(--color-text)] transition-colors duration-150"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>
