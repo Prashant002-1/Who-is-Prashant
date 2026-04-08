@@ -3,6 +3,77 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Research | Prashant Shah">
-  <h1 class="text-4xl mb-6" transition:name="page-title">Research</h1>
-  <p class="text-[var(--color-muted)]">Coming soon.</p>
+  <h1 class="text-[clamp(1.8rem,4vw,2.4rem)] mb-3" transition:name="page-title">Resolving Intent-Content Conflict in Retrieval</h1>
+  <p class="text-[13px] text-[var(--color-faint)] font-mono mb-12">
+    Under Dr. Ali Al-Juboori &middot; Ramapo College &middot; 2025 &ndash; Present
+  </p>
+
+  <div class="space-y-12">
+
+    <section>
+      <h2 class="text-[17px] font-semibold mb-4">The Problem</h2>
+      <div class="space-y-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+        <p>
+          Most recommendation systems match you to content based on what's similar to what you've liked before. But sometimes what you want contradicts what the content is about. You want a happy movie about war. You want something calming about a high-stakes topic.
+        </p>
+        <p>
+          Existing retrieval systems don't know what to do with that because they treat user intent and content semantics as the same signal. When those signals conflict, retrieval breaks. The system either respects what you asked for and ignores the content, or matches the content and ignores how you want to feel.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-[17px] font-semibold mb-4">The Approach</h2>
+      <div class="space-y-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+        <p>
+          My research builds a framework that separates user intent from content semantics by making emotions first-class entities in a knowledge graph. Instead of collapsing everything into a single embedding, the system maintains distinct representations:
+        </p>
+        <ul class="list-disc list-inside space-y-2 pl-1">
+          <li>A heterogeneous knowledge graph over MovieLens 25M with User, Movie, and Emotion nodes</li>
+          <li>Emotions encoded with weighted EVOKES edges, not just metadata tags</li>
+          <li>A Graph Transformer encoder aligned to SentenceBERT space</li>
+          <li>Hybrid scoring with a tunable affective displacement penalty</li>
+        </ul>
+        <p>
+          The key insight is that a knowledge graph can represent both "what this movie is about" and "how this movie makes people feel" as separate, traversable relationships. When those two signals conflict, the graph structure lets the retrieval system reason about both instead of choosing one.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-[17px] font-semibold mb-4">Results</h2>
+      <div class="space-y-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+        <p>
+          1,600 synthetic queries across aligned and conflicting conditions. In conflict scenarios (where intent contradicts content), the framework achieved a 0.037 reduction in normalized affective displacement error compared to baseline retrieval.
+        </p>
+        <p>
+          Edge-removal causal interventions confirmed that emotion edges are causally necessary for the improvement. Remove them, and performance degrades to baseline. This isn't correlation; the graph structure is doing real work.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-[17px] font-semibold mb-4">What Got Me Here</h2>
+      <div class="space-y-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+        <p>
+          This connects directly to EmotionFlix. I built a recommendation system based on emotion, and hit the wall where the emotion a user wants doesn't match what the content is "about." That gap is where retrieval breaks. Dr. Al-Juboori and I turned that gap into a research question.
+        </p>
+        <p>
+          The framework is designed to be domain-agnostic. Movies are the testbed, but the architecture applies anywhere user affect and content semantics can diverge: music, therapeutic content, educational material.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t border-[var(--color-border)] pt-8">
+      <div class="flex flex-wrap gap-6 text-[13px]">
+        <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)]">
+          GitHub Repository
+        </a>
+        <span class="text-[var(--color-faint)]">
+          Pipeline: Python, Vertex AI, GCP, RAG
+        </span>
+      </div>
+    </section>
+
+  </div>
 </Base>
