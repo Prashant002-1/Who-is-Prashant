@@ -3,72 +3,84 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Prashant Shah">
-  <section class="pt-8 pb-20">
-    <h1 class="text-5xl leading-tight mb-4" transition:name="page-title">
-      Prashant Shah
+  <section class="pt-12 pb-20">
+    <p class="text-[13px] font-medium text-[var(--color-accent)] tracking-wide uppercase mb-4">
+      Software Engineer &middot; Researcher
+    </p>
+    <h1 class="text-[clamp(2.2rem,5vw,3.2rem)] leading-[1.1] mb-6 max-w-[560px]" transition:name="page-title">
+      I build software that closes the gap between what systems know and what people need.
     </h1>
-    <p class="text-xl text-[var(--color-muted)] max-w-[520px] mb-10">
-      I build software that works for the people using it.
+    <p class="text-[var(--color-muted)] max-w-[480px] mb-10 text-[15px] leading-relaxed">
+      Three internships. Research published at SAM International. CS &amp; Data Science at Ramapo College, graduating May 2026.
     </p>
 
-    <ul class="space-y-2 text-[0.95rem] text-[var(--color-muted)] mb-8">
-      <li>Built production systems at Trimble and Novartis</li>
-      <li>Research: emotion-aware retrieval with knowledge graphs</li>
-      <li>Graduating May 2026</li>
-    </ul>
-
-    <a
-      href="/resume.pdf"
-      class="inline-block text-sm font-heading font-medium text-[var(--color-accent)] no-underline border border-[var(--color-accent)] rounded px-4 py-2 hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-150"
-    >
-      Download Resume
-    </a>
-  </section>
-
-  <section class="border-t border-[var(--color-border)] pt-16 pb-8">
-    <h2 class="text-2xl mb-10">Selected Work</h2>
-
-    <div class="space-y-10">
-      <article>
-        <h3 class="text-lg mb-1">
-          <a href="/work" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
-            The Canvas Agent
-          </a>
-        </h3>
-        <p class="text-[var(--color-muted)]">
-          A tool-calling AI agent over LMS data with 9 typed tools, parameterized SQL, and persistent memory via pgvector. Won HackRamapo.
-        </p>
-      </article>
-
-      <article>
-        <h3 class="text-lg mb-1">
-          <a href="/work" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
-            Trimble
-          </a>
-        </h3>
-        <p class="text-[var(--color-muted)]">
-          Production configuration management platform in C#/.NET and Azure for a distributed broker architecture.
-        </p>
-      </article>
-
-      <article>
-        <h3 class="text-lg mb-1">
-          <a href="/research" class="no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
-            The Research
-          </a>
-        </h3>
-        <p class="text-[var(--color-muted)]">
-          What happens when user intent contradicts content semantics? Resolving affective conflict in retrieval with knowledge graphs.
-        </p>
-      </article>
+    <div class="flex gap-3 items-center">
+      <a
+        href="/resume.pdf"
+        class="inline-block text-[13px] font-medium bg-[var(--color-accent)] text-white rounded-md px-5 py-2.5 hover:bg-[var(--color-accent-hover)] transition-colors duration-150"
+      >
+        Resume
+      </a>
+      <a
+        href="mailto:shahp0021@gmail.com"
+        class="inline-block text-[13px] font-medium text-[var(--color-muted)] border border-[var(--color-border)] rounded-md px-5 py-2.5 hover:border-[var(--color-text)] hover:text-[var(--color-text)] transition-colors duration-150"
+      >
+        Get in touch
+      </a>
     </div>
   </section>
 
-  <section class="border-t border-[var(--color-border)] pt-12 pb-4">
-    <p class="text-sm text-[var(--color-muted)]">
-      <span class="font-heading font-medium text-[var(--color-text)]">Currently:</span>
-      Finishing up research and looking for full-time roles starting Summer 2026.
-      <a href="/now" class="ml-1">See what I'm up to</a>
+  <section class="border-t border-[var(--color-border)] pt-14 pb-6">
+    <h2 class="text-[13px] font-medium text-[var(--color-faint)] tracking-wide uppercase mb-8">Selected Work</h2>
+
+    <div class="space-y-10">
+      <a href="/work#canvas-agent" class="group block">
+        <div class="flex items-baseline justify-between mb-1">
+          <h3 class="text-[17px] font-semibold group-hover:text-[var(--color-accent)] transition-colors">Canvas Agent</h3>
+          <span class="text-[12px] text-[var(--color-faint)] font-mono">2026</span>
+        </div>
+        <p class="text-[var(--color-muted)] text-[15px] leading-relaxed">
+          AI agent with generative UI that builds interface components at runtime from user intent. 9 typed tools, parameterized SQL, persistent memory. Won HackRamapo.
+        </p>
+      </a>
+
+      <a href="/work#trimble" class="group block">
+        <div class="flex items-baseline justify-between mb-1">
+          <h3 class="text-[17px] font-semibold group-hover:text-[var(--color-accent)] transition-colors">Trimble</h3>
+          <span class="text-[12px] text-[var(--color-faint)] font-mono">2025</span>
+        </div>
+        <p class="text-[var(--color-muted)] text-[15px] leading-relaxed">
+          Production configuration management platform in C#/.NET and Azure for a distributed broker architecture serving enterprise transportation.
+        </p>
+      </a>
+
+      <a href="/research" class="group block">
+        <div class="flex items-baseline justify-between mb-1">
+          <h3 class="text-[17px] font-semibold group-hover:text-[var(--color-accent)] transition-colors">Intent-Content Conflict in Retrieval</h3>
+          <span class="text-[12px] text-[var(--color-faint)] font-mono">ongoing</span>
+        </div>
+        <p class="text-[var(--color-muted)] text-[15px] leading-relaxed">
+          When user intent contradicts content semantics, retrieval breaks. Building a framework to resolve that conflict using knowledge graphs where emotions are first-class entities.
+        </p>
+      </a>
+
+      <a href="/work#pantry" class="group block">
+        <div class="flex items-baseline justify-between mb-1">
+          <h3 class="text-[17px] font-semibold group-hover:text-[var(--color-accent)] transition-colors">Center for Food Action</h3>
+          <span class="text-[12px] text-[var(--color-faint)] font-mono">2025</span>
+        </div>
+        <p class="text-[var(--color-muted)] text-[15px] leading-relaxed">
+          Full-stack inventory platform replacing manual tracking across 6 pantries serving 40,000 people annually. Featured in News 12 NJ and Ramapo News.
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-[var(--color-border)] pt-10 pb-4">
+    <p class="text-[14px] text-[var(--color-muted)]">
+      <span class="font-medium text-[var(--color-text)]">Currently:</span>
+      Finishing my capstone on collision risk prediction, extending the Canvas agent into a generative UI system, and looking for full-time roles starting Summer 2026.
+      <a href="/now" class="ml-1 text-[var(--color-accent)]">What I'm up to &rarr;</a>
     </p>
   </section>
 </Base>

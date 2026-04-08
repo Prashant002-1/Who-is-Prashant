@@ -1,14 +1,14 @@
 ---
 const links = [
-  { href: "https://github.com/prashantshah", label: "GitHub" },
-  { href: "https://linkedin.com/in/prashantshah", label: "LinkedIn" },
-  { href: "mailto:hello@prashantshah.dev", label: "Email" },
+  { href: "https://github.com/Prashant002-1", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/prashant210/", label: "LinkedIn" },
+  { href: "mailto:shahp0021@gmail.com", label: "Email" },
 ];
 ---
 
-<footer class="border-t border-[var(--color-border)] mt-24">
-  <div class="mx-auto flex max-w-[960px] items-center justify-between px-6 py-8 text-sm text-[var(--color-muted)]">
-    <span>Prashant Shah</span>
+<footer class="border-t border-[var(--color-border)] mt-auto">
+  <div class="mx-auto flex max-w-[960px] items-center justify-between px-6 py-8 text-[13px] text-[var(--color-faint)]">
+    <span>&copy; 2026 Prashant Shah</span>
     <ul class="flex gap-5">
       {links.map(({ href, label }) => (
         <li>
@@ -16,7 +16,7 @@ const links = [
             href={href}
             target={href.startsWith("mailto") ? undefined : "_blank"}
             rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-            class="text-[var(--color-muted)] no-underline hover:text-[var(--color-text)] transition-colors duration-150"
+            class="text-[var(--color-faint)] hover:text-[var(--color-muted)] transition-colors duration-150"
           >
             {label}
           </a>

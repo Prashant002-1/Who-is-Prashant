@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Sora", sans-serif;
-  --font-body: "Source Serif 4", serif;
+  --font-heading: "General Sans", "Helvetica Neue", sans-serif;
+  --font-body: "General Sans", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-bg: #FAFAF8;
-  --color-surface: #F4F3F0;
-  --color-text: #1A1A1A;
-  --color-muted: #6B6B6B;
-  --color-border: #E5E3DF;
+  --color-bg: #F7F6F2;
+  --color-surface: #EFEDE8;
+  --color-text: #1A1A18;
+  --color-muted: #5C5B57;
+  --color-faint: #9C9B97;
+  --color-border: #DCD9D3;
   --color-accent: #2B6B5E;
   --color-accent-hover: #1F4F45;
 }
@@ -19,40 +20,52 @@
     font-family: var(--font-body);
     color: var(--color-text);
     background-color: var(--color-bg);
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  [data-theme="dark"] {
+    --color-bg: #141413;
+    --color-surface: #1C1C1A;
+    --color-text: #D4D3D0;
+    --color-muted: #8A8985;
+    --color-faint: #5A5957;
+    --color-border: #2E2E2B;
+    --color-accent: #4F9A8D;
+    --color-accent-hover: #6BB3A5;
+  }
+
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 600;
   }
 
   h1 { font-weight: 700; }
-  h2 { font-weight: 600; }
-  h3 { font-weight: 600; }
 
   a {
     color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
-    text-underline-offset: 3px;
-    transition: color 150ms ease, text-decoration-color 150ms ease;
+    text-decoration: none;
+    transition: color 150ms ease;
   }
 
   a:hover {
     color: var(--color-accent-hover);
-    text-decoration-color: var(--color-accent-hover);
   }
 
   code {
     font-family: var(--font-mono);
-    font-size: 0.82em;
+    font-size: 0.85em;
   }
 
   ::selection {
     background-color: #2B6B5E22;
+  }
+
+  [data-theme="dark"] ::selection {
+    background-color: #4F9A8D33;
   }
 }
