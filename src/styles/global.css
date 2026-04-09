@@ -5,13 +5,16 @@
   --font-body: "Source Serif 4", serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-bg: #FAFAF8;
-  --color-surface: #F4F3F0;
-  --color-text: #1A1A1A;
-  --color-muted: #6B6B6B;
-  --color-border: #E5E3DF;
-  --color-accent: #2B6B5E;
-  --color-accent-hover: #1F4F45;
+  --color-bg: #09090f;
+  --color-surface: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.13);
+  --color-text: #f0eef8;
+  --color-muted: rgba(240, 238, 248, 0.55);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-bright: rgba(255, 255, 255, 0.25);
+  --color-accent: #a78bfa;
+  --color-accent-hover: #c4b5fd;
+  --color-glow: rgba(167, 139, 250, 0.2);
 }
 
 @layer base {
@@ -27,7 +30,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    line-height: 1.2;
+    line-height: 1.15;
     letter-spacing: -0.02em;
   }
 
@@ -53,6 +56,48 @@
   }
 
   ::selection {
-    background-color: #2B6B5E22;
+    background-color: rgba(167, 139, 250, 0.25);
   }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .glass-interactive:hover {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: revealUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

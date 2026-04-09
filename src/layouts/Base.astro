@@ -2,15 +2,18 @@
 import { ClientRouter } from "astro:transitions";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import SceneBackground from "../components/SceneBackground.astro";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
+  bg?: string;
+  video?: boolean;
   wide?: boolean;
 }
 
-const { title, description = "Prashant Shah's portfolio", wide = false } = Astro.props;
+const { title, description = "Prashant Shah's portfolio", bg = "home", video = false, wide = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,14 +32,28 @@ const { title, description = "Prashant Shah's portfolio", wide = false } = Astro
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body>
+    <SceneBackground page={bg} video={video} />
     <Nav />
-    <main class:list={[
-      "mx-auto w-full flex-1 px-6 py-16",
-      wide ? "max-w-[960px]" : "max-w-[680px]",
-    ]}>
+    <main
+      class:list={[
+        "mx-auto w-full px-6 pt-28 pb-24",
+        wide ? "max-w-[960px]" : "max-w-[680px]",
+      ]}
+    >
       <slot />
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+  }
+</style>

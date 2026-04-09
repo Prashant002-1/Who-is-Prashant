@@ -2,7 +2,28 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Work | Prashant Shah">
-  <h1 class="text-4xl mb-6" transition:name="page-title">Work</h1>
-  <p class="text-[var(--color-muted)]">Coming soon.</p>
+<Base title="Work | Prashant Shah" bg="work" wide>
+  <header class="page-header reveal">
+    <h1 transition:name="page-title">Work</h1>
+    <p class="lede">Where I've been and what I built while I was there.</p>
+  </header>
 </Base>
+
+<style>
+  .page-header {
+    padding-top: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .lede {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+</style>
