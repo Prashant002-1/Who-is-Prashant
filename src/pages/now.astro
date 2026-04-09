@@ -2,85 +2,72 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Now | Prashant Shah" bg="now">
-  <header class="reveal">
-    <h1 transition:name="page-title">Now</h1>
-    <p class="updated">Last updated April 2026</p>
-  </header>
+<Base title="Now | Prashant Shah">
+<nav class="now-nav">
+  <a href="/" class="wordmark">&larr; PS</a>
+</nav>
 
-  <div class="items glass reveal" style="animation-delay: 0.1s">
+<main class="now-main">
+  <h1>Now</h1>
+  <p class="updated">Last updated April 2026</p>
 
-    <section>
-      <h2>Building</h2>
-      <p>Finishing my capstone on collision risk prediction in autonomous driving simulations, and wrapping up the pantry inventory system for the Center for Food Action.</p>
-    </section>
+  <section>
+    <h2>Building</h2>
+    <p>Finishing my capstone on collision risk prediction in autonomous driving simulations, and wrapping up the pantry inventory system for the Center for Food Action.</p>
+  </section>
 
-    <section>
-      <h2>Researching</h2>
-      <p>Resolving intent-content conflict in retrieval. What happens when a user's emotional intent contradicts the semantics of what they're searching for.</p>
-    </section>
+  <section>
+    <h2>Researching</h2>
+    <p>Resolving intent-content conflict in retrieval. What happens when a user's emotional intent contradicts the semantics of what they're searching for.</p>
+  </section>
 
-    <section>
-      <h2>Learning</h2>
-      <p>Graph Transformers and how structured knowledge can make retrieval systems smarter than embeddings alone.</p>
-    </section>
+  <section>
+    <h2>Learning</h2>
+    <p>Graph Transformers and how structured knowledge can make retrieval systems smarter than embeddings alone.</p>
+  </section>
 
-    <section>
-      <h2>Watching</h2>
-      <p>Tracking on <a href="https://letterboxd.com/_Prashant_/" target="_blank" rel="noopener noreferrer">Letterboxd</a>.</p>
-    </section>
+  <section>
+    <h2>Watching</h2>
+    <p>Tracking on <a href="https://letterboxd.com/_Prashant_/" target="_blank" rel="noopener noreferrer">Letterboxd</a>.</p>
+  </section>
 
-    <section>
-      <h2>Looking for</h2>
-      <p>Full-time software engineering, AI/ML, or data roles starting Summer 2026.</p>
-    </section>
-
-  </div>
+  <section>
+    <h2>Looking for</h2>
+    <p>Full-time software engineering, AI/ML, or data roles starting Summer 2026.</p>
+  </section>
+</main>
 </Base>
 
 <style>
-  header {
-    padding-top: 1rem;
-    margin-bottom: 2rem;
+  .now-nav {
+    padding: 1.25rem 1.5rem;
   }
+  .wordmark {
+    font-weight: 600; font-size: 0.85rem; color: var(--color-muted);
+    text-decoration: none;
+  }
+  .wordmark:hover { color: var(--color-accent); }
 
+  .now-main {
+    max-width: 600px; margin: 0 auto; padding: 3rem 1.5rem 6rem;
+  }
   h1 {
-    font-size: clamp(2rem, 4.5vw, 2.8rem);
-    margin-bottom: 0.25rem;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    font-size: 2rem; margin-bottom: 0.25rem;
   }
-
-  .updated {
-    font-size: 0.78rem;
-    color: var(--color-faint);
-  }
-
-  .items {
-    padding: 0.5rem 1.75rem 1rem;
-  }
+  .updated { font-size: 0.78rem; color: var(--color-faint); margin-bottom: 3rem; }
 
   section {
-    padding: 1.1rem 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid var(--color-border);
   }
-
-  section:last-child {
-    border-bottom: none;
-  }
+  section:last-child { border-bottom: none; }
 
   section h2 {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-faint);
-    margin-bottom: 0.4rem;
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-faint); margin-bottom: 0.4rem;
   }
-
   section p {
-    font-size: 0.9rem;
-    color: var(--color-muted);
-    line-height: 1.6;
-    margin: 0;
+    font-size: 0.9rem; color: var(--color-muted); line-height: 1.6;
   }
 </style>

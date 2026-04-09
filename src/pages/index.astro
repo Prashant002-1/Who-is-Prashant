@@ -2,510 +2,526 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Prashant Shah" bg="home">
+<Base title="Prashant Shah">
 
-  <!-- ═══ HERO ═══ -->
-  <section id="hero" class="hero">
-    <div class="reveal">
-      <h1>
-        I build software that closes the gap between what systems know and what people need.
-      </h1>
-      <p class="context">
-        CS &amp; Data Science at Ramapo College, graduating May 2026.<br/>
-        Looking for full-time roles starting this summer.
-      </p>
-      <div class="ctas">
-        <a href="mailto:shahp0021@gmail.com" class="btn-primary">Get in touch</a>
-        <a href="/resume.pdf" class="btn-ghost">Resume</a>
-      </div>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="wordmark">PS</a>
+    <ul class="nav-links">
+      <li><a href="#experience" data-nav>Experience</a></li>
+      <li><a href="#projects" data-nav>Projects</a></li>
+      <li><a href="#about" data-nav>About</a></li>
+      <li><a href="/now" class="now-link">Now &nearr;</a></li>
+    </ul>
+    <button class="burger" data-burger aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-nav hidden" data-mobile-nav>
+    <a href="#experience" data-nav>Experience</a>
+    <a href="#projects" data-nav>Projects</a>
+    <a href="#about" data-nav>About</a>
+    <a href="/now">Now</a>
+  </div>
+</nav>
+
+<!-- ══ PARALLAX BACKGROUNDS ══ -->
+<div class="bg-layer bg-hero" data-parallax="0.15"></div>
+<div class="bg-layer bg-mid" data-parallax="0.08"></div>
+<div class="bg-layer bg-lower" data-parallax="0.04"></div>
+
+<!-- ══ HERO ══ -->
+<section id="hero" class="hero">
+  <div class="hero-content fade-up">
+    <h1>I build software that closes the gap between what systems know and what people need.</h1>
+    <p class="hero-sub">CS & Data Science at Ramapo College, graduating May 2026.<br/>Looking for full-time roles this summer.</p>
+    <div class="hero-ctas">
+      <a href="mailto:shahp0021@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="/resume.pdf" class="btn-ghost">Resume</a>
     </div>
-  </section>
+  </div>
+  <div class="scroll-hint fade-up" style="animation-delay: 0.6s">
+    <svg width="20" height="30" viewBox="0 0 20 30" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="1" y="1" width="18" height="28" rx="9"/>
+      <line x1="10" y1="8" x2="10" y2="14" class="scroll-dot"/>
+    </svg>
+  </div>
+</section>
 
 
-  <!-- ═══ EXPERIENCE ═══ -->
-  <section id="experience" class="section" data-bg="work">
-    <h2 class="section-title reveal">Experience</h2>
-
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <h2 class="section-label fade-up">Experience</h2>
     <div class="timeline">
-      <div class="timeline-entry reveal">
-        <div class="timeline-meta">
-          <span class="timeline-date">Summer 2025</span>
-          <span class="timeline-place">Princeton, NJ</span>
-        </div>
-        <div class="timeline-body">
-          <h3>Software Engineering Intern &middot; Trimble</h3>
-          <p>Built a configuration management platform in C#/.NET and Azure that became the single source of truth for a distributed broker architecture. REST APIs integrating into TMW Suite's enterprise transportation system. Auth proxy through Azure Workload Identity Federation for role-based access across environments.</p>
-        </div>
+
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">Summer 2025 &middot; Princeton, NJ</div>
+        <h3>Software Engineering Intern &middot; Trimble</h3>
+        <p>Built a configuration management platform in C#/.NET and Azure that became the single source of truth for a distributed broker architecture. REST APIs integrating into TMW Suite's enterprise transportation system. Auth proxy through Azure Workload Identity Federation for role-based access across environments.</p>
       </div>
 
-      <div class="timeline-entry reveal">
-        <div class="timeline-meta">
-          <span class="timeline-date">Summer 2024</span>
-          <span class="timeline-place">East Hanover, NJ</span>
-        </div>
-        <div class="timeline-body">
-          <h3>Software Engineering Intern &middot; Novartis</h3>
-          <p>Replaced a manual project proposal workflow. Sat with stakeholders across functions to build a shared data model, then built the React/TypeScript app with Azure Functions that turned two days of chasing forms into hours. Live dashboards for submission status, approvals, budgets.</p>
-        </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">Summer 2024 &middot; East Hanover, NJ</div>
+        <h3>Software Engineering Intern &middot; Novartis</h3>
+        <p>Replaced a manual project proposal workflow. Sat with stakeholders across functions to build a shared data model, then built the React/TypeScript app with Azure Functions that turned two days of chasing forms into hours.</p>
       </div>
 
-      <div class="timeline-entry reveal">
-        <div class="timeline-meta">
-          <span class="timeline-date">2023 &ndash; 2024</span>
-          <span class="timeline-place">Ramapo College</span>
-        </div>
-        <div class="timeline-body">
-          <h3>Data Analyst</h3>
-          <p>Built Python pipelines for processing and validating 6,000+ student records. Developed automated data quality checks and reporting dashboards that replaced manual spreadsheet workflows.</p>
-        </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">2023 &ndash; 2024 &middot; Ramapo College</div>
+        <h3>Data Analyst</h3>
+        <p>Built Python pipelines for processing and validating 6,000+ student records. Automated data quality checks and reporting dashboards that replaced manual spreadsheet workflows.</p>
       </div>
 
-      <!-- DMC slot: uncomment and fill in when ready
-      <div class="timeline-entry reveal">
-        <div class="timeline-meta">
-          <span class="timeline-date">Date</span>
-          <span class="timeline-place">Location</span>
-        </div>
-        <div class="timeline-body">
-          <h3>Role · DMC</h3>
-          <p>Description here.</p>
-        </div>
-      </div>
-      -->
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ═══ PROJECTS & RESEARCH ═══ -->
-  <section id="projects" class="section" data-bg="research">
-    <h2 class="section-title reveal">Projects &amp; Research</h2>
+<!-- ══ PROJECTS & RESEARCH ══ -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <h2 class="section-label fade-up">Projects & Research</h2>
 
     <!-- Featured: Research -->
-    <div class="featured glass reveal">
-      <span class="featured-label">Ongoing Research</span>
+    <div class="featured fade-up">
+      <span class="feat-tag">Ongoing Research</span>
       <h3>Resolving Intent-Content Conflict in Retrieval</h3>
-      <p class="featured-advisor">With Dr. Ali Al-Juboori, Ramapo College</p>
-      <div class="featured-prose">
-        <p>What happens when someone wants a happy movie about war? Retrieval systems break because they treat user intent and content semantics as the same signal. I'm building a framework that makes emotions first-class entities in a knowledge graph so the system can hold both ideas at once.</p>
-        <p>1,600 queries tested. In conflict scenarios, the framework reduces affective displacement error by 0.037 vs. baseline. Edge-removal causal interventions confirmed the graph structure is doing real work.</p>
-      </div>
-      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer" class="featured-link">See the code &rarr;</a>
+      <p class="feat-advisor">With Dr. Ali Al-Juboori, Ramapo College</p>
+      <p>What happens when someone wants a happy movie about war? Retrieval systems break because they treat user intent and content semantics as the same signal. I'm building a framework that makes emotions first-class entities in a knowledge graph so the system can hold both ideas at once.</p>
+      <p>1,600 queries tested. In conflict scenarios, the framework reduces affective displacement error by 0.037 vs. baseline. Edge-removal causal interventions confirmed the graph structure is doing real work.</p>
+      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer" class="feat-link">See the code &rarr;</a>
     </div>
 
-    <!-- Project cards -->
+    <!-- Grid -->
     <div class="project-grid">
-
-      <a href="#" class="project-card glass glass-hover reveal">
+      <div class="pcard fade-up">
         <h3>Canvas Agent</h3>
-        <p class="project-stack">TypeScript, Next.js, PostgreSQL, pgvector</p>
+        <span class="pcard-stack">TypeScript, Next.js, PostgreSQL, pgvector</span>
         <p>I wanted an AI agent that could handle my LMS for me. Nine typed tools, persistent memory, a planner that knows what's due before I ask. The judges at HackRamapo responded to the architecture and documentation more than anything.</p>
-      </a>
-
-      <a href="#" class="project-card glass glass-hover reveal">
+      </div>
+      <div class="pcard fade-up">
         <h3>Center for Food Action</h3>
-        <p class="project-stack">Python, Flask, PostgreSQL</p>
-        <p>Volunteers log donated food one-handed while carrying boxes. I built a barcode-scanning inventory system designed for that reality. Serving 40,000 people across six pantries. Funded by the Daffron Family Foundation.</p>
-      </a>
-
-      <a href="#" class="project-card glass glass-hover reveal">
+        <span class="pcard-stack">Python, Flask, PostgreSQL</span>
+        <p>Volunteers log donated food one-handed while carrying boxes. I built a barcode-scanning inventory system designed for that reality. Serving 40,000 people across six pantries.</p>
+      </div>
+      <div class="pcard fade-up">
         <h3>EmotionFlix</h3>
-        <p class="project-stack">React, TypeScript, Node.js, PostgreSQL</p>
+        <span class="pcard-stack">React, TypeScript, Node.js, PostgreSQL</span>
         <p>Movie recommendations don't account for how you feel. This system scans your face on-device, maps emotions to genres, and adapts over time. 69 tests. No data leaves the browser.</p>
-      </a>
-
-      <a href="#" class="project-card glass glass-hover reveal">
+      </div>
+      <div class="pcard fade-up">
         <h3>ADV Collision Risk Prediction</h3>
-        <p class="project-stack">Python, XGBoost, scikit-learn</p>
+        <span class="pcard-stack">Python, XGBoost, scikit-learn</span>
         <p>Capstone under Dr. Frees. Predicting which of 33,530 autonomous driving scenarios are most likely to result in collisions, so testing resources go where they matter.</p>
-      </a>
-
+      </div>
     </div>
 
-    <div class="press-links reveal">
-      <span class="press-label">In the press:</span>
+    <div class="press fade-up">
+      <span>In the press:</span>
       <a href="https://newjersey.news12.com/ramapo-college-students-use-technology-to-streamline-food-pantry-operations" target="_blank" rel="noopener noreferrer">News 12 NJ</a>
       <a href="https://www.ramapo.edu/news/slide/real-world-impact-ramapo-developed-tech-to-revolutionize-food-banks/" target="_blank" rel="noopener noreferrer">Ramapo News</a>
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ═══ ABOUT ═══ -->
-  <section id="about" class="section" data-bg="about">
-    <h2 class="section-title reveal">About</h2>
-
-    <div class="about-content reveal">
-      <div class="about-prose">
+<!-- ══ ABOUT ══ -->
+<section id="about" class="section">
+  <div class="section-inner">
+    <h2 class="section-label fade-up">About</h2>
+    <div class="about-grid">
+      <div class="about-prose fade-up">
         <p>I grew up speaking Bengali at home, English at school, and enough Hindi to follow along when my parents switched mid-sentence. Three languages before I was ten. That does something to how you parse ambiguity. You learn early that the same idea wears different clothes depending on who's hearing it.</p>
-        <p>I came to Ramapo for computer science and stayed because the scale let me do things. Co-founded the CS club and convinced Bjarne Stroustrup to come speak. Managed 17 RAs and a community of 200+ students. Led the math club. Competed in ICPC at the New York regional. The range isn't a resume filler. It's the reason I know how to talk to people who don't speak code.</p>
-        <p>I want to be the kind of engineer who understands the system end to end: the data, the infrastructure, the interface, and the person on the other side of it. Not a specialist in one layer. Someone who can look at a problem from the user's chair and trace it all the way back to the query plan.</p>
+        <p>I came to Ramapo for computer science and stayed because the scale let me do things. Co-founded the CS club and convinced Bjarne Stroustrup to come speak. Managed 17 RAs and a community of 200+ students. Led the math club. Competed in ICPC at the New York regional.</p>
+        <p>I want to be the kind of engineer who understands the system end to end: the data, the infrastructure, the interface, and the person on the other side of it.</p>
       </div>
-
-      <div class="about-side">
-        <div class="about-detail">
+      <div class="about-sidebar fade-up">
+        <div class="sb-block">
           <h4>Education</h4>
-          <p>BS Computer Science &amp; Data Science<br/>Minor in Mathematics<br/>Ramapo College, 3.84 GPA</p>
+          <p>BS Computer Science & Data Science<br/>Minor in Mathematics<br/>Ramapo College, 3.84 GPA</p>
         </div>
-        <div class="about-detail">
+        <div class="sb-block">
           <h4>Also</h4>
-          <ul>
-            <li>Canstruction, 1st place</li>
-            <li>Student Employee of the Year</li>
-            <li>Presidential Scholarship, 4 years</li>
-          </ul>
+          <p>Canstruction, 1st place<br/>Student Employee of the Year<br/>Presidential Scholarship, 4 years</p>
         </div>
-        <div class="about-detail">
+        <div class="sb-block">
           <h4>Elsewhere</h4>
-          <p>
-            <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener noreferrer">GitHub</a><br/>
-            <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br/>
-            <a href="https://letterboxd.com/_Prashant_/" target="_blank" rel="noopener noreferrer">Letterboxd</a>
-          </p>
+          <p><a href="https://github.com/Prashant002-1" target="_blank" rel="noopener noreferrer">GitHub</a> &middot; <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &middot; <a href="https://letterboxd.com/_Prashant_/" target="_blank" rel="noopener noreferrer">Letterboxd</a></p>
         </div>
       </div>
     </div>
+    <p class="closing fade-up">Every system I've built started with watching someone struggle with the one it replaced.</p>
+  </div>
+</section>
 
-    <p class="closing reveal">
-      Every system I've built started with watching someone struggle with the one it replaced.
-    </p>
-  </section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 Prashant Shah</span>
+    <div class="footer-links">
+      <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:shahp0021@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
 
 </Base>
 
 <script is:inline>
-  // Background transitions per section
-  document.addEventListener('astro:page-load', () => {
-    const bgMap = {
-      hero: 'home',
-      experience: 'work',
-      projects: 'research',
-      about: 'about',
-    };
+document.addEventListener('DOMContentLoaded', () => {
 
-    const sceneImage = document.querySelector('.scene-image');
-    const sceneGradient = document.querySelector('.scene-gradient');
-    if (!sceneImage || !sceneGradient) return;
-
-    const gradients = {
-      home: 'radial-gradient(ellipse at 60% 30%, #112b24 0%, #0a1a16 40%, #09090f 100%)',
-      work: 'radial-gradient(ellipse at 30% 60%, #0f1f17 0%, #0a1410 40%, #09090f 100%)',
-      research: 'radial-gradient(ellipse at 50% 20%, #0a1a1e 0%, #06101a 45%, #09090f 100%)',
-      about: 'radial-gradient(ellipse at 50% 60%, #0d1a14 0%, #080f0d 45%, #09090f 100%)',
-    };
-
-    let currentBg = 'home';
-
-    function setBg(key) {
-      if (key === currentBg) return;
-      currentBg = key;
-      sceneImage.style.transition = 'opacity 0.8s ease';
-      sceneImage.style.opacity = '0';
-      setTimeout(() => {
-        sceneImage.style.backgroundImage = `url('/backgrounds/${key}.jpg'), ${gradients[key]}`;
-        sceneGradient.style.background = gradients[key];
-        sceneImage.style.opacity = '0.3';
-      }, 400);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const key = bgMap[entry.target.id];
-          if (key) setBg(key);
-        }
-      });
-    }, { rootMargin: '-35% 0px -35% 0px' });
-
-    Object.keys(bgMap).forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+  // ── Smooth scroll for nav anchors ──
+  document.querySelectorAll('a[data-nav]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, '', href);
+        document.querySelector('[data-mobile-nav]')?.classList.add('hidden');
+      }
     });
   });
+
+  // ── Mobile menu ──
+  const burger = document.querySelector('[data-burger]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+  burger?.addEventListener('click', () => mobileNav?.classList.toggle('hidden'));
+  mobileNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav?.classList.add('hidden')));
+
+  // ── Active section highlight ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('a[data-nav]');
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        navLinks.forEach(l => {
+          if (l.getAttribute('href') === '#' + entry.target.id) l.classList.add('active');
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => sectionObs.observe(s));
+
+  // ── Parallax backgrounds ──
+  const layers = document.querySelectorAll('[data-parallax]');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        layers.forEach(layer => {
+          const speed = parseFloat(layer.dataset.parallax);
+          layer.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // ── Fade-up on scroll ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => fadeObs.observe(el));
+
+  // ── Nav bg on scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 60);
+  });
+});
 </script>
 
 <style>
+  /* ── Animations ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Nav ── */
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background 300ms ease, border-color 300ms ease;
+    border-bottom: 1px solid transparent;
+  }
+  #nav.scrolled {
+    background: rgba(6, 6, 8, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: var(--color-border);
+  }
+  .nav-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 1.5rem;
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .wordmark {
+    font-weight: 700; font-size: 1rem; color: var(--color-text);
+    text-decoration: none; letter-spacing: -0.02em;
+  }
+  .wordmark:hover { color: var(--color-accent); }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;
+  }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; color: var(--color-muted);
+    text-decoration: none; transition: color 150ms ease;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+  .nav-links a.active { color: var(--color-accent); }
+  .now-link { opacity: 0.7; }
+  .burger {
+    display: none; background: none; border: none; color: var(--color-muted);
+    cursor: pointer; padding: 4px;
+  }
+  .mobile-nav {
+    padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;
+    background: rgba(6, 6, 8, 0.95); border-bottom: 1px solid var(--color-border);
+  }
+  .mobile-nav.hidden { display: none; }
+  .mobile-nav a { font-size: 0.95rem; color: var(--color-muted); text-decoration: none; }
+  .mobile-nav a:hover { color: var(--color-text); }
+
+  @media (max-width: 639px) {
+    .nav-links { display: none; }
+    .burger { display: block; }
+  }
+
+  /* ── Parallax Backgrounds ── */
+  .bg-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 120vh;
+    background-size: cover; background-position: center;
+    pointer-events: none; will-change: transform;
+  }
+  .bg-hero {
+    background-image: url('/bg/hero-bg.png');
+    opacity: 0.55;
+    z-index: -3;
+  }
+  .bg-mid {
+    background-image: url('/bg/mid-bg.png');
+    opacity: 0.35;
+    z-index: -2;
+  }
+  .bg-lower {
+    background-image: url('/bg/lower-bg.png');
+    opacity: 0.30;
+    z-index: -1;
+  }
+
   /* ── Hero ── */
   .hero {
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-bottom: 4rem;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    max-width: 960px; margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
   }
-
-  h1 {
-    font-size: clamp(1.7rem, 4.2vw, 2.5rem);
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 1.25rem;
-    max-width: 520px;
-    line-height: 1.15;
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+  .hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 600; max-width: 560px;
+    line-height: 1.12; margin-bottom: 1.25rem;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
   }
-
-  .context {
-    font-size: 0.88rem;
-    color: var(--color-muted);
-    max-width: 400px;
-    margin-bottom: 2rem;
-    line-height: 1.5;
+  .hero-sub {
+    font-size: 0.9rem; color: var(--color-muted);
+    max-width: 400px; margin-bottom: 2rem; line-height: 1.5;
   }
-
-  .ctas { display: flex; gap: 0.75rem; align-items: center; }
+  .hero-ctas { display: flex; gap: 0.75rem; align-items: center; }
 
   .btn-primary {
-    display: inline-block; font-size: 0.8rem; font-weight: 600;
-    background: var(--color-accent); color: #09090f;
-    padding: 0.6rem 1.5rem; border-radius: 8px; text-decoration: none;
-    transition: background 150ms ease, transform 150ms ease;
+    font-size: 0.8rem; font-weight: 600;
+    background: var(--color-accent); color: #060608;
+    padding: 0.6rem 1.5rem; border-radius: 8px;
+    text-decoration: none;
+    transition: background 150ms, transform 150ms;
   }
-  .btn-primary:hover { background: var(--color-accent-hover); color: #09090f; transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--color-accent-hover); color: #060608; transform: translateY(-1px); }
 
   .btn-ghost {
-    display: inline-block; font-size: 0.8rem; font-weight: 500;
-    color: var(--color-muted); padding: 0.6rem 1rem; text-decoration: none;
-    transition: color 150ms ease;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--color-muted); padding: 0.6rem 1rem;
+    text-decoration: none;
   }
   .btn-ghost:hover { color: var(--color-text); }
 
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%); color: var(--color-faint);
+  }
+  .scroll-dot { animation: scrollBounce 2s ease-in-out infinite; }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(4px); opacity: 0.3; }
+  }
+
   /* ── Sections ── */
   .section {
-    padding: 5rem 0 4rem;
+    padding: 6rem 0;
     scroll-margin-top: 60px;
   }
-
-  .section-title {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    margin-bottom: 2.5rem;
+  .section-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 1.5rem;
+  }
+  .section-label {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 3rem;
   }
 
-  /* ── Experience Timeline ── */
+  /* ── Timeline ── */
   .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    border-left: 1px solid var(--color-border);
-    padding-left: 2rem;
+    display: flex; flex-direction: column; gap: 2.5rem;
+    padding-left: 2rem; border-left: 1px solid var(--color-border);
     margin-left: 0.5rem;
   }
-
-  .timeline-entry { position: relative; }
-
-  .timeline-entry::before {
-    content: '';
-    position: absolute;
-    left: -2.35rem;
-    top: 0.35rem;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
+  .tl-item { position: relative; }
+  .tl-dot {
+    position: absolute; left: -2.35rem; top: 0.2rem;
+    width: 8px; height: 8px; border-radius: 50%;
     background: var(--color-accent);
-    box-shadow: 0 0 8px var(--color-glow);
+    box-shadow: 0 0 12px var(--color-glow), 0 0 4px var(--color-accent);
   }
-
-  .timeline-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.35rem;
+  .tl-meta {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--color-faint); margin-bottom: 0.3rem;
   }
-
-  .timeline-date {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--color-faint);
+  .tl-item h3 {
+    font-size: 0.95rem; color: var(--color-text); margin-bottom: 0.4rem;
   }
-
-  .timeline-place {
-    font-size: 0.72rem;
-    color: var(--color-faint);
-  }
-
-  .timeline-body h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline-body p {
-    font-size: 0.88rem;
-    color: var(--color-muted);
-    line-height: 1.6;
+  .tl-item p {
+    font-size: 0.88rem; color: var(--color-muted); line-height: 1.6;
   }
 
   /* ── Featured Research ── */
   .featured {
-    padding: 2rem 2rem 1.75rem;
-    margin-bottom: 1.5rem;
+    background: rgba(94, 184, 157, 0.04);
+    border: 1px solid rgba(94, 184, 157, 0.12);
     border-left: 3px solid var(--color-accent);
-    border-radius: 0 14px 14px 0;
+    border-radius: 0 12px 12px 0;
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 2rem;
   }
-
-  .featured-label {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    display: block;
+  .feat-tag {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-accent); display: block; margin-bottom: 0.75rem;
+  }
+  .featured h3 {
+    font-size: 1.15rem; color: var(--color-text); margin-bottom: 0.2rem;
+  }
+  .feat-advisor {
+    font-size: 0.78rem; color: var(--color-faint); margin-bottom: 1rem;
+  }
+  .featured > p {
+    font-size: 0.88rem; color: var(--color-muted); line-height: 1.6;
     margin-bottom: 0.75rem;
   }
-
-  .featured h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.3rem;
-  }
-
-  .featured-advisor {
-    font-size: 0.78rem;
-    color: var(--color-faint);
-    margin-bottom: 1rem;
-  }
-
-  .featured-prose {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .featured-prose p {
-    font-size: 0.88rem;
-    color: var(--color-muted);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .featured-link {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--color-accent);
+  .feat-link {
+    display: inline-block; margin-top: 0.5rem;
+    font-size: 0.82rem; font-weight: 500; color: var(--color-accent);
   }
 
   /* ── Project Grid ── */
   .project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
+  @media (max-width: 639px) { .project-grid { grid-template-columns: 1fr; } }
 
-  @media (max-width: 639px) {
-    .project-grid { grid-template-columns: 1fr; }
-  }
-
-  .project-card {
-    display: block;
+  .pcard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
     padding: 1.25rem 1.5rem;
-    text-decoration: none;
+    transition: border-color 200ms, background 200ms, transform 200ms;
   }
-
-  .project-card h3 {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.2rem;
-    transition: color 150ms ease;
+  .pcard:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
   }
-
-  .project-card:hover h3 { color: var(--color-accent); }
-
-  .project-stack {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--color-faint);
-    margin-bottom: 0.6rem;
+  .pcard h3 {
+    font-size: 0.92rem; color: var(--color-text); margin-bottom: 0.15rem;
   }
-
-  .project-card > p:last-child {
-    font-size: 0.82rem;
-    color: var(--color-muted);
-    line-height: 1.5;
-    margin: 0;
+  .pcard-stack {
+    font-family: var(--font-mono); font-size: 0.66rem;
+    color: var(--color-faint); display: block; margin-bottom: 0.6rem;
+  }
+  .pcard p {
+    font-size: 0.82rem; color: var(--color-muted); line-height: 1.5;
   }
 
   /* ── Press ── */
-  .press-links {
-    margin-top: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  .press {
+    margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem;
     font-size: 0.78rem;
   }
-
-  .press-label { color: var(--color-faint); }
-  .press-links a { color: var(--color-accent); }
+  .press span { color: var(--color-faint); }
 
   /* ── About ── */
-  .about-content {
-    display: grid;
-    grid-template-columns: 1fr 240px;
-    gap: 3rem;
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 220px; gap: 3rem;
   }
-
-  @media (max-width: 768px) {
-    .about-content { grid-template-columns: 1fr; gap: 2rem; }
-  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
   .about-prose {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
+    display: flex; flex-direction: column; gap: 0.85rem;
   }
-
   .about-prose p {
-    font-size: 0.88rem;
-    color: var(--color-muted);
-    line-height: 1.65;
-    margin: 0;
+    font-size: 0.88rem; color: var(--color-muted); line-height: 1.65; margin: 0;
   }
-
-  .about-side {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+  .sb-block h4 {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-faint); margin-bottom: 0.35rem;
   }
-
-  .about-detail h4 {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-faint);
-    margin-bottom: 0.4rem;
+  .sb-block p {
+    font-size: 0.8rem; color: var(--color-muted); line-height: 1.5;
   }
-
-  .about-detail p,
-  .about-detail li {
-    font-size: 0.82rem;
-    color: var(--color-muted);
-    line-height: 1.5;
-  }
-
-  .about-detail ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .about-detail li { margin-bottom: 0.2rem; }
-
-  .about-detail a {
-    color: var(--color-accent);
-    font-size: 0.82rem;
-  }
+  .sb-block a { font-size: 0.8rem; }
 
   .closing {
-    margin-top: 3rem;
-    padding-top: 2rem;
+    margin-top: 3rem; padding-top: 2rem;
     border-top: 1px solid var(--color-border);
-    font-size: 0.9rem;
-    color: var(--color-muted);
+    font-size: 0.88rem; color: var(--color-muted);
     font-style: italic;
   }
+
+  /* ── Footer ── */
+  footer {
+    padding: 2rem 1.5rem 2.5rem; max-width: 960px;
+    margin: 0 auto; width: 100%;
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+  }
+  .footer-inner span { font-size: 0.75rem; color: var(--color-faint); }
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { font-size: 0.75rem; color: var(--color-faint); text-decoration: none; }
+  .footer-links a:hover { color: var(--color-muted); }
 </style>
