@@ -5,14 +5,15 @@
   --font-body: "General Sans", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-bg: #060608;
-  --color-text: #e8e7e4;
-  --color-muted: rgba(232, 231, 228, 0.55);
-  --color-faint: rgba(232, 231, 228, 0.28);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-accent: #5eb89d;
-  --color-accent-hover: #7fd4b8;
-  --color-glow: rgba(94, 184, 157, 0.12);
+  --color-bg: #FAF7F4;
+  --color-surface: #FFFFFF;
+  --color-text: #2A2226;
+  --color-muted: #7A6E74;
+  --color-faint: #B8AEB3;
+  --color-border: #E8E0E4;
+  --color-accent: #8B5E83;
+  --color-accent-hover: #6E4568;
+  --color-accent-light: #F3EAF1;
 }
 
 @layer base {
@@ -25,27 +26,20 @@
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   }
-
   body { overflow-x: hidden; }
 
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    line-height: 1.15;
-    letter-spacing: -0.025em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
-
   h1 { font-weight: 700; }
   h2 { font-weight: 600; }
   h3 { font-weight: 600; }
 
-  a {
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color 150ms ease;
-  }
+  a { color: var(--color-accent); text-decoration: none; transition: color 150ms; }
   a:hover { color: var(--color-accent-hover); }
 
   code { font-family: var(--font-mono); font-size: 0.85em; }
-
-  ::selection { background-color: rgba(94, 184, 157, 0.25); }
+  ::selection { background-color: rgba(139, 94, 131, 0.15); }
 }
