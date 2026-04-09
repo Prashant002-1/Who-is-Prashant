@@ -5,7 +5,7 @@ import Base from "../layouts/Base.astro";
 <Base title="Work | Prashant Shah" bg="work" wide>
   <header class="reveal">
     <h1 transition:name="page-title">Work</h1>
-    <p class="lede">What I've built and why. Each entry is the problem, the approach, and what I learned.</p>
+    <p class="lede">Each of these started with a problem I could see. The deeper context is in the writing.</p>
   </header>
 
   <div class="projects">
@@ -22,7 +22,7 @@ import Base from "../layouts/Base.astro";
         <p>Right now the UI returns structured data through Zod schemas. The next step is generative UI through a component registry, where the agent selects and composes pre-built interface components at runtime based on user intent and agent state. The agent doesn't write UI code. It maintains a registry of components and picks the right one for the situation.</p>
         <p>For the hackathon demo, I submitted a video walkthrough. The judges responded to the architecture and documentation more than anything. I was explicit about the OpenClaw inspiration and had written up a gist on how I approached the design. That mattered more than a flashy demo.</p>
       </div>
-      <p class="footnote">Won HackRamapo 2026</p>
+      <p class="footnote">Built for HackRamapo 2026</p>
     </article>
 
     <article id="trimble" class="glass reveal" style="animation-delay: 0.15s">
@@ -90,7 +90,7 @@ import Base from "../layouts/Base.astro";
       </div>
       <p class="stack">Python, XGBoost, scikit-learn</p>
       <div class="prose">
-        <p>My capstone research under Dr. Frees. Building ML models to predict collision risk across 33,530 autonomous driving scenarios, evaluating model performance using Recall@Top-K metrics to validate safety-critical test case prioritization. The goal is to identify which simulated scenarios are most likely to result in collisions so testing resources can be focused where they matter most.</p>
+        <p>My capstone under Dr. Frees. Autonomous driving simulations produce thousands of scenarios, and testing all of them equally is a waste. I'm building ML models that predict which of those 33,530 scenarios are most likely to result in collisions, so testing resources go where they matter.</p>
       </div>
       <p class="footnote">Capstone, Ramapo College</p>
     </article>

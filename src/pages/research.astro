@@ -4,53 +4,40 @@ import Base from "../layouts/Base.astro";
 
 <Base title="Research | Prashant Shah" bg="research">
   <header class="reveal">
-    <h1 transition:name="page-title">Resolving Intent-Content Conflict in Retrieval</h1>
-    <p class="advisor">Under Dr. Ali Al-Juboori &middot; Ramapo College &middot; 2025 &ndash; Present</p>
+    <h1 transition:name="page-title">The Research</h1>
+    <p class="context">With Dr. Ali Al-Juboori at Ramapo College, 2025 to present.</p>
   </header>
 
-  <div class="sections">
+  <div class="body">
 
-    <section class="glass reveal" style="animation-delay: 0.1s">
-      <h2>The Problem</h2>
+    <section class="opening glass reveal" style="animation-delay: 0.1s">
       <div class="prose">
-        <p>Most recommendation systems match you to content based on what's similar to what you've liked before. But sometimes what you want contradicts what the content is about. You want a happy movie about war. You want something calming about a high-stakes topic.</p>
-        <p>Existing retrieval systems don't know what to do with that because they treat user intent and content semantics as the same signal. When those signals conflict, retrieval breaks. The system either respects what you asked for and ignores the content, or matches the content and ignores how you want to feel.</p>
+        <p>This started with a feeling everyone has had. You want to watch something, and you know the mood you're in, but the recommendations don't get it. You want a happy movie about war. Something calming about something high-stakes. The system gives you war movies or happy movies. It doesn't know how to hold both ideas at once.</p>
+        <p>I built <a href="/work#emotionflix">EmotionFlix</a> to try to solve this with emotion detection. It worked, up to a point. But the deeper I went, the more I realized the problem wasn't in my system. It was in how retrieval itself works. Every retrieval system treats what you're looking for and how the content is described as the same signal. When those two things contradict each other, the system doesn't know what to do. It either respects your intent and ignores the content, or matches the content and ignores how you want to feel.</p>
+        <p>Dr. Al-Juboori and I turned that gap into a research question.</p>
       </div>
     </section>
 
-    <section class="glass reveal" style="animation-delay: 0.15s">
-      <h2>The Approach</h2>
+    <section class="glass reveal" style="animation-delay: 0.18s">
+      <h2>What we built</h2>
       <div class="prose">
-        <p>My research builds a framework that separates user intent from content semantics by making emotions first-class entities in a knowledge graph. Instead of collapsing everything into a single embedding, the system maintains distinct representations:</p>
-        <ul>
-          <li>A heterogeneous knowledge graph over MovieLens 25M with User, Movie, and Emotion nodes</li>
-          <li>Emotions encoded with weighted EVOKES edges, not just metadata tags</li>
-          <li>A Graph Transformer encoder aligned to SentenceBERT space</li>
-          <li>Hybrid scoring with a tunable affective displacement penalty</li>
-        </ul>
-        <p>The key insight is that a knowledge graph can represent both "what this movie is about" and "how this movie makes people feel" as separate, traversable relationships. When those two signals conflict, the graph structure lets the retrieval system reason about both instead of choosing one.</p>
-      </div>
-    </section>
-
-    <section class="glass reveal" style="animation-delay: 0.2s">
-      <h2>Results</h2>
-      <div class="prose">
-        <p>1,600 synthetic queries across aligned and conflicting conditions. In conflict scenarios (where intent contradicts content), the framework achieved a 0.037 reduction in normalized affective displacement error compared to baseline retrieval.</p>
-        <p>Edge-removal causal interventions confirmed that emotion edges are causally necessary for the improvement. Remove them, and performance degrades to baseline. This isn't correlation; the graph structure is doing real work.</p>
+        <p>A framework that separates user intent from content semantics. The key is making emotions first-class entities in a knowledge graph, not metadata tags on existing nodes, but their own nodes with their own relationships.</p>
+        <p>The system maintains a heterogeneous knowledge graph over MovieLens 25M with User, Movie, and Emotion nodes. Emotions connect to movies through weighted EVOKES edges. A Graph Transformer encoder aligns this structure to SentenceBERT space, and hybrid scoring applies a tunable affective displacement penalty.</p>
+        <p>In plain terms: the graph can represent both "what this movie is about" and "how this movie makes people feel" as separate, traversable relationships. When those two signals conflict, the system can reason about both instead of choosing one.</p>
       </div>
     </section>
 
     <section class="glass reveal" style="animation-delay: 0.25s">
-      <h2>What Got Me Here</h2>
+      <h2>What we found</h2>
       <div class="prose">
-        <p>This connects directly to EmotionFlix. I built a recommendation system based on emotion, and hit the wall where the emotion a user wants doesn't match what the content is "about." That gap is where retrieval breaks. Dr. Al-Juboori and I turned that gap into a research question.</p>
-        <p>The framework is designed to be domain-agnostic. Movies are the testbed, but the architecture applies anywhere user affect and content semantics can diverge: music, therapeutic content, educational material.</p>
+        <p>We tested 1,600 synthetic queries across aligned and conflicting conditions. In conflict scenarios, the framework achieved a 0.037 reduction in normalized affective displacement error compared to baseline retrieval.</p>
+        <p>The more interesting finding: edge-removal causal interventions confirmed that emotion edges are causally necessary for the improvement. Remove them, and performance degrades to baseline. The graph structure is doing real work.</p>
+        <p>Movies are the testbed. The architecture applies anywhere user affect and content semantics can diverge: music, therapeutic content, educational material. The framework is designed to be domain-agnostic.</p>
       </div>
     </section>
 
-    <div class="bottom-links reveal" style="animation-delay: 0.3s">
-      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer">GitHub Repository &rarr;</a>
-      <span class="pipeline">Pipeline: Python, Vertex AI, GCP, RAG</span>
+    <div class="links reveal" style="animation-delay: 0.3s">
+      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer">See the code &rarr;</a>
     </div>
 
   </div>
@@ -59,22 +46,21 @@ import Base from "../layouts/Base.astro";
 <style>
   header {
     padding-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   h1 {
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
 
-  .advisor {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+  .context {
+    font-size: 0.85rem;
     color: var(--color-faint);
   }
 
-  .sections {
+  .body {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -85,55 +71,34 @@ import Base from "../layouts/Base.astro";
   }
 
   section h2 {
-    font-size: 1rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    margin-bottom: 1rem;
   }
 
   .prose {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .prose p {
     font-size: 0.9rem;
     color: var(--color-muted);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
   }
 
-  .prose ul {
-    list-style: disc;
-    padding-left: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .prose li {
-    font-size: 0.88rem;
-    color: var(--color-muted);
-    line-height: 1.5;
-  }
-
-  .bottom-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+  .links {
     padding-top: 0.5rem;
   }
 
-  .bottom-links a {
+  .links a {
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--color-accent);
-  }
-
-  .pipeline {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--color-faint);
   }
 </style>
