@@ -3,27 +3,184 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Work | Prashant Shah" bg="work" wide>
-  <header class="page-header reveal">
+  <header class="reveal">
     <h1 transition:name="page-title">Work</h1>
-    <p class="lede">Where I've been and what I built while I was there.</p>
+    <p class="lede">What I've built and why. Each entry is the problem, the approach, and what I learned.</p>
   </header>
+
+  <div class="projects">
+
+    <article id="canvas-agent" class="glass reveal" style="animation-delay: 0.1s">
+      <div class="project-head">
+        <h2>Canvas Agent</h2>
+        <span class="meta">Feb 2026</span>
+      </div>
+      <p class="stack">TypeScript, Next.js, Claude/OpenAI API, PostgreSQL, pgvector</p>
+      <div class="prose">
+        <p>Canvas LMS has a lot of manual work. Checking assignments, tracking deadlines, planning your week. I wanted an agent that could handle that for me, but also visualize plans and academic state in a way that made me actually want to look at it.</p>
+        <p>The architecture was inspired by OpenClaw. I'd read a gist about how you could build your own version of it, and I applied that thinking to something I needed: a personal agent over my LMS data. Nine typed tools, each backed by parameterized SQL against a Canvas-mirrored PostgreSQL schema. No model-generated SQL. A reactive planner diffs academic state on every request and injects live context into the system prompt so the agent always knows what's due, overdue, and coming up. Persistent memory through pgvector so it remembers across sessions without you repeating yourself. Per-session write locks to prevent race conditions, and automatic context compaction via a secondary LLM call to keep the window focused without losing history.</p>
+        <p>Right now the UI returns structured data through Zod schemas. The next step is generative UI through a component registry, where the agent selects and composes pre-built interface components at runtime based on user intent and agent state. The agent doesn't write UI code. It maintains a registry of components and picks the right one for the situation.</p>
+        <p>For the hackathon demo, I submitted a video walkthrough. The judges responded to the architecture and documentation more than anything. I was explicit about the OpenClaw inspiration and had written up a gist on how I approached the design. That mattered more than a flashy demo.</p>
+      </div>
+      <p class="footnote">Won HackRamapo 2026</p>
+    </article>
+
+    <article id="trimble" class="glass reveal" style="animation-delay: 0.15s">
+      <div class="project-head">
+        <h2>Trimble: Configuration Management Platform</h2>
+        <span class="meta">Summer 2025</span>
+      </div>
+      <p class="stack">C#, .NET, Azure, Blazor, REST APIs</p>
+      <div class="prose">
+        <p>Configuration across Trimble's distributed broker architecture had no single source of truth. Settings lived in different accounts, across different services. When something broke, engineers traced misconfigurations one by one through environments. The company was also integrating AI workflows with Azure triggers where configuration accuracy mattered even more, because a bad config could cascade.</p>
+        <p>I built the platform that centralized all of it. C#/.NET and Azure, with REST APIs integrating into TMW Suite's enterprise transportation system. The back office needed visibility into production configs. Engineers in dev needed visibility across environments. Both needed different permission levels. The auth proxy used Azure Workload Identity Federation because it had to integrate with Trimble's existing IAM system for role-based access control across those environments.</p>
+        <p>The result was a single place where configuration state was visible, manageable, and scoped to the right people.</p>
+      </div>
+      <p class="footnote">Trimble Inc., Princeton NJ</p>
+    </article>
+
+    <article id="novartis" class="glass reveal" style="animation-delay: 0.2s">
+      <div class="project-head">
+        <h2>Novartis: Project Proposal Automation</h2>
+        <span class="meta">Summer 2024</span>
+      </div>
+      <p class="stack">React, TypeScript, Azure Functions, PostgreSQL, SharePoint/SPFx</p>
+      <div class="prose">
+        <p>The existing workflow was manual forms. Project proposals went through multiple approvals across teams, and nobody had visibility into where things stood. V1 was a simplified version of the data model. It worked, but it missed the nuances of how proposals actually moved through the organization.</p>
+        <p>The real version came from sitting with stakeholders across functions, understanding the full submission-to-approval pipeline, and getting every team on board with a shared data flow. The final product was a React/TypeScript app with Azure Functions backend that replaced the manual process end to end. The dashboard showed live submission status, approval timelines, requested resources, available resources, and budget summaries. Admins could filter by team, status, or time period.</p>
+        <p>What took two days of chasing forms and emails now took hours. The bigger lesson was that the technical build was the easy part. Getting cross-functional stakeholders to agree on a single data flow model was the actual work.</p>
+      </div>
+      <p class="footnote">Novartis Pharmaceuticals, East Hanover NJ</p>
+    </article>
+
+    <article id="pantry" class="glass reveal" style="animation-delay: 0.25s">
+      <div class="project-head">
+        <h2>Center for Food Action: Pantry System</h2>
+        <span class="meta">2025 &ndash; Present</span>
+      </div>
+      <p class="stack">Python, Flask, PostgreSQL, SQLAlchemy</p>
+      <div class="prose">
+        <p>I volunteered at the pantry and worked at the food pantry at my college, so I understood the problems before I wrote any code. PantrySoft, the existing system, was painful. Volunteers are physically handling donated items while trying to log them. Any interface needs to work one-handed on an iPad. That wasn't a design insight from a whiteboard session. It came from watching people do the job.</p>
+        <p>I built a full-stack inventory system with barcode scanning to replace manual item-by-item logging and a touch-first iPad interface designed for that one-handed reality. The project was funded by the Daffron Family Foundation, and a second phase is scaling the platform to more food pantry organizations across New Jersey and New York.</p>
+        <p>The Center for Food Action serves 40,000 people across Bergen and Passaic counties through six pantries. The staff described the system as life-changing. That matters more to me than the technical side. Watching people get excited about using something you built because it actually makes their day easier is different from shipping a feature at an internship.</p>
+      </div>
+      <div class="links">
+        <a href="https://newjersey.news12.com/ramapo-college-students-use-technology-to-streamline-food-pantry-operations" target="_blank" rel="noopener noreferrer">News 12 NJ</a>
+        <a href="https://www.ramapo.edu/news/slide/real-world-impact-ramapo-developed-tech-to-revolutionize-food-banks/" target="_blank" rel="noopener noreferrer">Ramapo News</a>
+      </div>
+    </article>
+
+    <article id="emotionflix" class="glass reveal" style="animation-delay: 0.3s">
+      <div class="project-head">
+        <h2>EmotionFlix</h2>
+        <span class="meta">2025</span>
+      </div>
+      <p class="stack">React, TypeScript, Node.js, Express, PostgreSQL</p>
+      <div class="prose">
+        <p>Movie recommendations never worked for me. They optimize for what crowds liked, not for how a specific person feels. Whether I enjoy a film has more to do with my emotional state than aggregate ratings. So I built a system that works the way I actually pick movies.</p>
+        <p>EmotionFlix scans your face for emotional reactions using face-api.js entirely on-device (no data leaves the browser), maps detected emotions to genre preferences through a hybrid scoring algorithm, and adapts over time as it learns your patterns. It connects to TMDB for real-time movie metadata.</p>
+        <p>I wrote 69 tests covering authentication, SQL injection protection, and recommendation accuracy. Testing matters to me even on personal projects. If you don't test it, you don't know if it works. You just know it ran once.</p>
+      </div>
+    </article>
+
+    <article id="capstone" class="glass reveal" style="animation-delay: 0.35s">
+      <div class="project-head">
+        <h2>ADV Collision Risk Prediction</h2>
+        <span class="meta">2026 &ndash; Present</span>
+      </div>
+      <p class="stack">Python, XGBoost, scikit-learn</p>
+      <div class="prose">
+        <p>My capstone research under Dr. Frees. Building ML models to predict collision risk across 33,530 autonomous driving scenarios, evaluating model performance using Recall@Top-K metrics to validate safety-critical test case prioritization. The goal is to identify which simulated scenarios are most likely to result in collisions so testing resources can be focused where they matter most.</p>
+      </div>
+      <p class="footnote">Capstone, Ramapo College</p>
+    </article>
+
+  </div>
 </Base>
 
 <style>
-  .page-header {
-    padding-top: 2rem;
+  header {
+    padding-top: 1rem;
+    margin-bottom: 2.5rem;
   }
 
   h1 {
-    font-size: clamp(2.25rem, 5vw, 3rem);
-    margin-bottom: 0.75rem;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
 
   .lede {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: var(--color-muted);
-    font-style: italic;
+    max-width: 480px;
+  }
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  article {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    gap: 1rem;
+  }
+
+  article h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-faint);
+    white-space: nowrap;
+  }
+
+  .stack {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-faint);
+    margin-bottom: 1rem;
+  }
+
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .prose p {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footnote {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--color-faint);
+  }
+
+  .links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .links a {
+    font-size: 0.8rem;
+    color: var(--color-accent);
   }
 </style>

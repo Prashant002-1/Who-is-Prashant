@@ -1,14 +1,14 @@
 ---
 const links = [
-  { href: "https://github.com/prashantshah", label: "GitHub" },
-  { href: "https://linkedin.com/in/prashantshah", label: "LinkedIn" },
-  { href: "mailto:hello@prashantshah.dev", label: "Email" },
+  { href: "https://github.com/Prashant002-1", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/prashant210/", label: "LinkedIn" },
+  { href: "mailto:shahp0021@gmail.com", label: "Email" },
 ];
 ---
 
 <footer>
-  <div class="inner glass">
-    <span class="name">Prashant Shah</span>
+  <div class="inner">
+    <span class="copy">&copy; 2026 Prashant Shah</span>
     <ul>
       {links.map(({ href, label }) => (
         <li>
@@ -27,7 +27,7 @@ const links = [
 
 <style>
   footer {
-    padding: 2rem 1.5rem 3rem;
+    padding: 2rem 1.5rem 2.5rem;
     max-width: 960px;
     margin: 0 auto;
     width: 100%;
@@ -37,34 +37,31 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
   }
 
-  .name {
-    font-family: var(--font-heading);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-muted);
+  .copy {
+    font-size: 0.8rem;
+    color: var(--color-faint);
   }
 
   ul {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   ul a {
-    font-family: var(--font-heading);
-    font-size: 0.875rem;
-    color: var(--color-muted);
+    font-size: 0.8rem;
+    color: var(--color-faint);
     text-decoration: none;
     transition: color 150ms ease;
   }
 
   ul a:hover {
-    color: var(--color-accent);
-    text-decoration: none;
+    color: var(--color-muted);
   }
 </style>

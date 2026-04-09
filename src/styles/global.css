@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Sora", sans-serif;
-  --font-body: "Source Serif 4", serif;
+  --font-heading: "General Sans", "Helvetica Neue", sans-serif;
+  --font-body: "General Sans", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   --color-bg: #09090f;
-  --color-surface: rgba(255, 255, 255, 0.08);
-  --color-surface-hover: rgba(255, 255, 255, 0.13);
-  --color-text: #f0eef8;
-  --color-muted: rgba(240, 238, 248, 0.55);
-  --color-border: rgba(255, 255, 255, 0.12);
-  --color-border-bright: rgba(255, 255, 255, 0.25);
-  --color-accent: #a78bfa;
-  --color-accent-hover: #c4b5fd;
-  --color-glow: rgba(167, 139, 250, 0.2);
+  --color-surface: rgba(255, 255, 255, 0.06);
+  --color-surface-hover: rgba(255, 255, 255, 0.10);
+  --color-text: #eeedf2;
+  --color-muted: rgba(238, 237, 242, 0.60);
+  --color-faint: rgba(238, 237, 242, 0.35);
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-bright: rgba(255, 255, 255, 0.20);
+  --color-accent: #5eb89d;
+  --color-accent-hover: #7fd4b8;
+  --color-glow: rgba(94, 184, 157, 0.15);
 }
 
 @layer base {
@@ -22,8 +23,8 @@
     font-family: var(--font-body);
     color: var(--color-text);
     background-color: var(--color-bg);
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -31,7 +32,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 
   h1 { font-weight: 700; }
@@ -40,64 +41,52 @@
 
   a {
     color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
-    text-underline-offset: 3px;
-    transition: color 150ms ease, text-decoration-color 150ms ease;
+    text-decoration: none;
+    transition: color 150ms ease;
   }
 
   a:hover {
     color: var(--color-accent-hover);
-    text-decoration-color: var(--color-accent-hover);
   }
 
   code {
     font-family: var(--font-mono);
-    font-size: 0.82em;
+    font-size: 0.85em;
   }
 
   ::selection {
-    background-color: rgba(167, 139, 250, 0.25);
+    background-color: rgba(94, 184, 157, 0.25);
   }
 }
 
 @layer components {
   .glass {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
     box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    transition:
-      background 0.25s ease,
-      border-color 0.25s ease,
-      box-shadow 0.25s ease,
-      transform 0.25s ease;
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
   }
 
-  .glass-interactive:hover {
-    background: rgba(255, 255, 255, 0.13);
-    border-color: rgba(255, 255, 255, 0.25);
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
     box-shadow:
-      0 12px 48px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+      0 12px 48px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
   }
 }
 
-@keyframes revealUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
-  animation: revealUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fadeUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

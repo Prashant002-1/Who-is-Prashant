@@ -1,0 +1,139 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Research | Prashant Shah" bg="research">
+  <header class="reveal">
+    <h1 transition:name="page-title">Resolving Intent-Content Conflict in Retrieval</h1>
+    <p class="advisor">Under Dr. Ali Al-Juboori &middot; Ramapo College &middot; 2025 &ndash; Present</p>
+  </header>
+
+  <div class="sections">
+
+    <section class="glass reveal" style="animation-delay: 0.1s">
+      <h2>The Problem</h2>
+      <div class="prose">
+        <p>Most recommendation systems match you to content based on what's similar to what you've liked before. But sometimes what you want contradicts what the content is about. You want a happy movie about war. You want something calming about a high-stakes topic.</p>
+        <p>Existing retrieval systems don't know what to do with that because they treat user intent and content semantics as the same signal. When those signals conflict, retrieval breaks. The system either respects what you asked for and ignores the content, or matches the content and ignores how you want to feel.</p>
+      </div>
+    </section>
+
+    <section class="glass reveal" style="animation-delay: 0.15s">
+      <h2>The Approach</h2>
+      <div class="prose">
+        <p>My research builds a framework that separates user intent from content semantics by making emotions first-class entities in a knowledge graph. Instead of collapsing everything into a single embedding, the system maintains distinct representations:</p>
+        <ul>
+          <li>A heterogeneous knowledge graph over MovieLens 25M with User, Movie, and Emotion nodes</li>
+          <li>Emotions encoded with weighted EVOKES edges, not just metadata tags</li>
+          <li>A Graph Transformer encoder aligned to SentenceBERT space</li>
+          <li>Hybrid scoring with a tunable affective displacement penalty</li>
+        </ul>
+        <p>The key insight is that a knowledge graph can represent both "what this movie is about" and "how this movie makes people feel" as separate, traversable relationships. When those two signals conflict, the graph structure lets the retrieval system reason about both instead of choosing one.</p>
+      </div>
+    </section>
+
+    <section class="glass reveal" style="animation-delay: 0.2s">
+      <h2>Results</h2>
+      <div class="prose">
+        <p>1,600 synthetic queries across aligned and conflicting conditions. In conflict scenarios (where intent contradicts content), the framework achieved a 0.037 reduction in normalized affective displacement error compared to baseline retrieval.</p>
+        <p>Edge-removal causal interventions confirmed that emotion edges are causally necessary for the improvement. Remove them, and performance degrades to baseline. This isn't correlation; the graph structure is doing real work.</p>
+      </div>
+    </section>
+
+    <section class="glass reveal" style="animation-delay: 0.25s">
+      <h2>What Got Me Here</h2>
+      <div class="prose">
+        <p>This connects directly to EmotionFlix. I built a recommendation system based on emotion, and hit the wall where the emotion a user wants doesn't match what the content is "about." That gap is where retrieval breaks. Dr. Al-Juboori and I turned that gap into a research question.</p>
+        <p>The framework is designed to be domain-agnostic. Movies are the testbed, but the architecture applies anywhere user affect and content semantics can diverge: music, therapeutic content, educational material.</p>
+      </div>
+    </section>
+
+    <div class="bottom-links reveal" style="animation-delay: 0.3s">
+      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer">GitHub Repository &rarr;</a>
+      <span class="pipeline">Pipeline: Python, Vertex AI, GCP, RAG</span>
+    </div>
+
+  </div>
+</Base>
+
+<style>
+  header {
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .advisor {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-faint);
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  section {
+    padding: 1.5rem 1.75rem;
+  }
+
+  section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .prose p {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .prose ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .prose li {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .bottom-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .pipeline {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-faint);
+  }
+</style>

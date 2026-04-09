@@ -3,27 +3,101 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="About | Prashant Shah" bg="about">
-  <header class="page-header reveal">
+  <header class="reveal">
     <h1 transition:name="page-title">About</h1>
-    <p class="lede">The full person.</p>
   </header>
+
+  <div class="content glass reveal" style="animation-delay: 0.1s">
+    <div class="prose">
+      <p>I grew up speaking Bengali at home, English at school, and enough Hindi to follow along when my parents switched mid-sentence. Three languages before I was ten. That does something to how you parse ambiguity. You learn early that the same idea wears different clothes depending on who's hearing it. I think about that a lot when I'm building software for people who aren't engineers.</p>
+      <p>I came to Ramapo College for computer science and stayed because the scale let me do things you can't do at a bigger school. I co-founded the CS club and convinced Bjarne Stroustrup to come speak. I managed 17 resident assistants and a community of 200+ students. I led the math club, competed in ICPC at the New York regional, and still had time to actually build things. The range isn't a resume filler. It's the reason I know how to talk to a stakeholder who doesn't speak code, scope a project for a team that's never worked together, and debug a system while someone's waiting on it.</p>
+      <p>I'm finishing a double major in Computer Science and Data Science with a minor in Mathematics. My GPA is a 3.84. I've interned at Trimble, Novartis, and the Center for Food Action. My research under Dr. Al-Juboori is about what happens when user intent contradicts content semantics in retrieval systems. The work I care about most is the work that helps people who weren't going to be helped otherwise: pantry volunteers logging donations one-handed, students who can't parse their own LMS data, users whose emotional needs don't match what an algorithm thinks they want.</p>
+      <p>I want to be the kind of engineer who understands the system end to end: the data, the infrastructure, the interface, and the person on the other side of it. Not a specialist in one layer. Someone who can look at a problem from the user's chair and trace it all the way back to the query plan.</p>
+    </div>
+  </div>
+
+  <div class="extras glass reveal" style="animation-delay: 0.2s">
+    <h2>Things That Don't Fit on a Resume</h2>
+    <ul>
+      <li>
+        <strong>Canstruction (1st place)</strong> &mdash; Built a structure entirely from canned food as part of a design competition. One of the stranger things I've done and one of the most fun.
+      </li>
+      <li>
+        <strong>Student Employee of the Year</strong> &mdash; For the RA work. Managing a residential community while carrying a double major taught me more about time management and people than any course.
+      </li>
+      <li>
+        <strong>Presidential Scholarship recipient</strong> &mdash; Full four years at Ramapo.
+      </li>
+    </ul>
+  </div>
+
+  <p class="closing reveal" style="animation-delay: 0.3s">
+    Every system I've built started with watching someone struggle with the one it replaced. That's not a philosophy statement. It's just how the work happens.
+  </p>
 </Base>
 
 <style>
-  .page-header {
-    padding-top: 2rem;
+  header {
+    padding-top: 1rem;
+    margin-bottom: 2rem;
   }
 
   h1 {
-    font-size: clamp(2.25rem, 5vw, 3rem);
-    margin-bottom: 0.75rem;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
 
-  .lede {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
+  .content, .extras {
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .prose p {
+    font-size: 0.9rem;
     color: var(--color-muted);
-    font-style: italic;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .extras h2 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    margin-bottom: 1rem;
+  }
+
+  .extras ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .extras li {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+
+  .extras strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .closing {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    padding-top: 0.5rem;
   }
 </style>
