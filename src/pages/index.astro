@@ -3,156 +3,509 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Prashant Shah" bg="home">
-  <section class="hero reveal">
-    <h1 transition:name="page-title">
-      I build software that closes the gap between what systems know and what people need.
-    </h1>
-    <p class="context">
-      CS &amp; Data Science at Ramapo College, graduating May 2026. Currently finishing my capstone and looking for full-time roles.
-    </p>
 
-    <div class="ctas">
-      <a href="mailto:shahp0021@gmail.com" class="btn-primary">Get in touch</a>
-      <a href="/resume.pdf" class="btn-ghost">Resume</a>
+  <!-- ═══ HERO ═══ -->
+  <section id="hero" class="hero">
+    <div class="reveal">
+      <h1>
+        I build software that closes the gap between what systems know and what people need.
+      </h1>
+      <p class="context">
+        CS &amp; Data Science at Ramapo College, graduating May 2026.<br/>
+        Looking for full-time roles starting this summer.
+      </p>
+      <div class="ctas">
+        <a href="mailto:shahp0021@gmail.com" class="btn-primary">Get in touch</a>
+        <a href="/resume.pdf" class="btn-ghost">Resume</a>
+      </div>
     </div>
   </section>
 
-  <section class="work-panel reveal" style="animation-delay: 0.2s">
-    <h2 class="section-label">Selected Work</h2>
 
-    <a href="/work#canvas-agent" class="card glass glass-hover">
-      <h3>Canvas Agent</h3>
-      <p>I wanted an AI agent that could handle my LMS for me. So I built one. Nine tools, persistent memory, a planner that knows what's due before I ask.</p>
-    </a>
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section id="experience" class="section" data-bg="work">
+    <h2 class="section-title reveal">Experience</h2>
 
-    <a href="/work#trimble" class="card glass glass-hover">
-      <h3>Trimble</h3>
-      <p>Configuration across a distributed broker architecture had no single source of truth. I built the platform that gave engineers one place to see everything.</p>
-    </a>
+    <div class="timeline">
+      <div class="timeline-entry reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Summer 2025</span>
+          <span class="timeline-place">Princeton, NJ</span>
+        </div>
+        <div class="timeline-body">
+          <h3>Software Engineering Intern &middot; Trimble</h3>
+          <p>Built a configuration management platform in C#/.NET and Azure that became the single source of truth for a distributed broker architecture. REST APIs integrating into TMW Suite's enterprise transportation system. Auth proxy through Azure Workload Identity Federation for role-based access across environments.</p>
+        </div>
+      </div>
 
-    <a href="/research" class="card glass glass-hover">
-      <h3>The Research</h3>
-      <p>What happens when someone asks for a happy movie about war? Retrieval systems break. I'm studying why, and building a framework to fix it.</p>
-    </a>
+      <div class="timeline-entry reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Summer 2024</span>
+          <span class="timeline-place">East Hanover, NJ</span>
+        </div>
+        <div class="timeline-body">
+          <h3>Software Engineering Intern &middot; Novartis</h3>
+          <p>Replaced a manual project proposal workflow. Sat with stakeholders across functions to build a shared data model, then built the React/TypeScript app with Azure Functions that turned two days of chasing forms into hours. Live dashboards for submission status, approvals, budgets.</p>
+        </div>
+      </div>
 
-    <a href="/work#pantry" class="card glass glass-hover">
-      <h3>Center for Food Action</h3>
-      <p>Volunteers log donated food one-handed while carrying boxes. The old system didn't account for that. The new one does.</p>
-    </a>
+      <div class="timeline-entry reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">2023 &ndash; 2024</span>
+          <span class="timeline-place">Ramapo College</span>
+        </div>
+        <div class="timeline-body">
+          <h3>Data Analyst</h3>
+          <p>Built Python pipelines for processing and validating 6,000+ student records. Developed automated data quality checks and reporting dashboards that replaced manual spreadsheet workflows.</p>
+        </div>
+      </div>
+
+      <!-- DMC slot: uncomment and fill in when ready
+      <div class="timeline-entry reveal">
+        <div class="timeline-meta">
+          <span class="timeline-date">Date</span>
+          <span class="timeline-place">Location</span>
+        </div>
+        <div class="timeline-body">
+          <h3>Role · DMC</h3>
+          <p>Description here.</p>
+        </div>
+      </div>
+      -->
+    </div>
   </section>
 
-  <p class="currently reveal" style="animation-delay: 0.35s">
-    <a href="/now">See what I'm working on right now &rarr;</a>
-  </p>
+
+  <!-- ═══ PROJECTS & RESEARCH ═══ -->
+  <section id="projects" class="section" data-bg="research">
+    <h2 class="section-title reveal">Projects &amp; Research</h2>
+
+    <!-- Featured: Research -->
+    <div class="featured glass reveal">
+      <span class="featured-label">Ongoing Research</span>
+      <h3>Resolving Intent-Content Conflict in Retrieval</h3>
+      <p class="featured-advisor">With Dr. Ali Al-Juboori, Ramapo College</p>
+      <div class="featured-prose">
+        <p>What happens when someone wants a happy movie about war? Retrieval systems break because they treat user intent and content semantics as the same signal. I'm building a framework that makes emotions first-class entities in a knowledge graph so the system can hold both ideas at once.</p>
+        <p>1,600 queries tested. In conflict scenarios, the framework reduces affective displacement error by 0.037 vs. baseline. Edge-removal causal interventions confirmed the graph structure is doing real work.</p>
+      </div>
+      <a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener noreferrer" class="featured-link">See the code &rarr;</a>
+    </div>
+
+    <!-- Project cards -->
+    <div class="project-grid">
+
+      <a href="#" class="project-card glass glass-hover reveal">
+        <h3>Canvas Agent</h3>
+        <p class="project-stack">TypeScript, Next.js, PostgreSQL, pgvector</p>
+        <p>I wanted an AI agent that could handle my LMS for me. Nine typed tools, persistent memory, a planner that knows what's due before I ask. The judges at HackRamapo responded to the architecture and documentation more than anything.</p>
+      </a>
+
+      <a href="#" class="project-card glass glass-hover reveal">
+        <h3>Center for Food Action</h3>
+        <p class="project-stack">Python, Flask, PostgreSQL</p>
+        <p>Volunteers log donated food one-handed while carrying boxes. I built a barcode-scanning inventory system designed for that reality. Serving 40,000 people across six pantries. Funded by the Daffron Family Foundation.</p>
+      </a>
+
+      <a href="#" class="project-card glass glass-hover reveal">
+        <h3>EmotionFlix</h3>
+        <p class="project-stack">React, TypeScript, Node.js, PostgreSQL</p>
+        <p>Movie recommendations don't account for how you feel. This system scans your face on-device, maps emotions to genres, and adapts over time. 69 tests. No data leaves the browser.</p>
+      </a>
+
+      <a href="#" class="project-card glass glass-hover reveal">
+        <h3>ADV Collision Risk Prediction</h3>
+        <p class="project-stack">Python, XGBoost, scikit-learn</p>
+        <p>Capstone under Dr. Frees. Predicting which of 33,530 autonomous driving scenarios are most likely to result in collisions, so testing resources go where they matter.</p>
+      </a>
+
+    </div>
+
+    <div class="press-links reveal">
+      <span class="press-label">In the press:</span>
+      <a href="https://newjersey.news12.com/ramapo-college-students-use-technology-to-streamline-food-pantry-operations" target="_blank" rel="noopener noreferrer">News 12 NJ</a>
+      <a href="https://www.ramapo.edu/news/slide/real-world-impact-ramapo-developed-tech-to-revolutionize-food-banks/" target="_blank" rel="noopener noreferrer">Ramapo News</a>
+    </div>
+  </section>
+
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="section" data-bg="about">
+    <h2 class="section-title reveal">About</h2>
+
+    <div class="about-content reveal">
+      <div class="about-prose">
+        <p>I grew up speaking Bengali at home, English at school, and enough Hindi to follow along when my parents switched mid-sentence. Three languages before I was ten. That does something to how you parse ambiguity. You learn early that the same idea wears different clothes depending on who's hearing it.</p>
+        <p>I came to Ramapo for computer science and stayed because the scale let me do things. Co-founded the CS club and convinced Bjarne Stroustrup to come speak. Managed 17 RAs and a community of 200+ students. Led the math club. Competed in ICPC at the New York regional. The range isn't a resume filler. It's the reason I know how to talk to people who don't speak code.</p>
+        <p>I want to be the kind of engineer who understands the system end to end: the data, the infrastructure, the interface, and the person on the other side of it. Not a specialist in one layer. Someone who can look at a problem from the user's chair and trace it all the way back to the query plan.</p>
+      </div>
+
+      <div class="about-side">
+        <div class="about-detail">
+          <h4>Education</h4>
+          <p>BS Computer Science &amp; Data Science<br/>Minor in Mathematics<br/>Ramapo College, 3.84 GPA</p>
+        </div>
+        <div class="about-detail">
+          <h4>Also</h4>
+          <ul>
+            <li>Canstruction, 1st place</li>
+            <li>Student Employee of the Year</li>
+            <li>Presidential Scholarship, 4 years</li>
+          </ul>
+        </div>
+        <div class="about-detail">
+          <h4>Elsewhere</h4>
+          <p>
+            <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener noreferrer">GitHub</a><br/>
+            <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br/>
+            <a href="https://letterboxd.com/_Prashant_/" target="_blank" rel="noopener noreferrer">Letterboxd</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="closing reveal">
+      Every system I've built started with watching someone struggle with the one it replaced.
+    </p>
+  </section>
+
 </Base>
 
+<script is:inline>
+  // Background transitions per section
+  document.addEventListener('astro:page-load', () => {
+    const bgMap = {
+      hero: 'home',
+      experience: 'work',
+      projects: 'research',
+      about: 'about',
+    };
+
+    const sceneImage = document.querySelector('.scene-image');
+    const sceneGradient = document.querySelector('.scene-gradient');
+    if (!sceneImage || !sceneGradient) return;
+
+    const gradients = {
+      home: 'radial-gradient(ellipse at 60% 30%, #112b24 0%, #0a1a16 40%, #09090f 100%)',
+      work: 'radial-gradient(ellipse at 30% 60%, #0f1f17 0%, #0a1410 40%, #09090f 100%)',
+      research: 'radial-gradient(ellipse at 50% 20%, #0a1a1e 0%, #06101a 45%, #09090f 100%)',
+      about: 'radial-gradient(ellipse at 50% 60%, #0d1a14 0%, #080f0d 45%, #09090f 100%)',
+    };
+
+    let currentBg = 'home';
+
+    function setBg(key) {
+      if (key === currentBg) return;
+      currentBg = key;
+      sceneImage.style.transition = 'opacity 0.8s ease';
+      sceneImage.style.opacity = '0';
+      setTimeout(() => {
+        sceneImage.style.backgroundImage = `url('/backgrounds/${key}.jpg'), ${gradients[key]}`;
+        sceneGradient.style.background = gradients[key];
+        sceneImage.style.opacity = '0.3';
+      }, 400);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const key = bgMap[entry.target.id];
+          if (key) setBg(key);
+        }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px' });
+
+    Object.keys(bgMap).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  });
+</script>
+
 <style>
+  /* ── Hero ── */
   .hero {
-    min-height: 70vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
   }
 
   h1 {
-    font-size: clamp(1.75rem, 4.5vw, 2.6rem);
+    font-size: clamp(1.7rem, 4.2vw, 2.5rem);
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 1.25rem;
-    max-width: 540px;
+    max-width: 520px;
     line-height: 1.15;
     text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
   }
 
   .context {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--color-muted);
-    max-width: 420px;
+    max-width: 400px;
     margin-bottom: 2rem;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
-  .ctas {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-  }
+  .ctas { display: flex; gap: 0.75rem; align-items: center; }
 
   .btn-primary {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    background: var(--color-accent);
-    color: #09090f;
-    padding: 0.6rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    background: var(--color-accent); color: #09090f;
+    padding: 0.6rem 1.5rem; border-radius: 8px; text-decoration: none;
     transition: background 150ms ease, transform 150ms ease;
   }
-
-  .btn-primary:hover {
-    background: var(--color-accent-hover);
-    color: #09090f;
-    transform: translateY(-1px);
-  }
+  .btn-primary:hover { background: var(--color-accent-hover); color: #09090f; transform: translateY(-1px); }
 
   .btn-ghost {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--color-muted);
-    padding: 0.6rem 1rem;
-    text-decoration: none;
+    display: inline-block; font-size: 0.8rem; font-weight: 500;
+    color: var(--color-muted); padding: 0.6rem 1rem; text-decoration: none;
     transition: color 150ms ease;
   }
+  .btn-ghost:hover { color: var(--color-text); }
 
-  .btn-ghost:hover {
-    color: var(--color-text);
+  /* ── Sections ── */
+  .section {
+    padding: 5rem 0 4rem;
+    scroll-margin-top: 60px;
   }
 
-  .work-panel {
+  .section-title {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Experience Timeline ── */
+  .timeline {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    border-left: 1px solid var(--color-border);
+    padding-left: 2rem;
+    margin-left: 0.5rem;
   }
 
-  .section-label {
+  .timeline-entry { position: relative; }
+
+  .timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.35rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 8px var(--color-glow);
+  }
+
+  .timeline-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .timeline-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-faint);
+  }
+
+  .timeline-place {
+    font-size: 0.72rem;
+    color: var(--color-faint);
+  }
+
+  .timeline-body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-body p {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Featured Research ── */
+  .featured {
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 14px 14px 0;
+  }
+
+  .featured-label {
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-faint);
-    margin-bottom: 0.25rem;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 0.75rem;
   }
 
-  .card {
+  .featured h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.3rem;
+  }
+
+  .featured-advisor {
+    font-size: 0.78rem;
+    color: var(--color-faint);
+    margin-bottom: 1rem;
+  }
+
+  .featured-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .featured-prose p {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .featured-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  /* ── Project Grid ── */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 639px) {
+    .project-grid { grid-template-columns: 1fr; }
+  }
+
+  .project-card {
     display: block;
     padding: 1.25rem 1.5rem;
     text-decoration: none;
   }
 
-  .card h3 {
+  .project-card h3 {
     font-size: 0.92rem;
     font-weight: 600;
     color: var(--color-text);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.2rem;
     transition: color 150ms ease;
   }
 
-  .card:hover h3 { color: var(--color-accent); }
+  .project-card:hover h3 { color: var(--color-accent); }
 
-  .card p {
-    font-size: 0.85rem;
+  .project-stack {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--color-faint);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-card > p:last-child {
+    font-size: 0.82rem;
     color: var(--color-muted);
-    line-height: 1.55;
+    line-height: 1.5;
     margin: 0;
   }
 
-  .currently {
-    font-size: 0.85rem;
+  /* ── Press ── */
+  .press-links {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .press-label { color: var(--color-faint); }
+  .press-links a { color: var(--color-accent); }
+
+  /* ── About ── */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .about-content { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .about-prose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .about-prose p {
+    font-size: 0.88rem;
     color: var(--color-muted);
-    padding-top: 0.5rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .about-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-detail h4 {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .about-detail p,
+  .about-detail li {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .about-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about-detail li { margin-bottom: 0.2rem; }
+
+  .about-detail a {
+    color: var(--color-accent);
+    font-size: 0.82rem;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    font-style: italic;
   }
 </style>

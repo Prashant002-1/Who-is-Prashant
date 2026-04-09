@@ -29,22 +29,17 @@ const imagePath = `/backgrounds/${page}.jpg`;
 />
 
 <style>
-  .scene-gradient,
-  .scene-image {
+  .scene-gradient, .scene-image {
     position: fixed;
     inset: 0;
     pointer-events: none;
   }
-
-  .scene-gradient {
-    z-index: -2;
-  }
-
+  .scene-gradient { z-index: -2; }
   .scene-image {
     z-index: -1;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.35;
+    opacity: 0.3;
   }
 </style>
