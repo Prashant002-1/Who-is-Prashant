@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
+:root {
+  --pointer-x: 0;
+  --pointer-y: 0;
+}
+
 @theme {
-  --font-heading: "General Sans", "Helvetica Neue", sans-serif;
-  --font-body: "General Sans", "Helvetica Neue", sans-serif;
+  --font-heading: "Sora", "Helvetica Neue", sans-serif;
+  --font-body: "Source Serif 4", "Georgia", serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-bg: #FAF7F4;
-  --color-surface: #FFFFFF;
-  --color-text: #2A2226;
-  --color-muted: #7A6E74;
-  --color-faint: #B8AEB3;
-  --color-border: #E8E0E4;
-  --color-accent: #8B5E83;
-  --color-accent-hover: #6E4568;
-  --color-accent-light: #F3EAF1;
+  --color-bg: #09090f;
+  --color-surface: rgba(255, 255, 255, 0.07);
+  --color-surface-hover: rgba(255, 255, 255, 0.11);
+  --color-text: #f2eef8;
+  --color-muted: rgba(242, 238, 248, 0.58);
+  --color-faint: rgba(242, 238, 248, 0.38);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-bright: rgba(255, 255, 255, 0.24);
+  --color-accent: #9d8bc9;
+  --color-accent-hover: #c4b8e8;
+  --color-accent-warm: #c9a87c;
+  --color-glow: rgba(157, 139, 201, 0.22);
 }
 
 @layer base {
@@ -21,25 +29,108 @@
     font-family: var(--font-body);
     color: var(--color-text);
     background-color: var(--color-bg);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   }
-  body { overflow-x: hidden; }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
   }
-  h1 { font-weight: 700; }
-  h2 { font-weight: 600; }
-  h3 { font-weight: 600; }
 
-  a { color: var(--color-accent); text-decoration: none; transition: color 150ms; }
-  a:hover { color: var(--color-accent-hover); }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
 
-  code { font-family: var(--font-mono); font-size: 0.85em; }
-  ::selection { background-color: rgba(139, 94, 131, 0.15); }
+  h1 {
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+
+  ::selection {
+    background-color: rgba(157, 139, 201, 0.35);
+  }
+}
+
+@layer components {
+  .immersive-shell {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(8, 7, 12, 0.45);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+
+  .glass {
+    background: var(--color-surface);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .glass-interactive:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-bright);
+    box-shadow:
+      0 14px 48px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .display-shadow {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.45),
+      0 12px 48px rgba(0, 0, 0, 0.35);
+  }
+
+  .muted-rule {
+    border-color: var(--color-border);
+  }
 }

@@ -9,11 +9,11 @@ description: Design system and build rules for Prashant Shah's portfolio site. U
 
 The site is a frame, not a painting, but a frame worth looking at. Every detail should feel intentional and elevated: the weight of a border, the rhythm between sections, the way type sits on the page. This is not minimalism by avoidance. It is premium by care. The site should feel like someone thought about every choice, because they did.
 
-The work carries the substance. The site's job is to present it with enough craft that the presentation itself signals competence. Good typography, considered spacing, and polished micro-details (hover states, transitions, the feel of navigating between pages) add up to a site that feels professional without trying to impress through spectacle.
+The work carries the substance. The site's job is to present it with enough craft that the presentation itself signals competence. Good typography, considered spacing, and polished micro-details (hover states, transitions, rhythm down the scroll) add up to a site that feels professional without trying to impress through spectacle.
 
 ## Stack
 
-Astro 5 + React islands + Tailwind CSS + View Transitions API. Deploy to Vercel. Content lives in markdown/MDX via Astro content collections with typed frontmatter (glob loader). No CMS.
+Astro 5 + React islands + Tailwind CSS + View Transitions API. Deploy to Vercel. Primary copy lives in `index.astro` unless you split partials. Optional markdown/MDX collections later. No CMS.
 
 ## Typography
 
@@ -44,20 +44,19 @@ Warm neutrals with a single accent. Define via CSS custom properties for easy da
 
 - Max content width: 680px for prose, 960px for pages with side elements.
 - Generous vertical spacing between sections (4–6rem). Let things breathe.
-- No sidebar navigation. Top nav with the six pages: Home, Work, Research, Thinking, Now, About.
+- Single-page site: top nav jumps to in-page anchors (for example Work, Projects, About, Now). No separate routes for those sections.
 - Work entries and project cards can use subtle border, light background tints (`--bg` slightly shifted), or fine divider lines to create visual separation. Cards should feel structured, not flat.
 - Footer: GitHub, LinkedIn, email. Three links. Nothing else.
 
 ## Motion & Micro-Details
 
-Page transitions via Astro `<ClientRouter />` with default fade. Links: accent color underline with a smooth transition (150ms ease). Hover states should feel responsive and polished, not flashy. Subtle scroll-triggered entrance animations (opacity + small translateY, once per element, staggered) are encouraged on content-heavy pages to give the site rhythm. No parallax, no scroll-jacking, no particle backgrounds, no looping animations.
+Page transitions via Astro `<ClientRouter />` with default fade (optional on a single-page build). Links: accent color with a smooth transition (150ms ease). Hover states should feel responsive and polished, not flashy. Subtle one-shot entrance animations on sections are fine. No scroll-jacking, no particle backgrounds, no looping ambient gimmicks.
 
 ## Astro Patterns
 
-- Pages in `src/pages/`, shared layout in `src/layouts/Base.astro` (head, nav, footer).
-- `/thinking` entries are `.md` in a content collection with schema: `{ title, date, description }`.
-- React islands where interactivity earns it (e.g., D3 knowledge graph on `/research`, future project demos). Use `client:visible` to defer hydration. Pages without islands ship zero JS.
-- Images via Astro `<Image />` for automatic optimization. View Transitions: `transition:name` on page title and main content for cross-page morphing.
+- Primary implementation: `src/pages/index.astro` with `src/layouts/Base.astro`.
+- React islands only where interactivity earns it (for example a future in-page research graph). Use `client:visible` to defer hydration. The static portfolio ships zero JS by default.
+- Images via Astro `<Image />` for automatic optimization. View Transitions optional on a single-page site.
 
 ## Taste Guardrails
 
@@ -67,7 +66,7 @@ These are not arbitrary restrictions. They are choices that keep the site feelin
 - No hero sections with typing animations or rotating titles. Say it once, clearly.
 - No contact form. Email link is enough.
 - No "View Live Demo" for things that aren't deployed.
-- Prose pages (Work, Research, Thinking, About) use paragraphs, not bullets.
+- Prose sections on the single page use paragraphs, not bullets as the only layer.
 - No dependency that pushes a non-interactive page past 200KB.
 - No em dashes in written content. Ever.
 

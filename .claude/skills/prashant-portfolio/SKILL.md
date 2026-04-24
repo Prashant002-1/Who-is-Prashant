@@ -13,20 +13,13 @@ The work carries the substance. The site's job is to present it with enough craf
 
 ## Site Structure
 
-```
-/           Home — 30-second version of Prashant
-/work       Work experience only — Trimble, Novartis, Center for Food Action (paid/internship roles)
-/projects   Personal projects + research — Canvas Agent, EmotionFlix, knowledge graph research (prose, no D3 viz yet)
-/thinking   Short essays on how he reasons through problems
-/now        What he's doing right now
-/about      The full person
-```
+**Single route: `/`.** One scroll, one document. Sections use anchor IDs (for example `#work`, `#projects`, `#about`, `#now`). Experience and projects both live on the home page: employment history reads as "experience," personal builds and research read as "projects and research."
 
-`/work` and `/projects` are intentionally separate. Work = where he was employed. Projects = what he built.
+There is **no** `/thinking` route. Long-form writing belongs off-site (PDF, blog, repo) or is linked sparingly from the one page if needed.
 
 ## Stack
 
-Astro 5 + React islands + Tailwind CSS v4 + View Transitions API. Deploy to Vercel. Content in markdown/MDX via Astro content collections with typed frontmatter (glob loader). No CMS.
+Astro 5 + React islands + Tailwind CSS v4 + View Transitions API. Deploy to Vercel. Primary copy lives in `index.astro` (or partials). No CMS. Content collections are optional if you add MDX later; they are not required for the single-page site.
 
 ## Color Tokens
 
@@ -84,32 +77,28 @@ Home h1: 72px desktop / 48px mobile. Other page h1: 48px desktop / 36px mobile.
 
 ## Background Architecture
 
-Each page passes a `bg` slug to `Base.astro`. `SceneBackground.astro` handles the visual:
-- Loads `/backgrounds/{slug}.jpg` as background-image if provided
-- Falls back to a per-page CSS gradient (defined inside SceneBackground, keyed by slug)
-- Position fixed, z-index: -1, covers full viewport
-- `pointer-events: none`
+`Base.astro` passes a `bg` slug to `SceneBackground.astro` (today: `home` for the single page). The component:
+- Loads `/backgrounds/{slug}.jpg` as the main scene
+- Falls back to a CSS gradient keyed by slug if the file is missing
+- Fixed full viewport, `pointer-events: none`
 
-User drops AI-generated images into `public/backgrounds/` as: `home.jpg`, `work.jpg`, `research.jpg`, `thinking.jpg`, `now.jpg`, `about.jpg`.
+Optional extra images (`now.jpg`, `about.jpg`, and so on) can still be used inside the page (for example an image strip), not only as scene layers.
 
-Gradient fallbacks are intentionally tuned per page so the site looks good before images arrive.
+Gradient fallbacks are tuned so the site looks good before images exist.
 
 ## Layout
 
-- Nav: `position: fixed`, top 0, full-width. Glass treatment. Z-index 10. Height ~64px.
-- Main content: `padding-top: 64px` to clear fixed nav.
-- Prose pages: max-width 680px, centered.
-- Wide pages (research with graph, work grid): max-width 960px.
-- Footer: glass panel, centered, 3 links only.
+- Nav: `position: fixed`, top 0, full-width. Glass treatment. Z-index ~20. Height ~64px.
+- Main column: max-width ~720px for the stream of glass sections; hero can be wider.
+- Footer: minimal, same page.
 
 ## Astro Patterns
 
-- Pages in `src/pages/`, layout in `src/layouts/Base.astro`.
-- Base.astro accepts: `title`, `description`, `bg` (page slug), `wide` (boolean).
-- React islands via `client:visible`. Pages without islands ship zero JS.
-- `/thinking` entries: `.md` in content collection. Schema: `{ title, date, description }`.
-- View Transitions: `<ClientRouter />` in Base. `transition:name` on page title and main content.
-- Images via Astro `<Image />` for automatic optimization.
+- Primary page: `src/pages/index.astro`, layout: `src/layouts/Base.astro`.
+- Base.astro accepts: `title`, `description`, `bg` (scene slug).
+- React islands via `client:visible` only when an interactive block ships (for example a future research graph). Default is zero JS for the static portfolio.
+- View Transitions: `<ClientRouter />` in Base (harmless on a single page; useful if a second route appears later). `transition:name` on stable elements is optional.
+- Images via Astro `<Image />` for automatic optimization where used.
 
 ## Motion
 
@@ -124,7 +113,7 @@ Gradient fallbacks are intentionally tuned per page so the site looks good befor
 - No hero sections with typing animations or rotating titles.
 - No contact form. Email link only.
 - No "View Live Demo" for things not deployed.
-- Prose pages use paragraphs, not bullets.
+- Prose sections use paragraphs, not bullet dumps as the only layer.
 - No em dashes in written content. Ever.
 - Non-interactive pages under 200KB total. Achievable with Astro defaults.
 - The hero name on the home page floats directly over the background — no glass panel behind it.

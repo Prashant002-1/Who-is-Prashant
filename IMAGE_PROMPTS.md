@@ -1,8 +1,16 @@
 # Background Image Prompts
 
-Save generated images as `public/backgrounds/{page}.jpg`.
+The live site is **one page** (`/`). The main scene uses **`home.jpg`** via `SceneBackground` (`bg="home"`). Other filenames below are optional: useful for an image strip, experiments, or if you split layers later.
+
+Save generated images as `public/backgrounds/{name}.jpg` (use JPEG for weight; WebP is fine if you add the extension and update `SceneBackground.astro`).
 
 Each prompt is fully standalone — copy and paste directly into the image generator.
+
+## Vision
+
+The site reads like a quiet gallery at blue hour: warm violets, soft amber light, botanical dusk, pearl mist. Nothing neon, nothing cyberpunk, nothing horror-adjacent. Silhouettes stay tiny and anonymous. The goal is **depth and atmosphere**, not spectacle. If a frame feels like a movie poster for a grim sci-fi film, dial warmth back in (rose, sand, sage, soft gold).
+
+When regenerating, keep a **single shared lighting language** across pages so transitions feel like rooms in one building, not unrelated stock photos.
 
 ---
 
@@ -14,9 +22,11 @@ Digital matte painting, concept art, painterly, warm violet and plum color palet
 
 ---
 
-## work.jpeg — DONE, keeper
+## work.jpg
 
-Vast interior cathedral-like space with amber golden light pouring down from arched openings above, deep violet atmospheric mist filling the space, lone silhouette figure small and centered below. Already generated, already works.
+Vast interior cathedral-like space with amber golden light pouring down from arched openings above, deep violet atmospheric mist filling the space, lone silhouette figure small and centered below. Warm amber and soft gold highlights, not harsh yellow. Violet haze stays translucent and soft. No cold fluorescent light. No neon.
+
+Digital matte painting, concept art, painterly, soft diffused atmospheric light, no sharp edges, no photorealistic textures, dreamlike and surreal, volumetric fog, colors bleeding, no text, no faces
 
 ---
 
@@ -49,3 +59,11 @@ Digital matte painting, concept art, painterly, soft diffused atmospheric light,
 An impossible archway or threshold overgrown with soft botanical forms — leaves, vines, petals — rendered in loose painterly strokes so the edges of every plant dissolve into the surrounding atmosphere rather than resolving sharply. Through the archway, a beyond that glows with diffused warm amber light, bleeding outward and dissolving into deep green-violet and then midnight indigo at the top and edges of the frame. No figure — the viewer is the person standing at the threshold. Palette: amber and soft gold at the light source through the arch, muted sage and deep botanical green in the foliage, transitioning into violet-indigo at the borders. The light feels like late afternoon filtered through many overlapping layers of leaves and mist. No sharp edges anywhere. Colors bleed at every boundary.
 
 Digital matte painting, concept art, painterly, soft diffused atmospheric light, no sharp edges, no photorealistic textures, dreamlike and surreal, volumetric fog, soft botanical forms, colors bleeding, no text, no faces
+
+---
+
+## research.jpg (optional dedicated asset)
+
+Abstract knowledge-space: soft constellations of nodes connected by faint luminous threads, suspended in deep violet mist. A few larger nodes glow warm amber like embers. No UI, no diagrams, no text, no grids, no matrix rain. Feels like memory forming in fog — scientific but poetic.
+
+Digital matte painting, concept art, painterly, soft diffused atmospheric light, no sharp edges, no photorealistic textures, dreamlike and surreal, volumetric fog, colors bleeding, no text, no faces

@@ -1,8 +1,9 @@
-# Portfolio Website — Content Plan & Sitemap
+# Portfolio Website — Content Plan
 
-**Stack:** Astro + React islands + Tailwind CSS + View Transitions API  
+**Stack:** Astro + React islands (only when needed) + Tailwind CSS + View Transitions API  
 **Deploy:** Vercel (free tier, instant deploys, analytics)  
-**Domain:** TBD
+**Domain:** TBD  
+**Routes:** **`/` only.** One scroll, one URL, enough craft that it does not need a maze of pages.
 
 ---
 
@@ -10,37 +11,37 @@
 
 ### The Portfolio Is the Frame, Not the Painting
 
-The work is the impressive part. The site is the delivery mechanism. A clean, fast, well-typeset site that loads instantly and communicates clearly IS the engineering statement. It says: "I made a hundred small decisions here and every one of them was intentional." That's taste. That's what good engineers actually notice.
+The work is the impressive part. The site is the delivery mechanism. A clean, fast, well-typeset page that loads instantly and communicates clearly IS the engineering statement. It says: "I made a hundred small decisions here and every one of them was intentional." That is taste. That is what good engineers actually notice.
 
-A Windows-clone portfolio impresses developers on Twitter for a day. A sub-200KB page with genuinely interesting things to read on it impresses the people who are actually hiring.
+Creative and engineering energy goes into what is **on the page**, not into routing:
 
-Creative and engineering energy goes into exactly two things:
-
-1. **The interactive knowledge graph visualization** on the research page. This is a legitimate technical piece (D3, data modeling, making a complex idea tangible). It's not decoration — it IS the content.
-2. **The quality of the writing** in /thinking. This is where you show how you reason, which is the thing that actually separates you from other new grads with similar resumes.
+1. **Research, projects, and experience** told in real prose on the same scroll. Depth lives in clarity, not in separate URLs.
+2. **Optional later:** a React island (for example a knowledge graph) embedded in-page if it is truly the content and not decoration. Until then, static explanation is enough.
+3. **Long-form writing** (essays, explainers) is **not** a `/thinking` route. If you publish that kind of work, use PDF, a personal note, Medium, GitHub, or another channel. The portfolio stays one page so it stays fast and honest.
 
 Everything else stays quiet, fast, and precise.
 
 ### The Three Speeds
 
-The site works for three audiences at three speeds:
+The single page still works for three audiences at three speeds:
 
-1. **30 seconds (recruiter scan):** Name, one-liner, three strongest signals, resume download. No friction.
-2. **2 minutes (engineer browse):** Research depth, real project details, technical taste. Everything clickable leads somewhere worth reading.
-3. **10 minutes (deep dive):** Writing on how you think, interactive research visualization, the personal stuff that makes you memorable.
+1. **30 seconds (recruiter scan):** Name, one-liner, strongest signals, resume download. No friction.
+2. **2 minutes (engineer browse):** Experience, projects, research summary. Every link that exists should go somewhere real (repo, press, email).
+3. **10 minutes (deep dive):** They keep scrolling. The "Now" block shows the site is alive. The quote and personal sections make you memorable.
 
 ### Visual Direction
 
-- **Type-forward.** A strong geometric sans or humanist sans for headings, a readable body font. Typography does 80% of the design work. Think: well-typeset magazine article, not SaaS landing page.
-- **Warm and precise.** Not cold-minimalist. Not bubbly. A palette built on warm neutrals (off-white, warm gray, soft black) with one accent color — something like a deep teal or muted indigo. The warmth says "person," the precision says "engineer."
+- **Type-forward.** Headings and body chosen for readability and character, not default sans.
+- **Warm and precise.** Not cold-minimalist. Not bubbly. Warm neutrals with one accent. The warmth says "person," the precision says "engineer."
 - **Generous whitespace.** Dense content is fine as long as the layout gives the eye room to rest.
-- **No ornamental motion.** Page transitions via Astro's View Transitions API. No parallax, no particle backgrounds, no scroll-jacking. Nothing that loops or pulses. The site should feel like it loads and gets out of the way.
+- **Restrained motion.** View Transitions if the stack adds more later. No scroll-jacking, no particle fields, nothing that loops for show.
 
 ### What This Site Is Not
 
 - Not a tech demo disguised as a portfolio
 - Not a dark-mode terminal aesthetic
 - Not a resume with better CSS
+- Not a blog-shaped site with one post
 - Not trying to impress with how it was built — trying to impress with what it contains
 
 ---
@@ -48,225 +49,123 @@ The site works for three audiences at three speeds:
 ## Site Structure
 
 ```
-/                     → Home (the 30-second version of you)
-/work                 → What you've built (projects + roles, interwoven)
-/research             → Intent-content conflict research (its own page)
-/thinking             → How you reason through problems (short writing pieces)
-/now                  → What you're doing right now
-/about                → The full person
+/   → Everything: hero, about, connect, now, experience, projects and research,
+           extended about, footer links
 ```
 
-Six pages. No blog index with zero posts. No "services" page. Nothing that exists because portfolio sites are "supposed to have" it.
+**Anchor sections** (same page): `#work`, `#projects`, `#about`, `#now`. Nav jumps in-page; no second route for "now."
+
+There is **no** `/thinking`, `/work`, `/research`, `/about`, or `/now` as separate pages. If the spec below still describes "chapters" of content, those chapters are **sections** on `/`, not URLs.
 
 ---
 
-## Page-by-Page Content Plan
+## Single-Page Content Map
 
-### 1. Home `/`
+### Hero (above the fold)
 
-The landing page. One scroll. No hero animation.
+- Name, large and confident
+- One line that is not a job title. Honest about what you actually do.
+- Status or proof lines: internships, research thread, graduation and search
+- Resume and email
 
-**Above the fold:**
-- Your name, large and confident
-- A one-liner that isn't a job title. Not "Full-Stack Developer" or "AI/ML Engineer." Something honest about what you actually do. Examples to riff on:
-  - *"I build software that works for the people using it."*
-  - *"CS + Data Science at Ramapo. I build tools that close the gap between what systems know and what people need."*
-  - Write your own. The best version comes from you.
-- Three proof points (small, typographic, no icons):
-  - "Built production systems at Trimble and Novartis"
-  - "Research: emotion-aware retrieval with knowledge graphs"
-  - "Graduating May 2026 — looking for full-time roles"
-- Resume download link (PDF, always current)
+### About
 
-**Below the fold (one scroll):**
-- 2–3 featured pieces of work. Not a grid of cards. Each gets a sentence of context and a link:
-  - **The Canvas Agent** — tool-calling AI agent over LMS data, won HackRamapo
-  - **Trimble** — production config platform, distributed systems, C#/.NET
-  - **The Research** — what happens when user intent contradicts content semantics?
-- A "Currently" micro-section: one sentence about what you're working on now (links to /now)
-- Footer: GitHub, LinkedIn, email. Nothing else.
+Short first-person paragraphs: what you build, background, languages, school, signal moments (CS club, guests, and so on).
 
-**What this page does NOT have:**
-- A grid of technology logos/icons
-- An "about me" paragraph (that's its own page)
-- A contact form
-- Animated skill bars or tag clouds
-- Anything that exists to show off the site rather than show off the work
+### Connect
 
----
+GitHub, LinkedIn, email, Letterboxd (or whatever links you want kept to a small set).
 
-### 2. Work `/work`
+### Now (`#now`)
 
-This replaces both "Projects" and "Experience." What you built and why matters more than whether it was a personal project or an internship.
+Updated regularly. Short blocks: Building, Researching, Learning, Watching, Looking for. **Last updated** date at the top of the block so the page feels current.
 
-**Structure:** A curated list ordered by what's most impressive, not chronological. Each entry is a mini case study: the problem, what you built, what's interesting about it, and the stack. 3–5 short paragraphs per entry. Prose, not bullet points.
+### Experience (`#work`)
 
-**Entries (suggested order):**
+Curated roles, most impressive first. Prose per role, not resume bullets as the only layer.
 
-1. **Personal Canvas Agent**
-   - Problem: Students juggle five Canvas pages to figure out what's due. The LMS has the data but won't surface it usefully.
-   - Built: Multi-step tool-calling agent, 9 typed tools, parameterized SQL (no model-generated SQL), persistent memory via pgvector, reactive planner that diffs academic state per request.
-   - Interesting decision: Per-session write locks to prevent race conditions. Context compaction via secondary LLM call.
-   - Result: Won HackRamapo.
-   - Stack: TypeScript, Next.js, PostgreSQL, pgvector, Vercel AI SDK
+### Projects and research (`#projects`)
 
-2. **Trimble: Configuration Management Platform**
-   - Problem: Config conflicts across a distributed broker architecture cost engineering teams hours of debugging.
-   - Built: Production platform in C#/.NET and Azure that centralized service settings. REST APIs integrating with TMW Suite for customer-specific config across messaging, event handling, and dispatch.
-   - Auth: Built an auth proxy using Azure Workload Identity Federation for role-based access control.
-   - Stack: C#, .NET, Azure, Blazor, REST APIs
+Featured research narrative plus project cards. Links to repos and press where they exist.
 
-3. **Novartis: Project Proposal Automation**
-   - Problem: Proposals took 2 days to process through a manual approval pipeline.
-   - Built: React/TypeScript frontend + serverless Azure Functions backend, integrated with SharePoint via SPFx. Real-time tracking dashboards for budget and team allocation.
-   - Approach: Gathered requirements directly from stakeholders, iterated from feedback, not from a spec doc.
-   - Stack: React, TypeScript, Azure Functions, PostgreSQL, SharePoint/SPFx
+### More about me (`#about`)
 
-4. **Center for Food Action: Pantry Inventory System**
-   - Problem: Volunteers manually logged every donated item while physically handling donations — any interface needs to work one-handed on an iPad.
-   - Built: Flask + PostgreSQL system with barcode scanning and a touch-first interface designed for the actual context of use.
-   - Stack: Python, Flask, PostgreSQL, SQLAlchemy
+Range, education, awards, art strip if you keep it. Optional photo in `public/` when you have one you like.
 
-5. **EmotionFlix**
-   - Problem: Movie recommendations ignore how you're feeling right now.
-   - Built: On-device facial emotion detection mapped to genre preferences via hybrid scoring. Adaptive learning from user interactions. 69 tests covering auth, SQL injection, and recommendation accuracy.
-   - Stack: React, TypeScript, Node.js, Express, PostgreSQL
+### Closing
 
-Each entry links to GitHub where applicable. No "View Live Demo" buttons for things that aren't live.
+One line or quote that ties the work to how you think.
+
+### Footer
+
+GitHub, LinkedIn, email. Nothing else.
 
 ---
 
-### 3. Research `/research`
+## Reference: What Each "Chapter" Should Say
 
-Its own page because it's genuinely interesting work that most new grads don't have. Give it room.
+The older multi-page outline is still useful as **writing guidance**. Fold this material into sections on `/` rather than splitting routes.
 
-**Title:** "Resolving Intent-Content Conflict in Retrieval"
+### Work and projects (combined on the page)
 
-**Structure:**
+Order by impact, not only chronology. Each entry: problem, what you built, what is interesting, stack. Prefer prose over bullet stacks.
 
-1. **The problem in plain language** (2–3 sentences)
-   What happens when someone asks for "a happy movie about war"? The intent (happy) contradicts the content semantics (war movies are usually dark). Most retrieval systems optimize for one signal or the other. This research asks: can we resolve that conflict?
+Entries to cover (adjust as needed):
 
-2. **How the system works** (the technical substance, but accessible)
-   - Heterogeneous knowledge graph over MovieLens 25M with User/Movie/Emotion nodes
-   - Emotions encoded as first-class entities with weighted EVOKES edges
-   - Graph Transformer encoder aligned to SentenceBERT space
-   - Hybrid scoring with tunable affective displacement penalty
+1. **Canvas Agent** — LMS agent, tools, SQL discipline, memory, HackRamapo.
+2. **Trimble** — config platform, distributed systems, auth story.
+3. **Novartis** — proposal workflow, Azure, stakeholder iteration.
+4. **Center for Food Action** — pantry system, touch-first, real users.
+5. **EmotionFlix** — on-device emotion, tests, stack.
 
-3. **What we found**
-   - 1,600 synthetic queries across aligned and conflicting conditions
-   - 0.037 reduction in normalized affective displacement error in conflict scenarios
-   - Edge-removal interventions confirmed emotion edges are causally necessary
+### Research (section on the same page)
 
-4. **Interactive visualization** (React island) — **This is where the creative investment goes.**
-   A small interactive knowledge graph showing User → Emotion → Movie connections. Visitors toggle emotion edges on/off and see how rankings change. A curated ~30 node subgraph that demonstrates the concept. This isn't a gimmick bolted onto the site — it's the research itself made tangible. It earns its complexity because it IS the content, not decoration around the content.
-   Astro's island architecture means the rest of the page stays static HTML while this one component loads React + D3.
+**Title angle:** Resolving intent-content conflict in retrieval.
 
-5. **Advisor credit and link to paper/presentation when available**
+Plain-language problem, how the approach works at a high level, what you measured, advisor credit, link to code or paper when ready.
 
----
+**Optional later:** an in-page interactive graph (D3) only if it is the research made tangible, not chrome. Ships as a React island; the rest of the page stays light.
 
-### 4. Thinking `/thinking`
+### Thinking (not on this site)
 
-Not a blog. A collection of short (500–800 word) pieces on problems you've encountered and how you reasoned through them. **This is the second place creative energy goes.** The writing quality here is what separates you from other new grads with similar resumes. An engineer who can explain hard problems clearly is rare, and these pieces are the proof.
-
-**Format:** Title, date, prose. No tags, categories, or "read time" badges. Just writing.
-
-**Starter pieces (write 2–3 to launch):**
-
-1. **"When Intent Contradicts Content"**
-   The plain-language version of the research problem. Why does "happy movie about war" break retrieval? What does it mean to resolve it? The piece you'd send someone who asks "what's your research about?" at a career fair.
-
-2. **"Why I Don't Let the Model Write SQL"**
-   From the Canvas Agent: 9 typed tools with parameterized SQL instead of LLM-generated queries. Why? What are the failure modes? This shows engineering judgment.
-
-3. **"Building for Someone Holding a Box of Canned Goods"**
-   The pantry system. How do you design a UI for someone physically handling items while using the interface? What changes when you actually watch someone try to use your software in context? This shows product thinking.
-
-These should read like you explaining something to a smart person who's interested. Direct, concrete, no filler.
-
----
-
-### 5. Now `/now`
-
-A single page, updated regularly, that says what you're currently focused on.
-
-**Sections (1–3 sentences each):**
-
-- **Building:** What you're working on right now
-- **Researching:** Where the research stands
-- **Learning:** What you're studying or exploring
-- **Reading:** A book, paper, article — whatever's on your desk
-- **Looking for:** "Full-time SWE/AI roles starting Summer 2026. Open to backend, AI/ML, and distributed systems. I need visa sponsorship (OPT → H-1B)."
-
-**Last updated: [date]** at the top. Signals the site is alive.
-
----
-
-### 6. About `/about`
-
-The person behind the work. This is where range and personality live.
-
-**Structure:**
-
-1. **A real photo.** Not a corporate headshot. Something that looks like you.
-
-2. **First-person narrative (3–4 paragraphs):**
-   - Where you come from and what brought you to CS. The equalizer belief lives here naturally, not as a thesis statement, but as context for why you care about what you build.
-   - The three languages you speak and what that means to how you see problems.
-   - The range: managed 17 RAs and a residential community of 200+, co-founded the CS club and brought in Bjarne Stroustrup, led the math club, competed in ICPC.
-   - What you care about building and why.
-
-3. **The things that don't fit on a resume:**
-   - Canstruction (1st place building structures from canned food)
-   - Student Employee of the Year
-   - Whatever else makes you, you
-
-4. **A closing line** that connects the personal back to the professional. Not a CTA. Just a sentence that ties it together.
+Short essays are valuable, but **not** as `/thinking` routes. Write them where long reading fits (PDF, blog, newsletter). Link from the single page only if you want a pointer to one piece.
 
 ---
 
 ## Technical Notes
 
 ### Why Astro
-- Zero JS by default. Your /about page doesn't need React. Your /research page needs one interactive component. Astro lets you be precise.
-- View Transitions API built in for smooth page transitions without a SPA.
-- MDX support for /thinking pieces — write in markdown, it just works.
-- React islands where you need interactivity (knowledge graph viz, future demos).
-- Deploys to Vercel in seconds.
 
-### Interactive Knowledge Graph (The One Place to Over-Engineer)
-- **D3.js force-directed graph** with a curated ~30 node subgraph.
-- Click a user node to highlight emotion connections. Toggle emotion edges to show ranking shifts.
-- This is the one piece of the site where complexity is justified because the visualization IS the content. Invest time here. The rest of the site should be fast, static, and simple.
+- Zero JS by default for static blocks.
+- One document can still host an island where interactivity earns it.
+- View Transitions stay available if you ever add a second route; for a single page they are optional polish.
+- Deploys to Vercel quickly.
 
-### Content Management
-No CMS. Markdown files in the repo. The /now page is a .md file you edit and push. /thinking pieces are .mdx files in Astro content collections with typed frontmatter.
+### Content management
 
-### Performance Targets (This IS the Flex)
-- Lighthouse 95+ across the board
-- First Contentful Paint < 1s
-- Total page weight < 200KB on non-interactive pages
-- Achievable with Astro's defaults. A site this fast, this clean, with content this good — that's the statement. Don't compromise it by adding things that don't serve the work.
+No CMS. Edit copy in `src/pages/index.astro` or split partials later if it helps. The `Now` block is plain markup you update when life changes.
+
+### Performance targets
+
+- Lighthouse 95+ where it matters for a static page
+- First Contentful Paint under 1s on a good connection
+- Total weight stays lean: no dependency that exists to look impressive
 
 ---
 
-## Build Order
+## Build order (practical)
 
-1. Scaffold Astro project with Tailwind + page structure
-2. Home page — get the above-the-fold tone right. Everything flows from here.
-3. Work page — Canvas Agent and Trimble entries first (strongest two)
-4. About page — write the personal narrative
-5. Research page — static content first, interactive viz as a second pass
-6. Thinking — write 1–2 pieces
-7. Now page — takes 10 minutes, do it last
+1. Hero and tone
+2. Experience and projects sections
+3. Now block (fast to refresh)
+4. About and closing
+5. Optional: embed research viz when the subgraph and story are ready
 
 ---
 
-## Open Questions
+## Open questions
 
-1. **The one-liner.** What do you want to say about yourself in one sentence?
-2. **Color accent.** Any instinct, or should we explore options visually?
-3. **Photo.** Have one you like, or work around it for now?
-4. **Domain.** prashantshah.dev? shah.dev? Something else?
-5. **The equalizer belief.** Woven into the /about narrative, or the through-line of the whole site?
+1. **The one-liner under your name.** What is the truest single sentence?
+2. **Photo.** Add to the page when you have one that feels like you, not only when you have a headshot.
+3. **Domain.** prashantshah.dev, shah.dev, or something else?
+4. **Equalizer thread.** Personal belief woven into the about section only, or echoed once in the hero? Your call.

@@ -1,22 +1,89 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import SceneBackground from "../components/SceneBackground.astro";
 import "../styles/global.css";
 
-interface Props { title: string; description?: string; }
+interface Props {
+  title: string;
+  description?: string;
+  bg?: string;
+}
 
-const { title, description = "Prashant Shah -- software engineer, researcher, builder." } = Astro.props;
+const {
+  title,
+  description = "Prashant Shah — software engineer, researcher, builder.",
+  bg = "home",
+} = Astro.props;
 ---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" data-scene={bg}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Sora:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body><slot /></body>
+  <body>
+    <SceneBackground slug={bg} />
+    <div class="immersive-shell">
+      <slot />
+    </div>
+    <script is:inline>
+      (function () {
+        var reduce =
+          typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) return;
+        var root = document.documentElement;
+        var raf = null;
+        var tx = 0;
+        var ty = 0;
+        var cx = 0;
+        var cy = 0;
+        function tick() {
+          raf = null;
+          cx += (tx - cx) * 0.08;
+          cy += (ty - cy) * 0.08;
+          root.style.setProperty("--pointer-x", cx.toFixed(4));
+          root.style.setProperty("--pointer-y", cy.toFixed(4));
+          if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
+            raf = requestAnimationFrame(tick);
+          }
+        }
+        function queue() {
+          if (raf == null) raf = requestAnimationFrame(tick);
+        }
+        document.addEventListener(
+          "mousemove",
+          function (e) {
+            var w = window.innerWidth || 1;
+            var h = window.innerHeight || 1;
+            tx = (e.clientX / w - 0.5) * 2;
+            ty = (e.clientY / h - 0.5) * 2;
+            queue();
+          },
+          { passive: true }
+        );
+        document.addEventListener(
+          "mouseleave",
+          function () {
+            tx = 0;
+            ty = 0;
+            queue();
+          },
+          { passive: true }
+        );
+      })();
+    </script>
+  </body>
 </html>
