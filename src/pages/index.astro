@@ -61,24 +61,35 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
-      background:
-        radial-gradient(circle at 82% 12%, rgba(79,154,141,0.08), transparent 28rem),
-        radial-gradient(circle at 12% 82%, rgba(212,211,208,0.035), transparent 22rem),
-        linear-gradient(180deg, #121211 0%, var(--color-bg) 42%, #10100F 100%);
+      background: linear-gradient(180deg, #121211 0%, var(--color-bg) 42%, #10100F 100%);
       color: var(--color-text);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       padding-bottom: 86px;
       transition: background var(--transition), color var(--transition);
+      isolation: isolate;
+      position: relative;
     }
     body::before {
       content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      position: fixed; inset: 0; pointer-events: none; z-index: -2;
       background:
         linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
       background-size: 84px 84px;
-      mask-image: radial-gradient(circle at 50% 30%, black, transparent 74%);
+      mask-image:
+        radial-gradient(circle at 50% 30%, black, transparent 74%),
+        linear-gradient(180deg, black, rgba(0,0,0,0.6) 74%, transparent);
+      -webkit-mask-image:
+        radial-gradient(circle at 50% 30%, black, transparent 74%),
+        linear-gradient(180deg, black, rgba(0,0,0,0.6) 74%, transparent);
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.20), transparent 9rem, transparent calc(100% - 9rem), rgba(0,0,0,0.20)),
+        linear-gradient(180deg, transparent 0%, transparent 74%, rgba(0,0,0,0.18));
     }
     @media (hover: hover) and (pointer: fine) {
       html, body, body *, body *::before, body *::after {
@@ -91,6 +102,73 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       }
     }
     ::selection { background: var(--color-accent-dim); }
+
+    /* ── Etched frame ────────────────────────── */
+    .atmosphere {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 40;
+      overflow: hidden;
+    }
+    .atmosphere::before {
+      content: '';
+      position: absolute; inset: 18px;
+      background:
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) top left / 118px 1px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) top left / 1px 118px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) top right / 118px 1px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) top right / 1px 118px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) bottom left / 118px 1px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) bottom left / 1px 118px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) bottom right / 118px 1px no-repeat,
+        linear-gradient(var(--color-border-soft), var(--color-border-soft)) bottom right / 1px 118px no-repeat;
+      opacity: 0.75;
+    }
+    .atmosphere::after {
+      content: '';
+      position: absolute; inset: 34px;
+      background:
+        repeating-linear-gradient(90deg, rgba(79,154,141,0.18) 0 1px, transparent 1px 18px) top left / 180px 10px no-repeat,
+        repeating-linear-gradient(0deg, rgba(79,154,141,0.14) 0 1px, transparent 1px 18px) top left / 10px 180px no-repeat,
+        repeating-linear-gradient(90deg, rgba(79,154,141,0.12) 0 1px, transparent 1px 18px) bottom right / 180px 10px no-repeat,
+        repeating-linear-gradient(0deg, rgba(79,154,141,0.10) 0 1px, transparent 1px 18px) bottom right / 10px 180px no-repeat;
+      opacity: 0.46;
+    }
+    .edge-veil {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(212,211,208,0.055) 31px 32px, transparent 32px 64px) top / 100% 1px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(212,211,208,0.04) 31px 32px, transparent 32px 64px) bottom / 100% 1px no-repeat,
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(212,211,208,0.04) 31px 32px, transparent 32px 64px) left / 1px 100% no-repeat,
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(212,211,208,0.04) 31px 32px, transparent 32px 64px) right / 1px 100% no-repeat;
+    }
+    .light-slit {
+      position: absolute;
+      height: 1px;
+      background: rgba(79,154,141,0.16);
+      opacity: 0.32;
+      transform-origin: center;
+    }
+    .light-slit-one {
+      width: 32vw; top: 5.25rem; right: -4vw;
+      transform: rotate(-18deg);
+    }
+    .light-slit-two {
+      width: 28vw; bottom: 4.25rem; left: -5vw;
+      transform: rotate(14deg);
+      opacity: 0.24;
+    }
+    .light-slit-three {
+      width: 22vw; top: 46vh; right: -7vw;
+      transform: rotate(84deg);
+      opacity: 0.20;
+    }
+    .mist {
+      display: none;
+    }
+    .particle-field {
+      display: none;
+    }
 
     /* ── Grain ───────────────────────────────── */
     .grain {
@@ -121,43 +199,212 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     #work, #research, #about, #now { position: relative; overflow: hidden; }
 
-    /* ── Nav ─────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 58px;
-      background: rgba(20,20,19,0.72);
-      border-bottom: 1px solid var(--color-border-soft);
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.025), 0 16px 40px rgba(0,0,0,0.18);
-      transition: border-color var(--transition), box-shadow var(--transition);
+    /* ── Orb navigation ──────────────────────── */
+    .orb-nav {
+      --pull-x: 0px;
+      --pull-y: 0px;
+      --orb-x: calc(100vw - 68px);
+      --orb-y: 34px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 260;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      transform: translate3d(var(--orb-x), var(--orb-y), 0);
+      transition: transform 260ms cubic-bezier(0.16,1,0.3,1);
     }
-    .nav-name {
-      font-family: var(--font-heading); font-size: 14px; font-weight: 700;
-      color: var(--color-text); letter-spacing: -0.02em; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 10px;
+    .orb-float {
+      display: grid;
+      place-items: center;
+      animation: orb-float 4.8s ease-in-out infinite;
     }
-    .nav-name::before {
-      content: ''; width: 7px; height: 7px; border-radius: 2px;
-      background: var(--color-accent);
-      box-shadow: 0 0 20px var(--color-accent-glow);
-    }
-    .nav-links { display: flex; align-items: center; gap: 36px; }
-    .nav-links a {
+    .orb-button {
       position: relative;
-      font-family: var(--font-heading); font-size: 13px; font-weight: 500;
-      color: var(--color-muted); text-decoration: none; transition: color var(--transition);
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(111,204,187,0.42);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,0.16), rgba(255,255,255,0.035) 28%, transparent 48%),
+        linear-gradient(135deg, rgba(79,154,141,0.16), rgba(20,20,19,0.58));
+      box-shadow:
+        inset 0 1px 4px rgba(255,255,255,0.12),
+        inset 0 -8px 16px rgba(0,0,0,0.24);
+      backdrop-filter: blur(10px) saturate(1.22);
+      -webkit-backdrop-filter: blur(10px) saturate(1.22);
+      transform: translate3d(var(--pull-x), var(--pull-y), 0);
+      transition: transform 120ms ease-out, opacity 150ms ease, scale 150ms ease, border-color 150ms ease;
     }
-    .nav-links a::after {
-      content: ''; position: absolute; left: 0; right: 0; bottom: -10px;
-      height: 1px; background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-      opacity: 0; transform: scaleX(0.45);
-      transition: opacity 180ms ease, transform 180ms ease;
+    .orb-button::before {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.09);
+      opacity: 0.9;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--color-text); }
-    .nav-links a:hover::after, .nav-links a.active::after { opacity: 1; transform: scaleX(1); }
-    .nav-links a.active { font-weight: 600; }
+    .orb-button::after {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      top: 7px;
+      left: 8px;
+      border-radius: 50%;
+      background: rgba(212,255,242,0.72);
+    }
+    .orb-trigger {
+      position: absolute;
+      inset: -42px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      padding: 0;
+    }
+    .orb-trigger:focus-visible {
+      outline: 1px solid rgba(111,204,187,0.72);
+      outline-offset: -28px;
+    }
+    .orb-nav.pulling .orb-button {
+      border-color: rgba(111,204,187,0.68);
+    }
+    .orb-nav.open .orb-button {
+      opacity: 0;
+      scale: 0.22;
+    }
+    .orb-nav.collapsing .orb-button {
+      scale: 1.18;
+      opacity: 0.78;
+    }
+    .orb-menu {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 190px;
+      padding: 12px;
+      border: 1px solid var(--color-border-soft);
+      border-radius: 18px;
+      background: rgba(16,16,15,0.82);
+      backdrop-filter: blur(18px) saturate(1.18);
+      -webkit-backdrop-filter: blur(18px) saturate(1.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.045),
+        0 18px 54px rgba(0,0,0,0.32);
+      transform-origin: 88% 16%;
+      transform: scale(0.18) translate3d(18px, -18px, 0);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 140ms ease, transform 180ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .orb-nav.collapsing .orb-menu {
+      opacity: 0;
+      transform: scale(0.14) translate3d(18px, -18px, 0);
+      transition-duration: 150ms;
+    }
+    .orb-nav.open .orb-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    .orb-menu::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      opacity: 0.72;
+    }
+    .orb-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 34px;
+      padding: 0 28px 0 10px;
+      border-radius: 10px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: background 130ms ease, color 130ms ease, transform 130ms ease;
+    }
+    .orb-menu a::after {
+      content: attr(data-index);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--color-faint);
+    }
+    .orb-menu a:hover,
+    .orb-menu a.active {
+      color: var(--color-text);
+      background: rgba(79,154,141,0.08);
+      transform: translateX(2px);
+    }
+    .orb-nav.hero-mode .orb-menu {
+      top: -118px;
+      left: -142px;
+      right: auto;
+      width: 318px;
+      height: auto;
+      padding: 14px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(22,22,20,0.88), rgba(13,13,12,0.76)),
+        linear-gradient(90deg, rgba(79,154,141,0.08), transparent 34%, transparent 66%, rgba(79,154,141,0.06));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      transform-origin: 50% calc(100% + 18px);
+      transform: scale(0.18) translateY(14px);
+    }
+    .orb-nav.hero-mode.open .orb-menu {
+      transform: scale(1) translateY(0);
+    }
+    .orb-nav.hero-mode .orb-menu::before {
+      top: 50%;
+      right: auto;
+      left: 50%;
+      width: 1px;
+      height: calc(100% - 28px);
+      transform: translateX(-50%);
+      border-radius: 0;
+      background: rgba(212,211,208,0.08);
+    }
+    .orb-nav.hero-mode .orb-menu::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      width: 1px;
+      height: 15px;
+      background: rgba(111,204,187,0.28);
+      pointer-events: none;
+    }
+    .orb-nav.hero-mode .orb-menu a {
+      position: relative;
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid rgba(212,211,208,0.08);
+      background: rgba(12,12,11,0.46);
+      justify-content: space-between;
+    }
+    .orb-nav.hero-mode .orb-menu a::after {
+      display: block;
+    }
+    .orb-nav.hero-mode .orb-menu a:hover,
+    .orb-nav.hero-mode .orb-menu a.active {
+      transform: translateY(-1px);
+    }
+    @keyframes orb-float {
+      0%, 100% { transform: translateY(-2px); }
+      50% { transform: translateY(5px); }
+    }
 
     /* ── Hero ────────────────────────────────── */
     #hero {
@@ -166,6 +413,14 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       position: relative; overflow: hidden;
     }
     .hero-canvas { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-canvas::before {
+      content: '';
+      display: none;
+    }
+    .hero-canvas::after {
+      content: '';
+      display: none;
+    }
     .hero-layout {
       display: grid; grid-template-columns: 1fr 260px;
       gap: 56px; align-items: flex-end; margin-bottom: 32px;
@@ -205,8 +460,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       color: var(--color-text); line-height: 1.5;
     }
     .cred-value.muted { color: var(--color-muted); font-weight: 400; }
-    .hero-divider { width: 100%; height: 1px; background: var(--color-border); margin: 28px 0; }
-    .hero-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+    .hero-bottom { display: grid; grid-template-columns: minmax(0, 480px) 64px 1fr; gap: 36px; align-items: end; }
+    .orb-hero-anchor {
+      width: 34px;
+      height: 34px;
+      align-self: center;
+      justify-self: center;
+      pointer-events: none;
+      transform: translateY(78px);
+    }
     .hero-oneliner {
       font-family: var(--font-body); font-style: italic;
       font-size: clamp(1rem, 1.4vw, 1.3rem); line-height: 1.55;
@@ -224,19 +486,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .cta-primary:hover { color: var(--color-accent-hover); border-color: var(--color-accent-hover); }
     .cta-secondary { color: var(--color-muted); }
     .cta-secondary:hover { color: var(--color-text); }
-    .hero-scroll {
-      position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.35;
-    }
-    .scroll-line {
-      width: 1px; height: 40px; background: var(--color-text);
-      animation: scrollpulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollpulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(0.6); }
-    }
-
     /* ── GitHub heatmap ──────────────────────── */
     .hero-github {
       margin-top: 28px;
@@ -593,6 +842,17 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       50% { opacity: 0.2; }
     }
 
+    .cursor-ring.cur-orb {
+      width: 36px; height: 36px;
+      border-color: rgba(111,204,187,0.56);
+      background: rgba(79,154,141,0.035);
+      box-shadow: inset 0 1px 10px rgba(255,255,255,0.08), 0 0 26px rgba(79,154,141,0.12);
+    }
+    .cursor-dot.cur-orb {
+      width: 8px; height: 8px;
+      background: rgba(111,204,187,0.9);
+    }
+
     /* ── Scroll reveal ───────────────────────── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -604,14 +864,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* ── Responsive ──────────────────────────── */
     @media (min-width: 1280px) {
       :root { --max-content: 1180px; }
-      nav { padding-inline: clamp(48px, 6vw, 96px); }
       #hero { padding-inline: clamp(48px, 6vw, 96px); }
       section { padding-inline: clamp(48px, 6vw, 96px); }
       #now-strip { padding-left: clamp(48px, 6vw, 96px); }
     }
 
     @media (max-width: 1024px) {
-      nav { padding: 0 32px; }
       #hero { padding: 0 32px 112px; }
       .hero-layout { grid-template-columns: 1fr 240px; gap: 36px; }
       .hero-name-row { font-size: clamp(4rem, 12vw, 7rem); }
@@ -627,10 +885,14 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (max-width: 768px) {
       body { padding-bottom: 82px; }
-      nav { height: 56px; padding: 0 22px; }
-      .nav-name { font-size: 13px; }
-      .nav-links { gap: 18px; }
-      .nav-links a { font-size: 12px; }
+      .light-slit-one { width: 72vw; top: 18rem; right: -22vw; }
+      .light-slit-two { width: 58vw; top: 104rem; left: -24vw; }
+      .light-slit-three { width: 64vw; top: 178rem; right: -18vw; }
+      .mist { opacity: 0.25; }
+      .particle-field { opacity: 0.09; background-size: 210px 280px, 360px 340px, 520px 480px; }
+      .orb-float { animation: none; }
+      .orb-trigger { inset: -18px; }
+      .orb-menu { width: 172px; top: -6px; right: -6px; }
       #hero { min-height: 92dvh; padding: 0 22px 104px; }
       .hero-layout { grid-template-columns: 1fr; gap: 28px; }
       .hero-cred {
@@ -639,8 +901,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       }
       .hero-name-row { font-size: clamp(3.3rem, 15vw, 6rem); }
       .hero-bottom { grid-template-columns: 1fr; gap: 22px; }
+      .orb-hero-anchor { display: none; }
       .hero-actions { justify-content: flex-start; }
-      .hero-scroll { display: none; }
       section { padding: 70px 22px; scroll-margin-top: 76px; }
       .work-grid, .research-layout, .about-layout { grid-template-columns: 1fr; gap: 28px; }
       .work-featured { grid-template-columns: 1fr; gap: 24px; padding: 30px 28px; }
@@ -664,9 +926,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (max-width: 520px) {
       body { padding-bottom: 82px; }
-      nav { justify-content: center; }
-      .nav-name { position: absolute; left: 18px; max-width: 34px; overflow: hidden; white-space: nowrap; }
-      .nav-links { margin-left: 38px; gap: 14px; }
       .hero-eyebrow { font-size: 9px; line-height: 1.6; max-width: 260px; }
       .hero-cred { grid-template-columns: 1fr; }
       .hero-actions { gap: 20px; }
@@ -681,10 +940,30 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       .strip-value { display: none; }
       .strip-social-icons { margin-left: auto; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .atmosphere::before,
+      .atmosphere::after,
+      .edge-veil,
+      .orb-float,
+      .mist,
+      .particle-field,
+      .strip-dot {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
+<div class="atmosphere" aria-hidden="true">
+  <div class="edge-veil"></div>
+  <div class="light-slit light-slit-one"></div>
+  <div class="light-slit light-slit-two"></div>
+  <div class="light-slit light-slit-three"></div>
+</div>
+<div class="mist" aria-hidden="true"></div>
+<div class="particle-field" aria-hidden="true"></div>
 <div class="grain"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -726,16 +1005,18 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <span class="strip-clock" id="stripClock"></span>
 </div>
 
-<!-- Nav -->
-<nav>
-  <a href="#hero" class="nav-name">Prashant Shah</a>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#research">Research</a>
-    <a href="#about">About</a>
-    <a href="#now">Now</a>
+<div class="orb-nav" id="orbNav">
+  <button class="orb-trigger" id="orbTrigger" type="button" aria-label="Open navigation" aria-expanded="false"></button>
+  <div class="orb-float" aria-hidden="true">
+    <div class="orb-button"></div>
   </div>
-</nav>
+  <div class="orb-menu" id="orbMenu" aria-label="Navigation">
+    <a href="#work" data-index="01">Work</a>
+    <a href="#research" data-index="02">Research</a>
+    <a href="#about" data-index="03">About</a>
+    <a href="#now" data-index="04">Now</a>
+  </div>
+</div>
 
 <!-- Hero -->
 <section id="hero">
@@ -746,7 +1027,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       <circle cx="85%" cy="12%" r="320" fill="var(--color-accent)" opacity="0.04"/>
       <circle cx="-2%" cy="92%" r="300" fill="none" stroke="currentColor" stroke-width="1" opacity="0.05"/>
       <circle cx="-2%" cy="92%" r="180" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.04"/>
-      <line x1="0" y1="52%" x2="100%" y2="52%" stroke="currentColor" stroke-width="0.4" opacity="0.04"/>
       <line x1="60%" y1="0" x2="100%" y2="60%" stroke="var(--color-accent)" stroke-width="0.6" opacity="0.08"/>
       <circle cx="6%" cy="30%" r="2" fill="var(--color-accent)" opacity="0.15"/>
       <circle cx="8%" cy="34%" r="1.5" fill="var(--color-accent)" opacity="0.1"/>
@@ -795,13 +1075,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     </div>
   </div>
 
-  <div class="hero-divider"></div>
-  <div class="hero-scroll" id="heroScroll"><div class="scroll-line"></div></div>
-
   <div class="hero-bottom">
     <p class="hero-oneliner reveal reveal-delay-1">
       I build software that closes the gap between what systems know and what people need.
     </p>
+    <div class="orb-hero-anchor" id="orbHeroAnchor" aria-hidden="true"></div>
     <div class="hero-actions reveal reveal-delay-2">
       <a href="mailto:shahp0021@gmail.com" class="cta-secondary">Get in touch</a>
       <a href="/resume.pdf" class="cta-primary">Resume &darr;</a>
@@ -1004,6 +1282,40 @@ setTimeout(() => {
   document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
 }, 100);
 
+const orbNavEl = document.getElementById('orbNav');
+const orbTriggerEl = document.getElementById('orbTrigger');
+const orbMenuEl = document.getElementById('orbMenu');
+const orbHeroAnchor = document.getElementById('orbHeroAnchor');
+const heroSection = document.getElementById('hero');
+
+function positionOrb() {
+  if (!orbNavEl) return;
+
+  const heroRect = heroSection?.getBoundingClientRect();
+  const anchorRect = orbHeroAnchor?.getBoundingClientRect();
+  const canUseHeroAnchor = anchorRect && anchorRect.width > 0;
+  const heroInView = canUseHeroAnchor && heroRect && heroRect.bottom > window.innerHeight * 0.28 && heroRect.top < window.innerHeight * 0.78;
+
+  if (heroInView) {
+    orbNavEl.classList.add('hero-mode');
+    orbNavEl.style.setProperty('--orb-x', `${anchorRect.left + anchorRect.width / 2 - 17}px`);
+    orbNavEl.style.setProperty('--orb-y', `${anchorRect.top + anchorRect.height / 2 - 17}px`);
+  } else {
+    orbNavEl.classList.remove('hero-mode');
+    orbNavEl.style.setProperty('--orb-x', `${window.innerWidth - 68}px`);
+    orbNavEl.style.setProperty('--orb-y', '34px');
+  }
+}
+
+positionOrb();
+requestAnimationFrame(positionOrb);
+requestAnimationFrame(() => requestAnimationFrame(positionOrb));
+window.addEventListener('load', positionOrb);
+document.fonts?.ready?.then(positionOrb);
+setTimeout(positionOrb, 250);
+window.addEventListener('scroll', positionOrb, { passive: true });
+window.addEventListener('resize', positionOrb);
+
 // ── Custom cursor ──────────────────────────
 const cursorDot = document.getElementById('cursorDot');
 const cursorRing = document.getElementById('cursorRing');
@@ -1029,7 +1341,6 @@ if (!window.matchMedia('(hover: none)').matches) {
     });
   }
   bindCursor('.hero-name-row, .hero-name-block', 'cur-lens', 'cur-lens');
-  bindCursor('.nav-links a, .nav-name', 'cur-nav', 'cur-nav');
   bindCursor('.github-heatmap, .hm-cell', 'cur-grid', 'cur-grid');
   bindCursor('.work-card, .work-featured', 'cur-expand', 'cur-expand');
   document.querySelectorAll('.card-expand-btn').forEach(btn => {
@@ -1040,6 +1351,117 @@ if (!window.matchMedia('(hover: none)').matches) {
   bindCursor('.cta-primary, .cta-secondary', 'cur-cta', 'cur-cta');
   bindCursor('a[target="_blank"]', 'cur-arrow', 'cur-arrow');
   bindCursor('.now-item', 'cur-live', 'cur-live');
+
+  const orbNav = orbNavEl;
+  const orbTrigger = orbTriggerEl;
+  const orbMenu = orbMenuEl;
+  if (orbNav && orbTrigger && orbMenu) {
+    let absorbed = false;
+    let collapseTimer = null;
+
+    function openOrb() {
+      if (collapseTimer) window.clearTimeout(collapseTimer);
+      absorbed = true;
+      orbNav.classList.add('open');
+      orbNav.classList.remove('pulling', 'collapsing');
+      orbNav.style.setProperty('--pull-x', '0px');
+      orbNav.style.setProperty('--pull-y', '0px');
+      orbTrigger.setAttribute('aria-expanded', 'true');
+      setCursor('cur-orb', 'cur-orb');
+    }
+
+    function closeOrb() {
+      absorbed = false;
+      orbNav.classList.add('collapsing');
+      orbNav.classList.remove('open', 'pulling');
+      orbNav.style.setProperty('--pull-x', '0px');
+      orbNav.style.setProperty('--pull-y', '0px');
+      orbTrigger.setAttribute('aria-expanded', 'false');
+      setCursor('', '');
+      if (collapseTimer) window.clearTimeout(collapseTimer);
+      collapseTimer = window.setTimeout(() => orbNav.classList.remove('collapsing'), 170);
+    }
+
+    document.addEventListener('mousemove', e => {
+      if (absorbed) {
+        const menuRect = orbMenu.getBoundingClientRect();
+        const navRect = orbNav.getBoundingClientRect();
+        const cx = navRect.left + navRect.width / 2;
+        const cy = navRect.top + navRect.height / 2;
+        const outsideMenu =
+          e.clientX < menuRect.left - 40 ||
+          e.clientX > menuRect.right + 40 ||
+          e.clientY < menuRect.top - 40 ||
+          e.clientY > menuRect.bottom + 40;
+
+        if (outsideMenu && Math.hypot(e.clientX - cx, e.clientY - cy) > 190) closeOrb();
+        return;
+      }
+
+      const r = orbNav.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < 118) {
+        const strength = Math.max(0, 1 - dist / 118);
+        orbNav.classList.add('pulling');
+        orbNav.style.setProperty('--pull-x', `${dx * strength * 0.72}px`);
+        orbNav.style.setProperty('--pull-y', `${dy * strength * 0.72}px`);
+        setCursor('cur-orb', 'cur-orb');
+        if (dist < 26) openOrb();
+      } else {
+        orbNav.classList.remove('pulling');
+        orbNav.style.setProperty('--pull-x', '0px');
+        orbNav.style.setProperty('--pull-y', '0px');
+      }
+    });
+
+    orbTrigger.addEventListener('click', () => {
+      if (orbNav.classList.contains('open')) closeOrb();
+      else openOrb();
+    });
+
+    document.addEventListener('click', e => {
+      if (!orbNav.contains(e.target)) closeOrb();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeOrb();
+    });
+
+    orbMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setTimeout(closeOrb, 120));
+    });
+  }
+}
+
+if (window.matchMedia('(hover: none)').matches) {
+  const orbNav = orbNavEl;
+  const orbTrigger = orbTriggerEl;
+  const orbMenu = orbMenuEl;
+
+  if (orbNav && orbTrigger && orbMenu) {
+    function closeTouchOrb() {
+      orbNav.classList.remove('open');
+      orbTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    orbTrigger.addEventListener('click', () => {
+      const isOpen = orbNav.classList.toggle('open');
+      orbTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', e => {
+      if (!orbNav.contains(e.target)) closeTouchOrb();
+    });
+
+    orbMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setTimeout(closeTouchOrb, 120));
+    });
+  }
 }
 
 // ── Magnetic CTAs ──────────────────────────
@@ -1054,22 +1476,18 @@ document.querySelectorAll('.cta-primary, .cta-secondary').forEach(el => {
 });
 
 // ── Nav active section ─────────────────────
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' }).observe
-  && document.querySelectorAll('section[id]').forEach(s =>
-      new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting)
-            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-        });
-      }, { rootMargin: '-40% 0px -55% 0px' }).observe(s)
-    );
+const navLinks = document.querySelectorAll('.orb-menu a[href^="#"]');
+if (navLinks.length) {
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+}
 
 // ── Card expand ────────────────────────────
 document.querySelectorAll('.card-expand-btn').forEach(btn => {
