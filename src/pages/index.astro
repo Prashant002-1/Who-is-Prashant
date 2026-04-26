@@ -146,8 +146,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       position: absolute;
       height: 1px;
       background: rgba(79,154,141,0.16);
-      opacity: 0.32;
+      opacity: 0;
       transform-origin: center;
+      transition: opacity 220ms ease, transform 260ms ease;
+    }
+    body.hero-orb-zone .light-slit {
+      opacity: 0.32;
     }
     .light-slit-one {
       width: 32vw; top: 5.25rem; right: -4vw;
@@ -156,11 +160,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .light-slit-two {
       width: 28vw; bottom: 4.25rem; left: -5vw;
       transform: rotate(14deg);
+    }
+    body.hero-orb-zone .light-slit-two {
       opacity: 0.24;
     }
     .light-slit-three {
       width: 22vw; top: 46vh; right: -7vw;
       transform: rotate(84deg);
+    }
+    body.hero-orb-zone .light-slit-three {
       opacity: 0.20;
     }
     .mist {
@@ -415,11 +423,28 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hero-canvas { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .hero-canvas::before {
       content: '';
-      display: none;
+      position: absolute;
+      left: 48px;
+      right: 48px;
+      bottom: 92px;
+      height: 132px;
+      background:
+        repeating-linear-gradient(90deg, rgba(212,211,208,0.08) 0 1px, transparent 1px 54px) bottom / 100% 36px no-repeat,
+        linear-gradient(90deg, rgba(212,211,208,0.08), transparent 42%, transparent 58%, rgba(79,154,141,0.12)) bottom / 100% 1px no-repeat;
+      opacity: 0.5;
     }
     .hero-canvas::after {
       content: '';
-      display: none;
+      position: absolute;
+      right: clamp(34px, 6vw, 96px);
+      top: 86px;
+      width: min(360px, 34vw);
+      height: 220px;
+      border-top: 1px solid rgba(212,211,208,0.085);
+      border-right: 1px solid rgba(212,211,208,0.085);
+      background:
+        linear-gradient(115deg, transparent 0 48%, rgba(79,154,141,0.16) 48.2% 48.6%, transparent 49%) center / 100% 100% no-repeat;
+      opacity: 0.78;
     }
     .hero-layout {
       display: grid; grid-template-columns: 1fr 260px;
@@ -442,7 +467,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       pointer-events: none; z-index: -1;
     }
     .hero-name-row {
-      display: block; line-height: 0.9; font-family: var(--font-heading);
+      display: table; line-height: 0.9; font-family: var(--font-heading);
       font-weight: 700; letter-spacing: -0.045em; color: var(--color-text);
       font-size: clamp(4.2rem, 11vw, 10rem);
     }
@@ -643,9 +668,34 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       min-width: 0;
       display: flex; align-items: center; gap: 9px; white-space: nowrap;
     }
+    .building-item { flex: 1 1 330px; }
+    .recognition-item { flex: 1 1 300px; }
+    .watching-item { flex: 0 1 190px; }
     .strip-label { color: var(--color-faint); letter-spacing: 0.04em; }
     .strip-value { min-width: 0; color: var(--color-text); overflow: hidden; text-overflow: ellipsis; }
     .strip-value.accent { color: var(--color-accent); }
+    .strip-ticker {
+      display: block;
+      position: relative;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+    .strip-ticker-track {
+      display: inline-flex;
+      gap: 36px;
+      min-width: max-content;
+      transform: translateX(0);
+      will-change: transform;
+    }
+    .strip-ticker:hover .strip-ticker-track {
+      animation: strip-ticker 7.5s linear infinite;
+    }
+    @keyframes strip-ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 18px)); }
+    }
     .strip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); animation: pulse-dot 2.5s ease-in-out infinite; box-shadow: 0 0 18px var(--color-accent-glow); flex: 0 0 auto; }
     @keyframes pulse-dot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     .strip-sep { color: var(--color-border); font-size: 14px; flex: 0 0 auto; }
@@ -879,7 +929,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         padding: 0 32px;
         gap: 14px;
       }
-      #now-strip .strip-item:nth-of-type(2),
+      .recognition-item,
       .recognition-sep { display: none; }
     }
 
@@ -902,6 +952,19 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       .hero-name-row { font-size: clamp(3.3rem, 15vw, 6rem); }
       .hero-bottom { grid-template-columns: 1fr; gap: 22px; }
       .orb-hero-anchor { display: none; }
+      .hero-canvas::before {
+        left: 22px;
+        right: 22px;
+        bottom: 74px;
+        opacity: 0.34;
+      }
+      .hero-canvas::after {
+        right: 22px;
+        top: 74px;
+        width: 42vw;
+        height: 160px;
+        opacity: 0.38;
+      }
       .hero-actions { justify-content: flex-start; }
       section { padding: 70px 22px; scroll-margin-top: 76px; }
       .work-grid, .research-layout, .about-layout { grid-template-columns: 1fr; gap: 28px; }
@@ -915,7 +978,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         gap: 10px;
         font-size: 10px;
       }
-      #now-strip .strip-item:nth-of-type(2),
+      .recognition-item,
+      .watching-item,
       .strip-sep,
       .strip-clock { display: none; }
       .strip-item { gap: 7px; }
@@ -970,18 +1034,44 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
 <!-- Status strip -->
 <div id="now-strip">
-  <div class="strip-item">
+  <div class="strip-item building-item">
     <span class="strip-dot"></span>
     <span class="strip-label">Building</span>
-    <span class="strip-value">Data infrastructure overhaul at Center for Food Action</span>
+    <span class="strip-value strip-ticker">
+      <span class="strip-ticker-track">
+        <span>Data infrastructure overhaul at Center for Food Action</span>
+        <span aria-hidden="true">Data infrastructure overhaul at Center for Food Action</span>
+      </span>
+    </span>
   </div>
   <span class="strip-sep recognition-sep">&middot;</span>
-  <div class="strip-item">
-    <span class="strip-label">Recognition</span>
-    <span class="strip-value accent">Best Student Research &mdash; SAM International 2025</span>
+  <div class="strip-item recognition-item">
+    <span class="strip-label">Recent Recognition:</span>
+    <span class="strip-value strip-ticker accent">
+      <span class="strip-ticker-track">
+        <span>Best Student Research Ramapo TAS</span>
+        <span aria-hidden="true">Best Student Research Ramapo TAS</span>
+      </span>
+    </span>
+  </div>
+  <span class="strip-sep watching-sep">&middot;</span>
+  <div class="strip-item watching-item">
+    <span class="strip-label">Just Watched:</span>
+    <span class="strip-value strip-ticker">
+      <span class="strip-ticker-track">
+        <span>Invincible</span>
+        <span aria-hidden="true">Invincible</span>
+      </span>
+    </span>
   </div>
   <span class="strip-sep social-sep">&middot;</span>
   <div class="strip-social-icons" aria-label="Social links">
+    <a href="mailto:shahp0021@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M4 7l8 6 8-6"/>
+      </svg>
+    </a>
     <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener" aria-label="GitHub">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M9 19c-4 1.5-4-2-5.5-2.5"/>
@@ -995,10 +1085,17 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <circle cx="4" cy="4" r="2"/>
       </svg>
     </a>
-    <a href="https://x.com/Prashant002_1" target="_blank" rel="noopener" aria-label="X">
+    <a href="https://x.com/Prashant020510" target="_blank" rel="noopener" aria-label="X">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4l16 16"/>
         <path d="M20 4L4 20"/>
+      </svg>
+    </a>
+    <a href="https://letterboxd.com/_prashant_/" target="_blank" rel="noopener" aria-label="Letterboxd">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
       </svg>
     </a>
   </div>
@@ -1022,19 +1119,30 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <section id="hero">
   <div class="hero-canvas">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <circle cx="88%" cy="18%" r="380" fill="none" stroke="currentColor" stroke-width="1" opacity="0.06"/>
-      <circle cx="88%" cy="18%" r="260" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.05"/>
-      <circle cx="85%" cy="12%" r="320" fill="var(--color-accent)" opacity="0.04"/>
-      <circle cx="-2%" cy="92%" r="300" fill="none" stroke="currentColor" stroke-width="1" opacity="0.05"/>
-      <circle cx="-2%" cy="92%" r="180" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.04"/>
-      <line x1="60%" y1="0" x2="100%" y2="60%" stroke="var(--color-accent)" stroke-width="0.6" opacity="0.08"/>
+      <path d="M 66% -6% A 420 420 0 0 1 106% 39%" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.055"/>
+      <path d="M 72% -2% A 300 300 0 0 1 101% 32%" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.05"/>
+      <path d="M -8% 84% A 360 360 0 0 0 23% 112%" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.05"/>
+      <path d="M -3% 76% A 230 230 0 0 0 15% 103%" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.045"/>
+
+      <line x1="61%" y1="0" x2="94%" y2="46%" stroke="var(--color-accent)" stroke-width="0.55" opacity="0.07"/>
+      <line x1="8%" y1="78%" x2="36%" y2="71%" stroke="currentColor" stroke-width="0.45" opacity="0.045"/>
+      <line x1="72%" y1="78%" x2="94%" y2="78%" stroke="currentColor" stroke-width="0.45" opacity="0.05"/>
+
+      <path d="M 6% 35% h 120 v -56 h 66" fill="none" stroke="currentColor" stroke-width="0.55" opacity="0.055"/>
+      <path d="M 71% 36% h 126 v 112" fill="none" stroke="currentColor" stroke-width="0.55" opacity="0.06"/>
+      <path d="M 47% 72% h 54 v 42" fill="none" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.08"/>
+
       <circle cx="6%" cy="30%" r="2" fill="var(--color-accent)" opacity="0.15"/>
       <circle cx="8%" cy="34%" r="1.5" fill="var(--color-accent)" opacity="0.1"/>
       <circle cx="5%" cy="37%" r="1" fill="var(--color-accent)" opacity="0.08"/>
-      <line x1="20%" y1="96%" x2="20%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
-      <line x1="40%" y1="96%" x2="40%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
-      <line x1="60%" y1="96%" x2="60%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
-      <line x1="80%" y1="96%" x2="80%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+      <circle cx="47%" cy="72%" r="2" fill="var(--color-accent)" opacity="0.12"/>
+
+      <line x1="14%" y1="95%" x2="14%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+      <line x1="24%" y1="97%" x2="24%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.055"/>
+      <line x1="42%" y1="95%" x2="42%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+      <line x1="50%" y1="97%" x2="50%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.055"/>
+      <line x1="68%" y1="95%" x2="68%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+      <line x1="82%" y1="97%" x2="82%" y2="100%" stroke="currentColor" stroke-width="0.5" opacity="0.055"/>
     </svg>
   </div>
 
@@ -1298,10 +1406,12 @@ function positionOrb() {
 
   if (heroInView) {
     orbNavEl.classList.add('hero-mode');
+    document.body.classList.add('hero-orb-zone');
     orbNavEl.style.setProperty('--orb-x', `${anchorRect.left + anchorRect.width / 2 - 17}px`);
     orbNavEl.style.setProperty('--orb-y', `${anchorRect.top + anchorRect.height / 2 - 17}px`);
   } else {
     orbNavEl.classList.remove('hero-mode');
+    document.body.classList.remove('hero-orb-zone');
     orbNavEl.style.setProperty('--orb-x', `${window.innerWidth - 68}px`);
     orbNavEl.style.setProperty('--orb-y', '34px');
   }
@@ -1340,8 +1450,8 @@ if (!window.matchMedia('(hover: none)').matches) {
       el.addEventListener('mouseleave', () => setCursor('', ''));
     });
   }
-  bindCursor('.hero-name-row, .hero-name-block', 'cur-lens', 'cur-lens');
-  bindCursor('.github-heatmap, .hm-cell', 'cur-grid', 'cur-grid');
+  bindCursor('.hero-name-row', 'cur-lens', 'cur-lens');
+  bindCursor('.github-heatmap', 'cur-grid', 'cur-grid');
   bindCursor('.work-card, .work-featured', 'cur-expand', 'cur-expand');
   document.querySelectorAll('.card-expand-btn').forEach(btn => {
     btn.addEventListener('mouseenter', () => setCursor('cur-close', 'cur-close'));
