@@ -30,8 +30,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Prashant Shah — Software Engineer, Data Scientist, Researcher, New Grad." />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Prashant Shah, Software Engineer, Data Scientist, Researcher, New Grad." />
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>Prashant Shah</title>
   <style>
@@ -456,7 +456,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--color-accent); margin-bottom: 20px;
     }
-    /* Hero name: subtle teal glow — only glass on the page */
+    /* Hero name: subtle teal glow, only glass on the page */
     .hero-name-block { position: relative; }
     .hero-name-block::before {
       content: '';
@@ -631,8 +631,24 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* ── About ───────────────────────────────── */
     #about { border-top: 1px solid var(--color-border); }
     .about-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
-    .about-photo { aspect-ratio: 4/5; background: var(--color-panel); border: 1px solid var(--color-border-soft); border-radius: 14px; position: relative; overflow: hidden; }
-    .about-photo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .about-photo {
+      min-width: 0;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      position: relative;
+      background: var(--color-panel);
+      border: 1px solid var(--color-border-soft);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .about-photo-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .about-prose p { font-family: var(--font-body); font-size: 16px; line-height: 1.8; color: var(--color-muted); margin-bottom: 20px; }
     .about-prose p:first-of-type { font-size: 19px; line-height: 1.7; color: var(--color-text); font-style: italic; }
     .about-facts { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
@@ -1203,7 +1219,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="orb-hero-anchor" id="orbHeroAnchor" aria-hidden="true"></div>
     <div class="hero-actions reveal reveal-delay-2">
       <a href="https://www.linkedin.com/in/prashant210/" class="cta-secondary" target="_blank" rel="noopener">Get in touch</a>
-      <a href="/Prashant-Resume.pdf" class="cta-primary">Resume &darr;</a>
+      <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`} class="cta-primary">Resume &darr;</a>
     </div>
   </div>
 </section>
@@ -1229,13 +1245,13 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         </div>
         <div class="card-extra" id="canvas-extra">
           <div class="card-extra-inner">
-            <p>Per-session write locks prevent race conditions across concurrent users. A secondary LLM call handles context compaction when conversation history grows long. The model never touches raw SQL — 9 typed tool functions wrap all queries, eliminating prompt injection entirely.</p>
+            <p>Per-session write locks prevent race conditions across concurrent users. A secondary LLM call handles context compaction when conversation history grows long. The model never touches raw SQL; 9 typed tool functions wrap all queries, eliminating prompt injection entirely.</p>
           </div>
         </div>
       </div>
       <div class="featured-context">
         <p class="card-body">Students juggle five Canvas pages to figure out what's due. The LMS has the data but won't surface it usefully. I built a multi-step tool-calling agent with 9 typed tools, parameterized SQL, and persistent memory via pgvector.</p>
-        <p class="card-body">The model never generates SQL directly — each tool wraps a parameterized function, which eliminates prompt injection entirely.</p>
+        <p class="card-body">The model never generates SQL directly; each tool wraps a parameterized function, which eliminates prompt injection entirely.</p>
         <div class="featured-outcome">Won HackRamapo. The first project I built where the engineering judgment was as interesting as the output.</div>
       </div>
     </div>
@@ -1248,7 +1264,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <button class="card-expand-btn" data-target="trimble-extra"><span class="exp-arrow">+</span><span class="exp-label">more detail</span></button>
         <div class="card-extra" id="trimble-extra">
           <div class="card-extra-inner">
-            <p>Auth proxy using Azure Workload Identity Federation for role-based access. REST APIs integrating with TMW Suite. Built and shipped to production — not a prototype.</p>
+            <p>Auth proxy using Azure Workload Identity Federation for role-based access. REST APIs integrating with TMW Suite. Built and shipped to production, not a prototype.</p>
           </div>
         </div>
       </div>
@@ -1261,7 +1277,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       <div class="work-card reveal reveal-delay-3">
         <div class="card-eyebrow">Center for Food Action &middot; 2025</div>
         <h3 class="card-title">Pantry Inventory System</h3>
-        <p class="card-body">I built a touch-first Flask + PostgreSQL system with barcode scanning — designed for someone holding a box with one hand. Serves 6 pantries, 40,000 people annually. Featured on News 12 NJ.</p>
+        <p class="card-body">I built a touch-first Flask + PostgreSQL system with barcode scanning, designed for someone holding a box with one hand. Serves 6 pantries, 40,000 people annually. Featured on News 12 NJ.</p>
         <div class="card-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span></div>
       </div>
       <div class="work-card reveal reveal-delay-4">
@@ -1303,7 +1319,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="section-label">Research</div>
     <div class="research-layout">
       <div>
-        <h2 class="research-heading">Resolving Intent&ndash;Content Conflict in Retrieval</h2>
+        <h2 class="research-heading">Resolving Intent-Content Conflict in Retrieval</h2>
         <p class="research-lead">When someone asks for "a happy movie about war," intent and content semantics disagree. Most systems optimize one signal. This work asks whether you can separate topical match from affective fit and resolve the conflict explicitly.</p>
         <p class="research-method"><strong>How:</strong> KRAG on MovieLens 25M: a heterogeneous knowledge graph with User, Movie, and Emotion nodes and weighted EVOKES edges. A Graph Transformer encoder is aligned to Sentence-BERT so graph and text scores fuse coherently; ranking uses semantic + graph relevance minus a tunable affective displacement penalty.</p>
         <p class="research-method"><strong>What we found:</strong> Dissonance (topic vs. emotion conflict) is the hard case, and where evidence concentrates: larger gains vs. baselines there than under agreement, including a large paired effect on affective displacement when the penalty is on (<em>d</em><sub>z</sub> = &minus;1.51). Edge-removal tests show emotion edges are causally necessary; necessity is ~2.3&times; higher under dissonance than agreement, so the graph matters most when signals clash.</p>
@@ -1339,15 +1355,23 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="section-label">About</div>
     <div class="about-layout">
       <div class="about-photo reveal">
-        <img class="about-photo-img" src="/photo.jpg" alt="Prashant Shah" width="1200" height="1500" loading="lazy" decoding="async" />
+        <img
+          class="about-photo-img"
+          src={`${import.meta.env.BASE_URL}photo.jpg`}
+          alt="Prashant Shah"
+          width="1200"
+          height="1500"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div class="about-prose">
         <p class="reveal">I grew up speaking three languages and moving between worlds. That shapes how I see problems: I'm always translating, always aware there's more than one way to frame something.</p>
         <p class="reveal reveal-delay-1">I came to computer science because software is one of the few tools that actually scales. At Ramapo I've studied CS and Data Science, managed 17 resident assistants and a residential community of 200+ students, co-founded the CS club, led Math Club, and competed in ICPC.</p>
-        <p class="reveal reveal-delay-2">My internships at Trimble and Novartis were about the same thing at different scales — taking something slow, manual, or fragile and replacing it with something that works. My research is the harder version: what happens when the system doesn't even know what you're asking for?</p>
+        <p class="reveal reveal-delay-2">My internships at Trimble and Novartis were about the same thing at different scales: taking something slow, manual, or fragile and replacing it with something that works. My research is the harder version: what happens when the system doesn't even know what you're asking for?</p>
         <p class="reveal reveal-delay-3">I care about software that is honest about what it does, fast, and designed for the person using it. Looking for full-time SWE / AI / Data roles.</p>
         <div class="about-facts reveal reveal-delay-4">
-          <div class="about-fact">Canstruction &mdash; 1st place, building structures from canned food</div>
+          <div class="about-fact">Canstruction: 1st place, building structures from canned food</div>
           <div class="about-fact">Student Employee of the Year</div>
           <div class="about-fact">Presidential Scholar</div>
           <div class="about-fact">ICPC competitor</div>
