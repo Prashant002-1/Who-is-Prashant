@@ -1,76 +1,43 @@
 ---
 name: prashant-portfolio
-description: Design system and build rules for Prashant Shah's portfolio site. Use this skill whenever building, modifying, or adding pages to the portfolio. Covers visual direction, typography, color, layout, Astro patterns, and what to avoid. Read this before writing any code for the site.
+description: Build and maintenance rules for Prashant Shah's single-page portfolio site.
 ---
 
-# Prashant Shah — Portfolio Design System
+# Portfolio Build Rules
 
-## Philosophy
+## Current Architecture
 
-The site is a frame, not a painting, but a frame worth looking at. Every detail should feel intentional and elevated: the weight of a border, the rhythm between sections, the way type sits on the page. This is not minimalism by avoidance. It is premium by care. The site should feel like someone thought about every choice, because they did.
+The live site is a single Astro page at `src/pages/index.astro`. It owns its HTML document, CSS, and browser JavaScript directly.
 
-The work carries the substance. The site's job is to present it with enough craft that the presentation itself signals competence. Good typography, considered spacing, and polished micro-details (hover states, transitions, the feel of navigating between pages) add up to a site that feels professional without trying to impress through spectacle.
+Do not add a shared layout, route components, React islands, Tailwind, MDX, or content collections unless the product direction changes and the dependency earns its place.
 
-## Stack
+## Design System
 
-Astro 5 + React islands + Tailwind CSS + View Transitions API. Deploy to Vercel. Content lives in markdown/MDX via Astro content collections with typed frontmatter (glob loader). No CMS.
+- Headings use Sora.
+- Body copy uses Source Serif 4.
+- Technical labels use JetBrains Mono.
+- Use warm dark neutrals and one teal accent.
+- Keep the page type-forward, dense, and readable.
+- Motion should be subtle and tied to interaction or orientation.
 
-## Typography
+## Content Shape
 
-Two fonts max, loaded via Google Fonts variable axes to minimize payload.
+The page is the whole portfolio:
 
-- **Headings:** Sora (geometric sans, warm curves, high legibility — not generic like Inter or Poppins). Use weight 600–700 for headings, 500 for subheadings. Slightly tightened letter-spacing at display sizes (-0.02em).
-- **Body:** Source Serif 4 (screen-optimized serif, warm and readable at 16–18px). Creates editorial contrast with Sora without feeling stuffy. Line-height 1.6–1.7 for prose.
-- **Code/labels:** JetBrains Mono at 14px for inline code and tech stack tags. Use sparingly.
+- `#hero`
+- `#work`
+- `#research`
+- `#about`
+- `#now`
 
-Never use Inter, Roboto, Arial, system-ui, Space Grotesk, or Poppins. These are the defaults of everything that looks AI-generated.
+Use hash links for internal navigation. Do not link to removed routes such as `/work`, `/research`, `/about`, or `/now`.
 
-## Color
+## Implementation Guardrails
 
-Warm neutrals with a single accent. Define via CSS custom properties for easy dark mode.
-
-```
---bg:        #FAFAF8      (warm off-white, not pure white)
---surface:   #F4F3F0      (slightly darker for cards, nav, elevated elements)
---text:      #1A1A1A      (soft black, not #000)
---muted:     #6B6B6B      (secondary text)
---border:    #E5E3DF      (warm gray rule)
---accent:    #2B6B5E      (deep teal — warm, serious, not startup-blue)
---accent-hover: #1F4F45
---bg-dark:   #1C1C1A      (warm dark, not pure black)
-```
-
-## Layout & Spacing
-
-- Max content width: 680px for prose, 960px for pages with side elements.
-- Generous vertical spacing between sections (4–6rem). Let things breathe.
-- No sidebar navigation. Top nav with the six pages: Home, Work, Research, Thinking, Now, About.
-- Work entries and project cards can use subtle border, light background tints (`--bg` slightly shifted), or fine divider lines to create visual separation. Cards should feel structured, not flat.
-- Footer: GitHub, LinkedIn, email. Three links. Nothing else.
-
-## Motion & Micro-Details
-
-Page transitions via Astro `<ClientRouter />` with default fade. Links: accent color underline with a smooth transition (150ms ease). Hover states should feel responsive and polished, not flashy. Subtle scroll-triggered entrance animations (opacity + small translateY, once per element, staggered) are encouraged on content-heavy pages to give the site rhythm. No parallax, no scroll-jacking, no particle backgrounds, no looping animations.
-
-## Astro Patterns
-
-- Pages in `src/pages/`, shared layout in `src/layouts/Base.astro` (head, nav, footer).
-- `/thinking` entries are `.md` in a content collection with schema: `{ title, date, description }`.
-- React islands where interactivity earns it (e.g., D3 knowledge graph on `/research`, future project demos). Use `client:visible` to defer hydration. Pages without islands ship zero JS.
-- Images via Astro `<Image />` for automatic optimization. View Transitions: `transition:name` on page title and main content for cross-page morphing.
-
-## Taste Guardrails
-
-These are not arbitrary restrictions. They are choices that keep the site feeling considered.
-
-- No technology logo grids, skill bars, or tag clouds. The work demonstrates the skills.
-- No hero sections with typing animations or rotating titles. Say it once, clearly.
-- No contact form. Email link is enough.
-- No "View Live Demo" for things that aren't deployed.
-- Prose pages (Work, Research, Thinking, About) use paragraphs, not bullets.
-- No dependency that pushes a non-interactive page past 200KB.
-- No em dashes in written content. Ever.
-
-## Performance
-
-Lighthouse 95+ all categories. FCP under 1s. Non-interactive pages under 200KB total. Non-negotiable — achievable with Astro defaults if you don't add unnecessary weight.
+- Keep dependencies minimal.
+- Avoid generic abstractions for one-off page behavior.
+- Prefer direct CSS and browser APIs.
+- Keep comments sparse.
+- No emojis in code.
+- No contact form, logo grid, skill bars, or decorative tech demo.
+- Verify with `npm run build` before considering cleanup complete.

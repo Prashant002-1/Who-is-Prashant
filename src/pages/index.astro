@@ -30,7 +30,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Prashant Shah — Software & Data Engineer, Researcher, Recent Graduate." />
+  <meta name="description" content="Prashant Shah — Software Engineer, Data Scientist, Researcher, New Grad." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <title>Prashant Shah</title>
@@ -650,6 +650,20 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .now-item:nth-child(n+4) { border-top: 1px solid var(--color-border-soft); }
     .now-item-label { font-family: var(--font-heading); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 10px; }
     .now-item-text { font-family: var(--font-body); font-size: 14.5px; line-height: 1.65; color: var(--color-muted); }
+    .now-contact-icons {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      margin-top: 14px;
+    }
+    .now-contact-icons a {
+      width: 18px; height: 18px; display: grid; place-items: center;
+      color: var(--color-muted); text-decoration: none;
+      transition: color var(--transition), transform 180ms ease;
+    }
+    .now-contact-icons a:hover {
+      color: var(--color-accent-hover);
+      transform: translateY(-1px);
+    }
+    .now-contact-icons svg { width: 13px; height: 13px; display: block; }
 
     /* ── Footer ──────────────────────────────── */
     /* ── Status strip ────────────────────────── */
@@ -1049,18 +1063,18 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <span class="strip-label">Recent Recognition:</span>
     <span class="strip-value strip-ticker accent">
       <span class="strip-ticker-track">
-        <span>Best Student Research Ramapo TAS</span>
-        <span aria-hidden="true">Best Student Research Ramapo TAS</span>
+        <span>Best Student Research at Ramapo TAS 2026</span>
+        <span aria-hidden="true">Best Student Research at Ramapo TAS 2026</span>
       </span>
     </span>
   </div>
   <span class="strip-sep watching-sep">&middot;</span>
   <div class="strip-item watching-item">
-    <span class="strip-label">Just Watched:</span>
+    <span class="strip-label">Current Favorite:</span>
     <span class="strip-value strip-ticker">
       <span class="strip-ticker-track">
-        <span>Invincible</span>
-        <span aria-hidden="true">Invincible</span>
+        <span>Pluto</span>
+        <span aria-hidden="true">Pluto</span>
       </span>
     </span>
   </div>
@@ -1148,7 +1162,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
   <div class="hero-layout">
     <div class="hero-left">
-      <div class="hero-eyebrow">Software &amp; Data Engineer &nbsp;&middot;&nbsp; Researcher &nbsp;&middot;&nbsp; Recent Graduate</div>
+      <div class="hero-eyebrow">Software Engineer &nbsp;&middot;&nbsp; Data Scientist &nbsp;&middot;&nbsp; Researcher &nbsp;&middot;&nbsp; New Grad</div>
       <div class="hero-name-block reveal">
         <div class="hero-name-row">Prashant</div>
         <div class="hero-name-row">Shah</div>
@@ -1185,11 +1199,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
   <div class="hero-bottom">
     <p class="hero-oneliner reveal reveal-delay-1">
-      I build software that closes the gap between what systems know and what people need.
+      I see where systems break and I build software that holds.
     </p>
     <div class="orb-hero-anchor" id="orbHeroAnchor" aria-hidden="true"></div>
     <div class="hero-actions reveal reveal-delay-2">
-      <a href="mailto:shahp0021@gmail.com" class="cta-secondary">Get in touch</a>
+      <a href="https://www.linkedin.com/in/prashant210/" class="cta-secondary" target="_blank" rel="noopener">Get in touch</a>
       <a href="/resume.pdf" class="cta-primary">Resume &darr;</a>
     </div>
   </div>
@@ -1291,27 +1305,28 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="research-layout">
       <div>
         <h2 class="research-heading">Resolving Intent&ndash;Content Conflict in Retrieval</h2>
-        <p class="research-lead">When someone asks for "a happy movie about war," the intent contradicts the content semantics. Most retrieval systems optimize for one signal or the other. This research asks whether you can resolve that conflict explicitly.</p>
-        <p class="research-method"><strong>How:</strong> A heterogeneous knowledge graph over MovieLens 25M. User, Movie, and Emotion nodes — emotions as first-class entities with weighted EVOKES edges. A Graph Transformer encoder aligned to SentenceBERT space, with a tunable affective displacement penalty.</p>
-        <p class="research-method"><strong>What we found:</strong> Edge-removal interventions confirmed emotion edges are causally necessary, not just correlated. The system learns when signals conflict and which to trust.</p>
-        <p class="research-method" style="margin-bottom:0">Published at SAM International &middot; Ramapo College, 2025.</p>
+        <p class="research-lead">When someone asks for "a happy movie about war," intent and content semantics disagree. Most systems optimize one signal. This work asks whether you can separate topical match from affective fit and resolve the conflict explicitly.</p>
+        <p class="research-method"><strong>How:</strong> KRAG on MovieLens 25M: a heterogeneous knowledge graph with User, Movie, and Emotion nodes and weighted EVOKES edges. A Graph Transformer encoder is aligned to Sentence-BERT so graph and text scores fuse coherently; ranking uses semantic + graph relevance minus a tunable affective displacement penalty.</p>
+        <p class="research-method"><strong>What we found:</strong> Dissonance (topic vs. emotion conflict) is the hard case, and where evidence concentrates: larger gains vs. baselines there than under agreement, including a large paired effect on affective displacement when the penalty is on (<em>d</em><sub>z</sub> = &minus;1.51). Edge-removal tests show emotion edges are causally necessary; necessity is ~2.3&times; higher under dissonance than agreement, so the graph matters most when signals clash.</p>
+        <p class="research-method">Best Student Research at Ramapo TAS 2026. Presented at DMC Fair and Scholar&rsquo;s Day too.</p>
+        <p class="research-method" style="margin-bottom:0"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" class="card-link" target="_blank" rel="noopener">KRAG on GitHub &rarr;</a></p>
       </div>
       <div class="research-stat-block">
         <div class="research-stat reveal">
           <div class="stat-value">1,600</div>
-          <div class="stat-label">synthetic queries across aligned and conflicting intent conditions</div>
+          <div class="stat-label">synthetic queries (agreement vs. dissonance)</div>
         </div>
         <div class="research-stat reveal reveal-delay-1">
-          <div class="stat-value">0.037</div>
-          <div class="stat-label">reduction in normalized affective displacement error in conflict scenarios</div>
+          <div class="stat-value">&minus;1.51</div>
+          <div class="stat-label">large <em>d</em><sub>z</sub> paired effect: affective displacement error drops in conflict when the penalty is on</div>
         </div>
         <div class="research-stat reveal reveal-delay-2">
-          <div class="stat-value">MovieLens 25M</div>
-          <div class="stat-label">underlying knowledge graph with emotion nodes as first-class entities</div>
+          <div class="stat-value">Causal</div>
+          <div class="stat-label">perturbing dominant EVOKES edges drops fused scores; baselines that ignore the graph show zero necessity by design</div>
         </div>
         <div class="research-stat reveal reveal-delay-3">
-          <div class="stat-value">Causal</div>
-          <div class="stat-label">edge-removal interventions confirmed emotion edges drive the result, not noise</div>
+          <div class="stat-value">~2.3&times;</div>
+          <div class="stat-label">higher edge-necessity (FNS) in dissonance vs. agreement</div>
         </div>
       </div>
     </div>
@@ -1330,13 +1345,13 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       </div>
       <div class="about-prose">
         <p class="reveal">I grew up speaking three languages and moving between worlds. That shapes how I see problems: I'm always translating, always aware there's more than one way to frame something.</p>
-        <p class="reveal reveal-delay-1">I came to computer science because software is one of the few tools that actually scales. At Ramapo I've studied CS and Data Science, managed 17 resident advisors and a residential community of 200+ students, co-founded the CS club and brought in Bjarne Stroustrup, and competed in ICPC.</p>
+        <p class="reveal reveal-delay-1">I came to computer science because software is one of the few tools that actually scales. At Ramapo I've studied CS and Data Science, managed 17 resident assistants and a residential community of 200+ students, co-founded the CS club, led Math Club, and competed in ICPC.</p>
         <p class="reveal reveal-delay-2">My internships at Trimble and Novartis were about the same thing at different scales — taking something slow, manual, or fragile and replacing it with something that works. My research is the harder version: what happens when the system doesn't even know what you're asking for?</p>
-        <p class="reveal reveal-delay-3">I care about software that is honest about what it does, fast, and designed for the person using it. Looking for full-time SWE / AI roles — visa sponsorship needed (OPT &rarr; H-1B).</p>
+        <p class="reveal reveal-delay-3">I care about software that is honest about what it does, fast, and designed for the person using it. Looking for full-time SWE / AI / Data roles.</p>
         <div class="about-facts reveal reveal-delay-4">
           <div class="about-fact">Canstruction &mdash; 1st place, building structures from canned food</div>
           <div class="about-fact">Student Employee of the Year</div>
-          <div class="about-fact">Invited Bjarne Stroustrup to campus via CS club</div>
+          <div class="about-fact">Presidential Scholar</div>
           <div class="about-fact">ICPC competitor</div>
         </div>
       </div>
@@ -1352,19 +1367,19 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="now-grid">
       <div class="now-item reveal">
         <div class="now-item-label">Building</div>
-        <p class="now-item-text">Finalizing the research paper for submission. Extending Canvas Agent into a generative UI system. Finishing my capstone on collision risk prediction.</p>
+        <p class="now-item-text">Finalizing my KRAG research paper for submission. Extending Canvas Agent into a generative UI system. Wrapping up my capstone on collision risk prediction for autonomous vehicles.</p>
       </div>
       <div class="now-item reveal reveal-delay-1">
         <div class="now-item-label">Researching</div>
-        <p class="now-item-text">Running final ablation experiments on edge-removal interventions for the emotion-aware retrieval system.</p>
+        <p class="now-item-text"><a href="https://github.com/Prashant002-1/Trellis-RAG" style="color:var(--color-accent);text-decoration:none" target="_blank" rel="noopener">Trellis-RAG</a>: generalizing my KRAG work into a domain-agnostic framework for retrieval when user intent and content disagree. Training path is in place; retriever still in progress.</p>
       </div>
       <div class="now-item reveal reveal-delay-2">
         <div class="now-item-label">Learning</div>
-        <p class="now-item-text">Going deeper on distributed systems. Reading <em>Designing Data-Intensive Applications</em>. Slowly working through <em>The Pragmatic Programmer</em>.</p>
+        <p class="now-item-text">Data reconciliation patterns: how failures propagate and how to stop them. Photography. Trying to master vibe coding.</p>
       </div>
       <div class="now-item reveal reveal-delay-3">
         <div class="now-item-label">Looking for</div>
-        <p class="now-item-text">Full-time SWE / AI roles starting Summer 2026. Open to backend, AI/ML, distributed systems. Visa sponsorship needed (OPT &rarr; H-1B).</p>
+        <p class="now-item-text">Full-time SWE / Data roles. Available May 2026.</p>
       </div>
       <div class="now-item reveal reveal-delay-4">
         <div class="now-item-label">Open to</div>
@@ -1373,6 +1388,40 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       <div class="now-item reveal reveal-delay-4" style="background:var(--color-accent-dim)">
         <div class="now-item-label" style="color:var(--color-accent)">Contact</div>
         <p class="now-item-text"><a href="mailto:shahp0021@gmail.com" style="color:var(--color-accent);text-decoration:none">shahp0021@gmail.com</a></p>
+        <div class="now-contact-icons" aria-label="Social and links">
+          <a href="mailto:shahp0021@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M4 7l8 6 8-6"/>
+            </svg>
+          </a>
+          <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-4 1.5-4-2-5.5-2.5"/>
+              <path d="M15 22v-3.5c0-1 .2-1.7-.5-2.5 2.4-.3 5-1.2 5-5.2 0-1.2-.4-2.2-1.1-3 .1-.3.5-1.5-.1-3 0 0-.9-.3-3 1.1A10.5 10.5 0 0 0 12 5c-1 0-2 .1-2.9.4-2.1-1.4-3-1.1-3-1.1-.6 1.5-.2 2.7-.1 3a4.2 4.2 0 0 0-1.1 3c0 4 2.6 4.9 5 5.2-.5.5-.8 1.1-.8 2.2V22"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v2"/>
+              <path d="M2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Prashant020510" target="_blank" rel="noopener" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4l16 16"/>
+              <path d="M20 4L4 20"/>
+            </svg>
+          </a>
+          <a href="https://letterboxd.com/_prashant_/" target="_blank" rel="noopener" aria-label="Letterboxd">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -1629,7 +1678,6 @@ new IntersectionObserver(entries => {
   if (!statsFired && entries.some(e => e.isIntersecting)) {
     statsFired = true;
     if (statEls[0]) countUp(statEls[0], 1600, 1400);
-    if (statEls[1]) countUp(statEls[1], 0.037, 1400);
   }
 }, { threshold: 0.5 }).observe(statEls[0] || document.body);
 
