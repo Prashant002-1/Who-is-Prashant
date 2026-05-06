@@ -102,6 +102,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* Starfield */
     .starfield {
       position: fixed; inset: 0; pointer-events: none; z-index: -3;
+      will-change: transform; transform: translateZ(0);
       background-image:
         radial-gradient(1px 1px at 8% 12%, rgba(255,209,102,0.7), transparent),
         radial-gradient(1px 1px at 15% 28%, rgba(78,205,196,0.6), transparent),
@@ -143,7 +144,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* Floating orbs */
     .aurora-orb {
       position: fixed; border-radius: 50%; pointer-events: none; z-index: -2;
-      filter: blur(80px); opacity: 0.18;
+      filter: blur(64px); opacity: 0.20;
+      will-change: filter; transform: translateZ(0);
     }
     .aurora-orb.orb-1 {
       width: 500px; height: 500px;
@@ -327,15 +329,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       opacity: 1; pointer-events: auto;
       transform: scale(1) translate3d(0, 0, 0);
     }
-    .orb-menu::before {
-      content: ''; position: absolute;
-      top: 15px; right: 15px;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--color-coral);
-      opacity: 0.8;
-      box-shadow: 0 0 14px var(--color-coral-glow);
-    }
     .orb-menu a {
       display: flex; align-items: center; justify-content: space-between;
       min-height: 34px; padding: 0 28px 0 10px;
@@ -373,13 +366,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       transform: translateX(-50%); border-radius: 0;
       background: rgba(240,237,250,0.1);
     }
-    .orb-nav.hero-mode .orb-menu::after {
-      content: ''; position: absolute;
-      left: 50%; bottom: -15px;
-      width: 1px; height: 15px;
-      background: rgba(255,107,107,0.35);
-      pointer-events: none;
-    }
     .orb-nav.hero-mode .orb-menu a {
       position: relative; min-height: 36px; padding: 0 12px;
       border: 1px solid rgba(240,237,250,0.08);
@@ -394,6 +380,26 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     @keyframes orb-float {
       0%, 100% { transform: translateY(-2px); }
       50% { transform: translateY(5px); }
+    }
+    @keyframes orb-heartbeat {
+      0%, 100% { transform: scale(1); }
+      8% { transform: scale(1.14); }
+      16% { transform: scale(1); }
+      24% { transform: scale(1.08); }
+      32% { transform: scale(1); }
+    }
+    @keyframes orb-ripple {
+      0%, 100% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0.3); }
+      8% { box-shadow: 0 0 18px var(--color-coral-glow), 0 0 0 14px rgba(255,107,107,0); }
+      16% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0); }
+      24% { box-shadow: 0 0 14px var(--color-coral-glow), 0 0 0 8px rgba(255,107,107,0); }
+      32% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0); }
+    }
+    .orb-nav.hero-mode .orb-float {
+      animation: orb-heartbeat 2.2s ease-in-out infinite;
+    }
+    .orb-nav.hero-mode .orb-button {
+      animation: orb-ripple 2.2s ease-out infinite;
     }
 
     /* ── Hero ────────────────────────────────── */
@@ -501,7 +507,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hm-cell:hover { opacity: 1 !important; transform: scale(1.3); outline: 1px solid var(--color-coral); outline-offset: 1px; z-index: 1; }
 
     /* ── Sections ────────────────────────────── */
-    section { padding: 100px 48px; max-width: var(--max-content); margin: 0 auto; scroll-margin-top: 82px; }
+    section { padding: 100px 48px; max-width: var(--max-content); margin: 0 auto; scroll-margin-top: 82px; content-visibility: auto; contain-intrinsic-size: auto 600px; }
     .section-label {
       font-family: var(--font-heading); font-size: 11px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint);
@@ -968,7 +974,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     @media (max-width: 768px) {
       body { padding-bottom: 84px; }
       .surreal-shapes { display: none; }
-      .orb-float { animation: none; }
+      .orb-float, .orb-nav.hero-mode .orb-float { animation: none; }
       .orb-trigger { inset: -18px; }
       .orb-menu { width: 172px; top: -6px; right: -6px; }
       #hero { min-height: 92dvh; padding: 0 22px 104px; }
