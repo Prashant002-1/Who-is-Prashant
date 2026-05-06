@@ -354,27 +354,44 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(18,15,36,0.92), rgba(10,8,22,0.8));
       display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-      transform-origin: 50% calc(100% + 18px);
-      transform: scale(0.18) translateY(14px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 200ms ease;
     }
     .orb-nav.hero-mode.open .orb-menu {
-      transform: scale(1) translateY(0);
+      opacity: 1; pointer-events: auto;
     }
-    .orb-nav.hero-mode .orb-menu::before {
-      top: 50%; right: auto; left: 50%;
-      width: 1px; height: calc(100% - 28px);
-      transform: translateX(-50%); border-radius: 0;
-      background: rgba(240,237,250,0.1);
+    .orb-nav.hero-mode.collapsing .orb-menu {
+      opacity: 0; pointer-events: none;
     }
     .orb-nav.hero-mode .orb-menu a {
       position: relative; min-height: 36px; padding: 0 12px;
       border: 1px solid rgba(240,237,250,0.08);
       background: rgba(10,8,22,0.5); justify-content: space-between;
+      transform: scale(0); opacity: 0;
+      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 200ms ease;
     }
+    .orb-nav.hero-mode .orb-menu a:nth-child(1) { transition-delay: 160ms; }
+    .orb-nav.hero-mode .orb-menu a:nth-child(2) { transition-delay: 100ms; }
+    .orb-nav.hero-mode .orb-menu a:nth-child(3) { transition-delay: 50ms; }
+    .orb-nav.hero-mode .orb-menu a:nth-child(4) { transition-delay: 0ms; }
+    .orb-nav.hero-mode.open .orb-menu a {
+      transform: scale(1); opacity: 1;
+    }
+    .orb-nav.hero-mode.open .orb-menu a:nth-child(1) { transition-delay: 0ms; }
+    .orb-nav.hero-mode.open .orb-menu a:nth-child(2) { transition-delay: 60ms; }
+    .orb-nav.hero-mode.open .orb-menu a:nth-child(3) { transition-delay: 120ms; }
+    .orb-nav.hero-mode.open .orb-menu a:nth-child(4) { transition-delay: 180ms; }
+    .orb-nav.hero-mode.collapsing .orb-menu a {
+      transform: scale(0); opacity: 0;
+    }
+    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(1) { transition-delay: 160ms; }
+    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(2) { transition-delay: 100ms; }
+    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(3) { transition-delay: 50ms; }
+    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(4) { transition-delay: 0ms; }
     .orb-nav.hero-mode .orb-menu a::after { display: block; }
     .orb-nav.hero-mode .orb-menu a:hover,
     .orb-nav.hero-mode .orb-menu a.active {
-      transform: translateY(-1px);
+      transform: scale(1) translateY(-1px);
       border-color: rgba(255,107,107,0.25);
     }
     @keyframes orb-float {
