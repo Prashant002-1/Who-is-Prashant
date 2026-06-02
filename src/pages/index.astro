@@ -77,6 +77,20 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
 
     html { scroll-behavior: smooth; }
+    html.lenis {
+      height: auto;
+      scroll-behavior: auto;
+    }
+    html.lenis body { height: auto; }
+    .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+    .lenis [data-lenis-prevent],
+    .lenis [data-lenis-prevent-wheel],
+    .lenis [data-lenis-prevent-touch],
+    .lenis [data-lenis-prevent-vertical],
+    .lenis [data-lenis-prevent-horizontal] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
     body {
       font-family: var(--font-body);
       background: var(--color-bg);
@@ -1090,6 +1104,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
 
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
       .bg-blob, .aurora-orb, .starfield, .surreal-shapes, .orb-float, .strip-dot, .grain {
         animation: none !important;
       }
@@ -1464,7 +1479,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   </div>
 </section>
 
-<script is:inline>
+<script>
+import Lenis from 'lenis';
+
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
@@ -1507,6 +1524,46 @@ document.fonts?.ready?.then(positionOrb);
 setTimeout(positionOrb, 250);
 window.addEventListener('scroll', positionOrb, { passive: true });
 window.addEventListener('resize', positionOrb);
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let lenis = null;
+let lenisFrame = 0;
+
+function startWeightedScroll() {
+  if (lenis || reducedMotion.matches) return;
+  lenis = new Lenis({
+    lerp: 0.065,
+    wheelMultiplier: 0.9,
+    anchors: true,
+    syncTouch: false,
+    smoothWheel: true,
+    stopInertiaOnNavigate: true,
+  });
+  lenis.on('scroll', positionOrb);
+
+  function raf(time) {
+    if (!lenis) return;
+    lenis.raf(time);
+    lenisFrame = requestAnimationFrame(raf);
+  }
+
+  lenisFrame = requestAnimationFrame(raf);
+}
+
+function stopWeightedScroll() {
+  if (!lenis) return;
+  window.cancelAnimationFrame(lenisFrame);
+  lenis.destroy();
+  lenis = null;
+  lenisFrame = 0;
+  positionOrb();
+}
+
+startWeightedScroll();
+reducedMotion.addEventListener('change', e => {
+  if (e.matches) stopWeightedScroll();
+  else startWeightedScroll();
+});
 
 const cursorDot = document.getElementById('cursorDot');
 const cursorRing = document.getElementById('cursorRing');
