@@ -15,9 +15,9 @@ if (!githubResponse.ok) {
 
 const githubData = await githubResponse.json();
 const githubContributions: Contribution[] = (githubData.contributions || [])
-  .filter((day: Contribution) => day.date?.startsWith(githubYear) && day.date <= todayIso);
+  .filter((day: Contribution) => day.date?.startsWith(githubYear));
 
-const githubTotal = githubContributions.reduce((sum, day) => sum + (day.count || 0), 0);
+const githubTotal = githubContributions.reduce((sum, day) => day.date <= todayIso ? sum + (day.count || 0) : sum, 0);
 const githubWeeks: Contribution[][] = [];
 
 for (let i = 0; i < githubContributions.length; i += 7) {
@@ -132,46 +132,31 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       mask-image: radial-gradient(120% 90% at 50% 38%, rgba(0,0,0,0.9), transparent 78%);
     }
 
-    /* Starfield */
-    .starfield {
-      position: fixed; inset: 0; pointer-events: none; z-index: -3;
-      will-change: transform; transform: translateZ(0);
-      background-image:
-        radial-gradient(1px 1px at 8% 12%, rgba(255,209,102,0.7), transparent),
-        radial-gradient(1px 1px at 15% 28%, rgba(78,205,196,0.6), transparent),
-        radial-gradient(1px 1px at 22% 8%, rgba(255,107,107,0.5), transparent),
-        radial-gradient(1px 1px at 31% 42%, rgba(167,139,250,0.65), transparent),
-        radial-gradient(1px 1px at 38% 18%, rgba(255,209,102,0.45), transparent),
-        radial-gradient(1px 1px at 45% 55%, rgba(78,205,196,0.55), transparent),
-        radial-gradient(1px 1px at 52% 28%, rgba(255,107,107,0.5), transparent),
-        radial-gradient(1px 1px at 60% 12%, rgba(167,139,250,0.6), transparent),
-        radial-gradient(1px 1px at 68% 38%, rgba(255,209,102,0.5), transparent),
-        radial-gradient(1px 1px at 75% 22%, rgba(78,205,196,0.55), transparent),
-        radial-gradient(1px 1px at 82% 48%, rgba(255,107,107,0.6), transparent),
-        radial-gradient(1px 1px at 88% 15%, rgba(167,139,250,0.5), transparent),
-        radial-gradient(1px 1px at 93% 35%, rgba(255,209,102,0.45), transparent),
-        radial-gradient(1px 1px at 5% 62%, rgba(78,205,196,0.5), transparent),
-        radial-gradient(1px 1px at 18% 72%, rgba(255,107,107,0.55), transparent),
-        radial-gradient(1px 1px at 27% 85%, rgba(167,139,250,0.5), transparent),
-        radial-gradient(1px 1px at 42% 68%, rgba(255,209,102,0.6), transparent),
-        radial-gradient(1px 1px at 55% 78%, rgba(78,205,196,0.5), transparent),
-        radial-gradient(1px 1px at 65% 60%, rgba(255,107,107,0.45), transparent),
-        radial-gradient(1px 1px at 72% 85%, rgba(167,139,250,0.55), transparent),
-        radial-gradient(1px 1px at 85% 70%, rgba(255,209,102,0.5), transparent),
-        radial-gradient(1px 1px at 92% 80%, rgba(78,205,196,0.6), transparent),
-        radial-gradient(1px 1px at 11% 48%, rgba(255,107,107,0.4), transparent),
-        radial-gradient(1px 1px at 35% 32%, rgba(167,139,250,0.55), transparent),
-        radial-gradient(1px 1px at 78% 55%, rgba(255,209,102,0.5), transparent),
-        radial-gradient(1px 1px at 48% 45%, rgba(78,205,196,0.45), transparent),
-        radial-gradient(1px 1px at 58% 88%, rgba(255,107,107,0.5), transparent),
-        radial-gradient(1px 1px at 25% 95%, rgba(167,139,250,0.5), transparent),
-        radial-gradient(1px 1px at 95% 55%, rgba(255,209,102,0.45), transparent),
-        radial-gradient(1px 1px at 42% 5%, rgba(78,205,196,0.5), transparent);
-      animation: star-drift 120s linear infinite;
+    /* Constellation sky */
+    .sky {
+      position: fixed; top: -3%; left: 0; width: 100%; height: 106%;
+      pointer-events: none; z-index: -3;
+      animation: sky-drift 200s ease-in-out infinite alternate;
     }
-    @keyframes star-drift {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-40px); }
+    @keyframes sky-drift {
+      from { transform: translate3d(0, 5px, 0); }
+      to   { transform: translate3d(0, -12px, 0); }
+    }
+    .sky path { stroke: rgba(240,237,250,0.06); stroke-width: 1; fill: none; }
+    .sky circle { fill: rgba(240,237,250,0.5); }
+    .sky .st-dim { fill: rgba(240,237,250,0.26); }
+    .sky .st-gold { fill: rgba(255,209,102,0.62); }
+    .sky .st-cyan { fill: rgba(78,205,196,0.55); }
+    .sky .st-coral { fill: rgba(255,107,107,0.55); }
+    .sky .st-purple { fill: rgba(167,139,250,0.55); }
+    .sky .tw { animation: twinkle 5s ease-in-out infinite; }
+    .sky .tw2 { animation-duration: 6.8s; animation-delay: 1.2s; }
+    .sky .tw3 { animation-duration: 4.1s; animation-delay: 2.3s; }
+    .sky .tw4 { animation-duration: 7.7s; animation-delay: 0.6s; }
+    .sky .tw5 { animation-duration: 5.9s; animation-delay: 3.4s; }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.22; }
     }
 
     /* Grain overlay */
@@ -193,50 +178,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     ::selection { background: rgba(255,107,107,0.32); color: var(--color-text); }
     :focus-visible { outline: 1px solid var(--color-coral); outline-offset: 3px; }
-
-    /* ── Surreal decorative shapes ──────────── */
-    .surreal-shapes { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-    .surreal-shape {
-      position: absolute; opacity: 0.06;
-    }
-    .shape-diamond {
-      width: 60px; height: 60px;
-      background: var(--color-coral);
-      transform: rotate(45deg);
-      top: 25%; left: 8%;
-      animation: shape-float 14s ease-in-out infinite;
-    }
-    .shape-circle {
-      width: 80px; height: 80px;
-      border: 2px solid var(--color-cyan);
-      border-radius: 50%;
-      top: 60%; right: 10%;
-      animation: shape-float 18s ease-in-out infinite reverse;
-    }
-    .shape-ring {
-      width: 50px; height: 50px;
-      border: 3px solid var(--color-gold);
-      border-radius: 50%;
-      top: 15%; right: 20%;
-      animation: shape-pulse 6s ease-in-out infinite;
-    }
-    .shape-triangle {
-      width: 0; height: 0;
-      border-left: 30px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 52px solid var(--color-purple);
-      bottom: 20%; left: 15%;
-      animation: shape-float 16s ease-in-out infinite;
-    }
-    @keyframes shape-float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      33% { transform: translateY(-30px) rotate(5deg); }
-      66% { transform: translateY(20px) rotate(-3deg); }
-    }
-    @keyframes shape-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.06; }
-      50% { transform: scale(1.8); opacity: 0.12; }
-    }
 
     /* ── Orb navigation ─────────────────────── */
     .orb-nav {
@@ -294,8 +235,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .orb-label {
       position: absolute; top: 50%; right: 46px;
       transform: translateY(-50%);
-      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
+      font-family: var(--font-heading); font-size: 9.5px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--color-muted);
       padding: 5px 10px 5px 12px;
       border: 1px solid var(--color-border-soft); border-radius: 999px;
@@ -521,7 +462,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     /* ── GitHub heatmap ──────────────────────── */
     .hero-github {
-      margin-top: 28px; width: min(560px, 100%);
+      margin-top: 28px; width: fit-content; max-width: 100%;
       padding: 14px 16px 16px; border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.06);
       background: rgba(13,10,26,0.55);
@@ -539,11 +480,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     .github-heatmap {
       display: flex; gap: 3px; flex-wrap: nowrap; overflow: hidden;
-      max-width: 100%; min-height: 81px; justify-content: flex-end;
+      max-width: 100%; min-height: 74px;
     }
     .hm-col { display: flex; flex-direction: column; gap: 3px; }
     .hm-cell {
-      width: 9px; height: 9px; border-radius: 2px;
+      width: 8px; height: 8px; border-radius: 2px;
       background: rgba(240,237,250,0.05);
       transition: transform 150ms, background 150ms, opacity 150ms;
     }
@@ -552,6 +493,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hm-cell[data-level="3"] { background: var(--color-coral); opacity: 0.85; }
     .hm-cell[data-level="4"] { background: var(--color-gold); opacity: 1; }
     .hm-cell:hover { opacity: 1 !important; transform: scale(1.3); outline: 1px solid var(--color-coral); outline-offset: 1px; z-index: 1; }
+    .hm-cell[data-future] { background: rgba(240,237,250,0.022); }
+    .hm-cell[data-future]:hover { opacity: 1 !important; transform: none; outline: none; }
 
     /* ── Sections ────────────────────────────── */
     section { padding: 100px 48px; max-width: var(--max-content); margin: 0 auto; scroll-margin-top: 82px; contain: layout style; }
@@ -577,17 +520,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 70px rgba(0,0,0,0.2);
       transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
     }
-    .work-featured::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--color-coral), var(--color-gold), var(--color-cyan));
-      opacity: 0; transition: opacity 200ms ease;
-    }
     .work-featured:hover {
-      border-color: rgba(255,107,107,0.35);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 90px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,107,107,0.08);
+      border-color: rgba(255,107,107,0.3);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 90px rgba(0,0,0,0.28);
       transform: translateY(-2px);
     }
-    .work-featured:hover::before { opacity: 1; }
     .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .work-card {
       background: linear-gradient(180deg, rgba(21,17,49,0.78), rgba(16,13,38,0.74));
@@ -596,23 +533,44 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
       transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
     }
-    .work-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--color-cyan), var(--color-purple));
-      opacity: 0; transition: opacity 200ms ease;
-    }
     .work-card:hover {
-      border-color: rgba(78,205,196,0.35);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24), 0 0 0 1px rgba(78,205,196,0.06);
+      border-color: rgba(78,205,196,0.3);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24);
       transform: translateY(-2px);
     }
-    .work-card:hover::before { opacity: 1; }
-    .work-card:nth-child(2)::before { background: linear-gradient(90deg, var(--color-purple), var(--color-coral)); }
-    .work-card:nth-child(2):hover { border-color: rgba(167,139,250,0.35); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24), 0 0 0 1px rgba(167,139,250,0.06); }
-    .work-card:nth-child(3)::before { background: linear-gradient(90deg, var(--color-gold), var(--color-coral)); }
-    .work-card:nth-child(3):hover { border-color: rgba(255,209,102,0.35); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,209,102,0.06); }
-    .work-card:nth-child(4)::before { background: linear-gradient(90deg, var(--color-coral), var(--color-rose)); }
-    .work-card:nth-child(4):hover { border-color: rgba(255,107,107,0.35); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,107,107,0.06); }
+    .work-card:nth-child(2):hover { border-color: rgba(167,139,250,0.3); }
+    .work-card:nth-child(3):hover { border-color: rgba(255,209,102,0.3); }
+    .work-card:nth-child(4):hover { border-color: rgba(255,107,107,0.3); }
+
+    @supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+      .work-featured::before,
+      .work-card::before {
+        content: ''; position: absolute; inset: 0; border-radius: 16px; padding: 1px;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        opacity: 0; transition: opacity 240ms ease;
+        pointer-events: none;
+      }
+      .work-featured::before {
+        background: linear-gradient(135deg, rgba(255,107,107,0.8), rgba(255,209,102,0.14) 40%, rgba(255,209,102,0.14) 60%, rgba(78,205,196,0.8));
+      }
+      .work-card::before {
+        background: linear-gradient(135deg, rgba(78,205,196,0.75), rgba(78,205,196,0.1) 42%, rgba(167,139,250,0.1) 58%, rgba(167,139,250,0.75));
+      }
+      .work-card:nth-child(2)::before {
+        background: linear-gradient(135deg, rgba(167,139,250,0.75), rgba(167,139,250,0.1) 42%, rgba(255,107,107,0.1) 58%, rgba(255,107,107,0.75));
+      }
+      .work-card:nth-child(3)::before {
+        background: linear-gradient(135deg, rgba(255,209,102,0.75), rgba(255,209,102,0.1) 42%, rgba(255,107,107,0.1) 58%, rgba(255,107,107,0.75));
+      }
+      .work-card:nth-child(4)::before {
+        background: linear-gradient(135deg, rgba(255,107,107,0.75), rgba(255,107,107,0.1) 42%, rgba(251,113,133,0.1) 58%, rgba(251,113,133,0.75));
+      }
+      .work-featured:hover, .work-card:hover { border-color: var(--color-border-soft); }
+      .work-featured:hover::before, .work-card:hover::before { opacity: 1; }
+    }
 
     .card-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--color-faint); letter-spacing: 0.04em; margin-bottom: 10px; }
     .card-title { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--color-text); letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
@@ -683,9 +641,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
     .exp-row {
-      display: grid; grid-template-columns: 158px 1.1fr 1.7fr auto;
-      gap: 26px; align-items: baseline;
-      padding: 24px 32px; border-bottom: 1px solid var(--color-border-soft);
+      display: grid; grid-template-columns: 170px minmax(0, 1fr) auto;
+      column-gap: 28px; align-items: baseline;
+      padding: 26px 32px; border-bottom: 1px solid var(--color-border-soft);
       transition: background 180ms ease;
       position: relative;
     }
@@ -701,16 +659,31 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .exp-row:last-child { border-bottom: none; }
     .exp-row:hover { background: rgba(13,10,26,0.5); }
     .exp-row:hover::before { opacity: 1; }
-    .exp-when { font-family: var(--font-mono); font-size: 11px; color: var(--color-faint); letter-spacing: 0.04em; white-space: nowrap; }
-    .exp-org { font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; }
-    .exp-role { font-family: var(--font-body); font-size: 14.5px; line-height: 1.55; color: var(--color-muted); }
+    .exp-when {
+      font-family: var(--font-mono); font-size: 11px; color: var(--color-faint);
+      letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .exp-main { min-width: 0; }
+    .exp-title {
+      font-family: var(--font-heading); font-size: 16px; font-weight: 600;
+      color: var(--color-text); letter-spacing: -0.015em; line-height: 1.3;
+    }
+    .exp-at {
+      font-family: var(--font-body); font-style: italic; font-size: 14.5px;
+      color: var(--color-muted);
+    }
+    .exp-detail {
+      font-family: var(--font-body); font-size: 13.5px; line-height: 1.65;
+      color: var(--color-faint); margin-top: 5px;
+    }
+    .exp-row:hover .exp-detail { color: var(--color-muted); }
     .exp-note { font-family: var(--font-mono); font-size: 10px; color: var(--color-faint); text-align: right; white-space: nowrap; }
     .exp-stack {
       margin-top: 28px; display: flex; flex-direction: column; gap: 9px;
       padding: 24px 32px; border: 1px solid var(--color-border-soft); border-radius: 16px;
       background: rgba(13,10,26,0.4);
     }
-    .stack-row { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: baseline; }
+    .stack-row { display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: baseline; }
     .stack-label {
       font-family: var(--font-heading); font-size: 10px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint);
@@ -800,22 +773,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     .now-contact-icons a:hover { color: var(--color-coral-hover); transform: translateY(-2px); }
     .now-contact-icons svg { width: 13px; height: 13px; display: block; }
-
-    /* ── Footer ──────────────────────────────── */
-    #site-footer {
-      max-width: var(--max-content); margin: 0 auto;
-      padding: 30px 48px 44px;
-      display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
-      border-top: 1px solid var(--color-border);
-    }
-    .footer-mark { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: var(--color-text); letter-spacing: -0.02em; }
-    .footer-meta { font-family: var(--font-mono); font-size: 10px; color: var(--color-faint); letter-spacing: 0.05em; }
-    .footer-top {
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
-      color: var(--color-muted); text-decoration: none;
-      transition: color 150ms ease;
-    }
-    .footer-top:hover { color: var(--color-coral); }
 
     /* ── Status strip ────────────────────────── */
     #now-strip {
@@ -1083,12 +1040,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (max-width: 768px) {
       body { padding-bottom: 84px; }
-      .surreal-shapes { display: none; }
-      .exp-row { grid-template-columns: 1fr; gap: 6px; padding: 22px 24px; }
+      .exp-row { grid-template-columns: 1fr; row-gap: 7px; padding: 22px 24px; }
       .exp-note { text-align: left; }
       .stack-row { grid-template-columns: 1fr; gap: 4px; }
       .exp-stack { padding: 20px 24px; }
-      #site-footer { padding: 24px 22px 36px; flex-wrap: wrap; }
       .orb-float, .orb-nav.hero-mode .orb-float { animation: none; }
       .orb-trigger { inset: -18px; }
       .orb-menu { width: 172px; top: -6px; right: -6px; }
@@ -1137,7 +1092,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .bg-aurora, .starfield, .surreal-shapes, .orb-float, .strip-dot {
+      .bg-aurora, .sky, .sky circle, .orb-float, .strip-dot {
         animation: none !important;
       }
     }
@@ -1147,13 +1102,60 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
 <div class="bg-aurora" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
-<div class="starfield" aria-hidden="true"></div>
-<div class="surreal-shapes" aria-hidden="true">
-  <div class="surreal-shape shape-diamond"></div>
-  <div class="surreal-shape shape-circle"></div>
-  <div class="surreal-shape shape-ring"></div>
-  <div class="surreal-shape shape-triangle"></div>
-</div>
+<svg class="sky" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <path d="M1128 96 L1204 148 L1298 122 L1352 208 M1298 122 L1310 236"/>
+  <path d="M96 388 L176 428 L152 516 L242 560"/>
+  <path d="M872 742 L948 700 L1042 726 L1096 788"/>
+  <circle cx="1128" cy="96" r="1.5" class="tw"/>
+  <circle cx="1204" cy="148" r="1.3" class="st-gold tw tw2"/>
+  <circle cx="1298" cy="122" r="1.6" class="tw tw3"/>
+  <circle cx="1352" cy="208" r="1.4"/>
+  <circle cx="1310" cy="236" r="1.2" class="st-cyan tw tw5"/>
+  <circle cx="96" cy="388" r="1.4" class="tw tw4"/>
+  <circle cx="176" cy="428" r="1.5" class="st-purple tw"/>
+  <circle cx="152" cy="516" r="1.2"/>
+  <circle cx="242" cy="560" r="1.5" class="st-coral tw tw2"/>
+  <circle cx="872" cy="742" r="1.4" class="tw tw5"/>
+  <circle cx="948" cy="700" r="1.5" class="st-gold tw tw4"/>
+  <circle cx="1042" cy="726" r="1.2"/>
+  <circle cx="1096" cy="788" r="1.4" class="st-cyan tw"/>
+  <circle cx="72" cy="84" r="1.2" class="st-dim"/>
+  <circle cx="233" cy="166" r="1"/>
+  <circle cx="388" cy="64" r="1.3" class="st-gold tw tw2"/>
+  <circle cx="521" cy="142" r="0.9" class="st-dim"/>
+  <circle cx="668" cy="88" r="1.1"/>
+  <circle cx="804" cy="178" r="1" class="st-purple"/>
+  <circle cx="943" cy="66" r="1.2" class="st-dim"/>
+  <circle cx="1062" cy="182" r="0.9"/>
+  <circle cx="1394" cy="86" r="1.1" class="st-cyan tw tw3"/>
+  <circle cx="58" cy="262" r="1"/>
+  <circle cx="177" cy="332" r="1.2" class="st-cyan"/>
+  <circle cx="334" cy="282" r="0.9" class="st-dim"/>
+  <circle cx="626" cy="244" r="1.3" class="tw tw4"/>
+  <circle cx="766" cy="318" r="0.9" class="st-dim"/>
+  <circle cx="1013" cy="296" r="1.1" class="st-gold"/>
+  <circle cx="1226" cy="318" r="1" class="st-dim"/>
+  <circle cx="1408" cy="354" r="1.2"/>
+  <circle cx="268" cy="458" r="1" class="st-dim"/>
+  <circle cx="438" cy="414" r="1.2" class="st-coral tw tw5"/>
+  <circle cx="588" cy="486" r="0.9" class="st-dim"/>
+  <circle cx="872" cy="438" r="1"/>
+  <circle cx="1120" cy="462" r="1.3" class="st-purple tw tw2"/>
+  <circle cx="1322" cy="514" r="0.9" class="st-dim"/>
+  <circle cx="94" cy="648" r="1.1"/>
+  <circle cx="296" cy="688" r="1.3" class="st-gold tw tw3"/>
+  <circle cx="494" cy="634" r="0.9" class="st-dim"/>
+  <circle cx="642" cy="712" r="1.1" class="st-cyan"/>
+  <circle cx="752" cy="626" r="0.9" class="st-dim"/>
+  <circle cx="1214" cy="642" r="1.1"/>
+  <circle cx="1372" cy="708" r="1.2" class="st-coral"/>
+  <circle cx="180" cy="822" r="0.9" class="st-dim"/>
+  <circle cx="418" cy="796" r="1.1"/>
+  <circle cx="568" cy="846" r="1" class="st-dim"/>
+  <circle cx="704" cy="806" r="1.2" class="st-purple tw tw4"/>
+  <circle cx="1152" cy="852" r="1" class="st-dim"/>
+  <circle cx="1288" cy="796" r="0.9"/>
+</svg>
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -1261,8 +1263,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
               {week.map((day) => (
                 <div
                   class="hm-cell"
-                  data-level={day.level > 0 ? Math.min(day.level, 4) : undefined}
-                  title={`${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
+                  data-level={day.date <= todayIso && day.level > 0 ? Math.min(day.level, 4) : undefined}
+                  data-future={day.date > todayIso ? "" : undefined}
+                  title={day.date > todayIso ? day.date : `${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
                 />
               ))}
             </div>
@@ -1417,32 +1420,47 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="exp-rows reveal">
       <div class="exp-row">
         <span class="exp-when">Sep 2025 &mdash; Now</span>
-        <span class="exp-org">Center for Food Action</span>
-        <span class="exp-role">Data Engineer (Contract). Intake, reconciliation, and reporting for six pantries serving 40,000 people a year.</span>
+        <div class="exp-main">
+          <span class="exp-title">Data Engineer</span>
+          <span class="exp-at">&middot; Center for Food Action &middot; Contract</span>
+          <p class="exp-detail">Intake, reconciliation, and reporting for six pantries serving 40,000 people a year.</p>
+        </div>
         <span class="exp-note">Featured on News 12 NJ</span>
       </div>
       <div class="exp-row">
         <span class="exp-when">May 2025 &mdash; May 2026</span>
-        <span class="exp-org">Ramapo College</span>
-        <span class="exp-role">Research Assistant, Retrieval Systems. KRAG: affect-aware retrieval when intent and content disagree.</span>
+        <div class="exp-main">
+          <span class="exp-title">Research Assistant</span>
+          <span class="exp-at">&middot; Ramapo College</span>
+          <p class="exp-detail">KRAG: affect-aware retrieval when intent and content disagree.</p>
+        </div>
         <span class="exp-note">Best Student Research</span>
       </div>
       <div class="exp-row">
         <span class="exp-when">May &mdash; Aug 2025</span>
-        <span class="exp-org">Trimble</span>
-        <span class="exp-role">Software Engineering Intern. Configuration management platform shipped to production.</span>
+        <div class="exp-main">
+          <span class="exp-title">Software Engineering Intern</span>
+          <span class="exp-at">&middot; Trimble</span>
+          <p class="exp-detail">Configuration management platform shipped to production.</p>
+        </div>
         <span class="exp-note">C# &middot; .NET &middot; Azure</span>
       </div>
       <div class="exp-row">
         <span class="exp-when">Jun &mdash; Aug 2024</span>
-        <span class="exp-org">Novartis</span>
-        <span class="exp-role">Software Engineering Intern, Business Analytics. Turned a recurring 2-day reporting workload into refreshable views across 100+ initiatives.</span>
+        <div class="exp-main">
+          <span class="exp-title">Software Engineering Intern</span>
+          <span class="exp-at">&middot; Novartis</span>
+          <p class="exp-detail">A recurring 2-day reporting workload became refreshable views across 100+ initiatives.</p>
+        </div>
         <span class="exp-note">PostgreSQL &middot; Power BI</span>
       </div>
       <div class="exp-row">
         <span class="exp-when">Class of 2026</span>
-        <span class="exp-org">Ramapo College of NJ</span>
-        <span class="exp-role">B.S. Computer Science &amp; Data Science, Mathematics minor.</span>
+        <div class="exp-main">
+          <span class="exp-title">B.S. Computer Science &amp; Data Science</span>
+          <span class="exp-at">&middot; Ramapo College of NJ</span>
+          <p class="exp-detail">Mathematics minor.</p>
+        </div>
         <span class="exp-note">GPA 3.8</span>
       </div>
     </div>
@@ -1581,12 +1599,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     </div>
   </div>
 </section>
-
-<footer id="site-footer">
-  <span class="footer-mark">Prashant Shah</span>
-  <span class="footer-meta">Built with Astro &middot; Set in Sora, Source Serif &amp; JetBrains Mono &middot; 2026</span>
-  <a class="footer-top" href="#hero">Back to top &uarr;</a>
-</footer>
 
 <script>
 import Lenis from 'lenis';
