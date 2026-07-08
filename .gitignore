@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# photo variants generated from public/photo.jpg by astro.config.mjs
+public/photo-430.avif
+public/photo-860.avif
+public/photo-430.webp
+public/photo-860.webp
+public/photo-860.jpg
