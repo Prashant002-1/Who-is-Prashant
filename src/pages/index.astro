@@ -108,21 +108,44 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       position: relative;
     }
 
-    /* ── Background: aurora wash + dot grid ────── */
+    /* ── Background: aurora washes + dot grid ──── */
     .bg-aurora {
-      position: fixed; inset: -12%; pointer-events: none; z-index: -5;
+      position: fixed; inset: -20%; pointer-events: none; z-index: -5;
       background:
-        radial-gradient(46% 40% at 12% 6%, rgba(255,107,107,0.14), transparent 64%),
-        radial-gradient(44% 42% at 88% 16%, rgba(167,139,250,0.14), transparent 62%),
-        radial-gradient(52% 46% at 82% 86%, rgba(78,205,196,0.11), transparent 64%),
-        radial-gradient(38% 34% at 24% 90%, rgba(255,209,102,0.08), transparent 60%),
-        radial-gradient(64% 58% at 50% 44%, rgba(21,17,49,0.55), transparent 72%);
-      animation: aurora-drift 46s ease-in-out infinite alternate;
-      will-change: transform;
+        radial-gradient(44% 38% at 14% 8%, rgba(255,107,107,0.28), transparent 62%),
+        radial-gradient(36% 32% at 24% 88%, rgba(255,209,102,0.18), transparent 60%),
+        radial-gradient(62% 56% at 50% 44%, rgba(21,17,49,0.5), transparent 72%);
+      animation:
+        aurora-warm 26s ease-in-out infinite alternate,
+        aurora-breathe-a 10s ease-in-out infinite alternate;
+      will-change: transform, opacity; transform: translateZ(0);
     }
-    @keyframes aurora-drift {
-      from { transform: translate3d(-1.6%, -1%, 0) scale(1); }
-      to   { transform: translate3d(1.6%, 2%, 0) scale(1.07); }
+    @keyframes aurora-warm {
+      from { transform: translate3d(-5%, -3.5%, 0) rotate(-2deg) scale(1); }
+      to   { transform: translate3d(5.5%, 4%, 0) rotate(1.8deg) scale(1.12); }
+    }
+    @keyframes aurora-breathe-a {
+      from { opacity: 0.6; }
+      to   { opacity: 1; }
+    }
+    .bg-aurora-2 {
+      position: fixed; inset: -20%; pointer-events: none; z-index: -5;
+      background:
+        radial-gradient(42% 40% at 86% 14%, rgba(167,139,250,0.28), transparent 62%),
+        radial-gradient(48% 44% at 84% 84%, rgba(78,205,196,0.22), transparent 64%),
+        radial-gradient(30% 26% at 8% 52%, rgba(251,113,133,0.14), transparent 58%);
+      animation:
+        aurora-cool 33s ease-in-out infinite alternate,
+        aurora-breathe-b 13s ease-in-out infinite alternate;
+      will-change: transform, opacity; transform: translateZ(0);
+    }
+    @keyframes aurora-cool {
+      from { transform: translate3d(5%, 3.5%, 0) rotate(2deg) scale(1.1); }
+      to   { transform: translate3d(-4.5%, -4%, 0) rotate(-1.8deg) scale(1); }
+    }
+    @keyframes aurora-breathe-b {
+      from { opacity: 1; }
+      to   { opacity: 0.55; }
     }
     .bg-grid {
       position: fixed; inset: 0; pointer-events: none; z-index: -4;
@@ -134,13 +157,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     /* Constellation sky */
     .sky {
-      position: fixed; top: -3%; left: 0; width: 100%; height: 106%;
+      position: fixed; top: -4%; left: 0; width: 100%; height: 108%;
       pointer-events: none; z-index: -3;
-      animation: sky-drift 200s ease-in-out infinite alternate;
+      transform-origin: 50% 40%;
+      animation: sky-wheel 70s ease-in-out infinite alternate;
+      will-change: transform;
     }
-    @keyframes sky-drift {
-      from { transform: translate3d(0, 5px, 0); }
-      to   { transform: translate3d(0, -12px, 0); }
+    @keyframes sky-wheel {
+      from { transform: rotate(-1.2deg) translate3d(0, 8px, 0); }
+      to   { transform: rotate(1.3deg) translate3d(0, -14px, 0); }
     }
     .sky path { stroke: rgba(240,237,250,0.06); stroke-width: 1; fill: none; }
     .sky circle { fill: rgba(240,237,250,0.5); }
@@ -149,14 +174,39 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .sky .st-cyan { fill: rgba(78,205,196,0.55); }
     .sky .st-coral { fill: rgba(255,107,107,0.55); }
     .sky .st-purple { fill: rgba(167,139,250,0.55); }
-    .sky .tw { animation: twinkle 5s ease-in-out infinite; }
-    .sky .tw2 { animation-duration: 6.8s; animation-delay: 1.2s; }
-    .sky .tw3 { animation-duration: 4.1s; animation-delay: 2.3s; }
-    .sky .tw4 { animation-duration: 7.7s; animation-delay: 0.6s; }
-    .sky .tw5 { animation-duration: 5.9s; animation-delay: 3.4s; }
+    .sky .tw { animation: twinkle 4.6s ease-in-out infinite; }
+    .sky .tw2 { animation-duration: 6.4s; animation-delay: 1.2s; }
+    .sky .tw3 { animation-duration: 3.8s; animation-delay: 2.3s; }
+    .sky .tw4 { animation-duration: 7.2s; animation-delay: 0.6s; }
+    .sky .tw5 { animation-duration: 5.5s; animation-delay: 3.4s; }
     @keyframes twinkle {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.22; }
+      50% { opacity: 0.15; }
+    }
+    .sky .meteor {
+      stroke: rgba(240,237,250,0.85); stroke-width: 1.3; stroke-linecap: round;
+      opacity: 0;
+    }
+    .sky .meteor-1 { animation: meteor-1 11s linear infinite 3s; }
+    .sky .meteor-2 { animation: meteor-2 17s linear infinite 9s; }
+    .sky .meteor-3 { animation: meteor-3 23s linear infinite 15s; }
+    @keyframes meteor-1 {
+      0% { transform: translate(1194px, 108px) rotate(148deg); opacity: 0; }
+      1.4% { opacity: 0.9; }
+      7% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
+      100% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
+    }
+    @keyframes meteor-2 {
+      0% { transform: translate(338px, 72px) rotate(141deg); opacity: 0; }
+      1% { opacity: 0.75; }
+      4.6% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
+      100% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
+    }
+    @keyframes meteor-3 {
+      0% { transform: translate(660px, 520px) rotate(152deg); opacity: 0; }
+      0.8% { opacity: 0.65; }
+      3.8% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
+      100% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
     }
 
     /* Grain overlay */
@@ -165,6 +215,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       pointer-events: none; z-index: 60;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.048'/%3E%3C/svg%3E");
       background-repeat: repeat; background-size: 256px 256px;
+      animation: grain-shift 0.6s steps(2) infinite;
+    }
+    @keyframes grain-shift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(1px, 1px); }
     }
 
     /* Hide default cursor when custom is active */
@@ -1092,7 +1147,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .bg-aurora, .sky, .sky circle, .orb-float, .strip-dot {
+      .bg-aurora, .bg-aurora-2, .grain, .sky, .sky *, .orb-float, .strip-dot {
         animation: none !important;
       }
     }
@@ -1101,11 +1156,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <body>
 
 <div class="bg-aurora" aria-hidden="true"></div>
+<div class="bg-aurora-2" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 <svg class="sky" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <path d="M1128 96 L1204 148 L1298 122 L1352 208 M1298 122 L1310 236"/>
   <path d="M96 388 L176 428 L152 516 L242 560"/>
   <path d="M872 742 L948 700 L1042 726 L1096 788"/>
+  <line class="meteor meteor-1" x1="0" y1="0" x2="86" y2="0"/>
+  <line class="meteor meteor-2" x1="0" y1="0" x2="64" y2="0"/>
+  <line class="meteor meteor-3" x1="0" y1="0" x2="52" y2="0"/>
   <circle cx="1128" cy="96" r="1.5" class="tw"/>
   <circle cx="1204" cy="148" r="1.3" class="st-gold tw tw2"/>
   <circle cx="1298" cy="122" r="1.6" class="tw tw3"/>
@@ -1120,29 +1179,29 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <circle cx="1042" cy="726" r="1.2"/>
   <circle cx="1096" cy="788" r="1.4" class="st-cyan tw"/>
   <circle cx="72" cy="84" r="1.2" class="st-dim"/>
-  <circle cx="233" cy="166" r="1"/>
+  <circle cx="233" cy="166" r="1" class="tw tw5"/>
   <circle cx="388" cy="64" r="1.3" class="st-gold tw tw2"/>
   <circle cx="521" cy="142" r="0.9" class="st-dim"/>
-  <circle cx="668" cy="88" r="1.1"/>
+  <circle cx="668" cy="88" r="1.1" class="tw tw3"/>
   <circle cx="804" cy="178" r="1" class="st-purple"/>
   <circle cx="943" cy="66" r="1.2" class="st-dim"/>
-  <circle cx="1062" cy="182" r="0.9"/>
+  <circle cx="1062" cy="182" r="0.9" class="tw tw4"/>
   <circle cx="1394" cy="86" r="1.1" class="st-cyan tw tw3"/>
-  <circle cx="58" cy="262" r="1"/>
+  <circle cx="58" cy="262" r="1" class="tw tw2"/>
   <circle cx="177" cy="332" r="1.2" class="st-cyan"/>
   <circle cx="334" cy="282" r="0.9" class="st-dim"/>
   <circle cx="626" cy="244" r="1.3" class="tw tw4"/>
   <circle cx="766" cy="318" r="0.9" class="st-dim"/>
   <circle cx="1013" cy="296" r="1.1" class="st-gold"/>
-  <circle cx="1226" cy="318" r="1" class="st-dim"/>
-  <circle cx="1408" cy="354" r="1.2"/>
+  <circle cx="1226" cy="318" r="1" class="st-dim tw tw3"/>
+  <circle cx="1408" cy="354" r="1.2" class="tw"/>
   <circle cx="268" cy="458" r="1" class="st-dim"/>
   <circle cx="438" cy="414" r="1.2" class="st-coral tw tw5"/>
   <circle cx="588" cy="486" r="0.9" class="st-dim"/>
-  <circle cx="872" cy="438" r="1"/>
+  <circle cx="872" cy="438" r="1" class="tw tw4"/>
   <circle cx="1120" cy="462" r="1.3" class="st-purple tw tw2"/>
-  <circle cx="1322" cy="514" r="0.9" class="st-dim"/>
-  <circle cx="94" cy="648" r="1.1"/>
+  <circle cx="1322" cy="514" r="0.9" class="st-dim tw"/>
+  <circle cx="94" cy="648" r="1.1" class="tw tw2"/>
   <circle cx="296" cy="688" r="1.3" class="st-gold tw tw3"/>
   <circle cx="494" cy="634" r="0.9" class="st-dim"/>
   <circle cx="642" cy="712" r="1.1" class="st-cyan"/>
@@ -1150,7 +1209,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <circle cx="1214" cy="642" r="1.1"/>
   <circle cx="1372" cy="708" r="1.2" class="st-coral"/>
   <circle cx="180" cy="822" r="0.9" class="st-dim"/>
-  <circle cx="418" cy="796" r="1.1"/>
+  <circle cx="418" cy="796" r="1.1" class="tw tw5"/>
   <circle cx="568" cy="846" r="1" class="st-dim"/>
   <circle cx="704" cy="806" r="1.2" class="st-purple tw tw4"/>
   <circle cx="1152" cy="852" r="1" class="st-dim"/>
