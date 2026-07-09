@@ -116,8 +116,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         radial-gradient(36% 32% at 24% 88%, rgba(255,209,102,0.18), transparent 60%),
         radial-gradient(62% 56% at 50% 44%, rgba(21,17,49,0.5), transparent 72%);
       animation:
-        aurora-warm 26s ease-in-out infinite alternate,
-        aurora-breathe-a 10s ease-in-out infinite alternate;
+        aurora-warm 13s ease-in-out infinite alternate,
+        aurora-breathe-a 5.5s ease-in-out infinite alternate;
+      animation-delay: -5s, -2s;
       will-change: transform, opacity; transform: translateZ(0);
     }
     @keyframes aurora-warm {
@@ -125,7 +126,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       to   { transform: translate3d(5.5%, 4%, 0) rotate(1.8deg) scale(1.12); }
     }
     @keyframes aurora-breathe-a {
-      from { opacity: 0.6; }
+      from { opacity: 0.66; }
       to   { opacity: 1; }
     }
     .bg-aurora-2 {
@@ -135,8 +136,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         radial-gradient(48% 44% at 84% 84%, rgba(78,205,196,0.22), transparent 64%),
         radial-gradient(30% 26% at 8% 52%, rgba(251,113,133,0.14), transparent 58%);
       animation:
-        aurora-cool 33s ease-in-out infinite alternate,
-        aurora-breathe-b 13s ease-in-out infinite alternate;
+        aurora-cool 17s ease-in-out infinite alternate,
+        aurora-breathe-b 7s ease-in-out infinite alternate;
+      animation-delay: -9s, -4s;
       will-change: transform, opacity; transform: translateZ(0);
     }
     @keyframes aurora-cool {
@@ -145,7 +147,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     @keyframes aurora-breathe-b {
       from { opacity: 1; }
-      to   { opacity: 0.55; }
+      to   { opacity: 0.6; }
     }
     .bg-grid {
       position: fixed; inset: 0; pointer-events: none; z-index: -4;
@@ -160,7 +162,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       position: fixed; top: -4%; left: 0; width: 100%; height: 108%;
       pointer-events: none; z-index: -3;
       transform-origin: 50% 40%;
-      animation: sky-wheel 70s ease-in-out infinite alternate;
+      animation: sky-wheel 40s ease-in-out infinite alternate;
+      animation-delay: -15s;
       will-change: transform;
     }
     @keyframes sky-wheel {
@@ -174,11 +177,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .sky .st-cyan { fill: rgba(78,205,196,0.55); }
     .sky .st-coral { fill: rgba(255,107,107,0.55); }
     .sky .st-purple { fill: rgba(167,139,250,0.55); }
-    .sky .tw { animation: twinkle 4.6s ease-in-out infinite; }
-    .sky .tw2 { animation-duration: 6.4s; animation-delay: 1.2s; }
-    .sky .tw3 { animation-duration: 3.8s; animation-delay: 2.3s; }
-    .sky .tw4 { animation-duration: 7.2s; animation-delay: 0.6s; }
-    .sky .tw5 { animation-duration: 5.5s; animation-delay: 3.4s; }
+    .sky .tw { animation: twinkle 2.6s ease-in-out infinite; }
+    .sky .tw2 { animation-duration: 3.4s; animation-delay: -1.2s; }
+    .sky .tw3 { animation-duration: 2.1s; animation-delay: -2.3s; }
+    .sky .tw4 { animation-duration: 4.2s; animation-delay: -0.6s; }
+    .sky .tw5 { animation-duration: 2.9s; animation-delay: -3.4s; }
     @keyframes twinkle {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.15; }
@@ -187,25 +190,25 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       stroke: rgba(240,237,250,0.85); stroke-width: 1.3; stroke-linecap: round;
       opacity: 0;
     }
-    .sky .meteor-1 { animation: meteor-1 11s linear infinite 3s; }
-    .sky .meteor-2 { animation: meteor-2 17s linear infinite 9s; }
-    .sky .meteor-3 { animation: meteor-3 23s linear infinite 15s; }
+    .sky .meteor-1 { animation: meteor-1 7s linear infinite 1.2s; }
+    .sky .meteor-2 { animation: meteor-2 11s linear infinite 4s; }
+    .sky .meteor-3 { animation: meteor-3 15s linear infinite 8s; }
     @keyframes meteor-1 {
       0% { transform: translate(1194px, 108px) rotate(148deg); opacity: 0; }
-      1.4% { opacity: 0.9; }
-      7% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
+      2.2% { opacity: 0.9; }
+      11% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
       100% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
     }
     @keyframes meteor-2 {
       0% { transform: translate(338px, 72px) rotate(141deg); opacity: 0; }
-      1% { opacity: 0.75; }
-      4.6% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
+      1.5% { opacity: 0.75; }
+      7% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
       100% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
     }
     @keyframes meteor-3 {
       0% { transform: translate(660px, 520px) rotate(152deg); opacity: 0; }
-      0.8% { opacity: 0.65; }
-      3.8% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
+      1.2% { opacity: 0.65; }
+      5.8% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
       100% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
     }
 
