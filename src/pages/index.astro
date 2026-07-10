@@ -116,14 +116,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         radial-gradient(36% 32% at 24% 88%, rgba(255,209,102,0.18), transparent 60%),
         radial-gradient(62% 56% at 50% 44%, rgba(21,17,49,0.5), transparent 72%);
       animation:
-        aurora-warm 10s ease-in-out infinite alternate,
+        aurora-warm 18s ease-in-out infinite alternate,
         aurora-breathe-a 5.5s ease-in-out infinite alternate;
       animation-delay: -4s, -2s;
       will-change: transform, opacity; transform: translateZ(0);
     }
     @keyframes aurora-warm {
-      from { transform: translate3d(-5%, -3.5%, 0) rotate(-2deg) scale(1); }
-      to   { transform: translate3d(5.5%, 4%, 0) rotate(1.8deg) scale(1.12); }
+      0%   { transform: translate3d(-12%, -5%, 0) rotate(-2deg) scale(1.02); }
+      52%  { transform: translate3d(2%, 7%, 0) rotate(0.5deg) scale(1.1); }
+      100% { transform: translate3d(11%, -2%, 0) rotate(1.8deg) scale(1.05); }
     }
     @keyframes aurora-breathe-a {
       from { opacity: 0.66; }
@@ -136,14 +137,15 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         radial-gradient(48% 44% at 84% 84%, rgba(78,205,196,0.22), transparent 64%),
         radial-gradient(30% 26% at 8% 52%, rgba(251,113,133,0.14), transparent 58%);
       animation:
-        aurora-cool 13s ease-in-out infinite alternate,
+        aurora-cool 22s ease-in-out infinite alternate,
         aurora-breathe-b 7s ease-in-out infinite alternate;
       animation-delay: -7s, -4s;
       will-change: transform, opacity; transform: translateZ(0);
     }
     @keyframes aurora-cool {
-      from { transform: translate3d(5%, 3.5%, 0) rotate(2deg) scale(1.1); }
-      to   { transform: translate3d(-4.5%, -4%, 0) rotate(-1.8deg) scale(1); }
+      0%   { transform: translate3d(12%, 5%, 0) rotate(2deg) scale(1.08); }
+      48%  { transform: translate3d(-2%, -7%, 0) rotate(-0.4deg) scale(1.02); }
+      100% { transform: translate3d(-11%, 2%, 0) rotate(-1.8deg) scale(1.06); }
     }
     @keyframes aurora-breathe-b {
       from { opacity: 1; }
@@ -177,14 +179,20 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .sky .st-cyan { fill: rgba(78,205,196,0.55); }
     .sky .st-coral { fill: rgba(255,107,107,0.55); }
     .sky .st-purple { fill: rgba(167,139,250,0.55); }
-    .sky .tw { animation: twinkle 2.6s ease-in-out infinite; }
+    .sky .tw {
+      transform-box: fill-box;
+      transform-origin: center;
+      filter: drop-shadow(0 0 1.5px rgba(240,237,250,0.24));
+      animation: twinkle 2.6s ease-in-out infinite;
+    }
     .sky .tw2 { animation-duration: 3.4s; animation-delay: -1.2s; }
     .sky .tw3 { animation-duration: 2.1s; animation-delay: -2.3s; }
     .sky .tw4 { animation-duration: 4.2s; animation-delay: -0.6s; }
     .sky .tw5 { animation-duration: 2.9s; animation-delay: -3.4s; }
     @keyframes twinkle {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.15; }
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      46% { opacity: 0.16; transform: scale(0.82); }
+      58% { opacity: 1; transform: scale(1.24); }
     }
     .sky .meteor {
       stroke: rgba(240,237,250,0.85); stroke-width: 1.3; stroke-linecap: round;

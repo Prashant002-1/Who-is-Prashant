@@ -1,18 +1,23 @@
-# Prashant Shah Portfolio
+# Prashant Shah's Portfolio
 
-Single-page Astro site for prashantshah.com.
+Welcome. This is the single-page Astro site behind [prashantshah.com](https://prashantshah.com): a small, personal place for the work, research, and ideas I care about.
 
-## Commands
+## Getting started
 
 ```sh
 npm install
 npm run dev
+```
+
+The development server will print the local URL. When you're ready to check a production build, run:
+
+```sh
 npm run build
 npm run preview
 ```
 
-## Structure
+## A quick orientation
 
-- `src/pages/index.astro` contains the shipped page.
-- `public/` contains static assets served from the site root.
-- `public/photo-*` image variants are generated from `public/photo.jpg` at dev/build startup (see `astro.config.mjs`) and stay untracked.
+- `src/pages/index.astro` is the site itself.
+- `public/` holds the static assets served from the site root.
+- `public/photo-*` variants are generated from `public/photo.jpg` when development or production builds start (see `astro.config.mjs`) and remain untracked.
