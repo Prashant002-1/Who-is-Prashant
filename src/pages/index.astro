@@ -599,6 +599,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
       transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
     }
+    .work-atlas {
+      display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+      align-items: center; gap: 44px; margin-bottom: 20px; padding-block: 26px;
+    }
+    .work-atlas .card-title { margin-bottom: 0; }
+    .work-atlas .card-body { margin-bottom: 0; max-width: 620px; }
     .work-card:hover {
       border-color: rgba(78,205,196,0.3);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24);
@@ -1124,6 +1130,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       section { padding: 70px 22px; scroll-margin-top: 76px; }
       .work-grid, .research-layout, .about-layout { grid-template-columns: 1fr; gap: 28px; }
       .work-featured { grid-template-columns: 1fr; gap: 24px; padding: 32px 28px; }
+      .work-atlas { grid-template-columns: 1fr; gap: 14px; padding: 28px; }
       .work-card { padding: 28px; }
       .now-grid { grid-template-columns: 1fr 1fr; }
       .now-item { padding: 26px 24px; }
@@ -1235,8 +1242,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <span class="strip-label">Building</span>
     <span class="strip-value strip-ticker">
       <span class="strip-ticker-track">
-        <span>Personal Canvas Agent &middot; Atlas LMS &middot; Center for Food Action data infrastructure</span>
-        <span aria-hidden="true">Personal Canvas Agent &middot; Atlas LMS &middot; Center for Food Action data infrastructure</span>
+        <span>Atlas LMS &middot; Canvas Agent &middot; Center for Food Action data infrastructure</span>
+        <span aria-hidden="true">Atlas LMS &middot; Canvas Agent &middot; Center for Food Action data infrastructure</span>
       </span>
     </span>
   </div>
@@ -1370,10 +1377,17 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <section id="work">
   <div class="section-inner">
     <h2 class="section-label" data-index="01">Selected Work</h2>
+    <div class="work-card work-atlas reveal reveal-delay-1">
+      <div>
+        <div class="card-eyebrow">Stealth Startup &middot; 2026</div>
+        <h3 class="card-title">Atlas LMS</h3>
+      </div>
+      <p class="card-body">Revolutionizing learning. More soon.</p>
+    </div>
     <div class="work-featured reveal">
       <div>
         <div class="card-eyebrow">HackRamapo Winner &middot; 2026</div>
-        <h3 class="card-title featured-title">Personal Canvas Agent</h3>
+        <h3 class="card-title featured-title">Canvas Agent</h3>
         <div class="card-tags">
           <span class="tag">Next.js 15</span><span class="tag">React 19</span>
           <span class="tag">PostgreSQL</span><span class="tag">pgvector</span>
@@ -1396,11 +1410,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       </div>
     </div>
     <div class="work-grid">
-      <div class="work-card reveal reveal-delay-1">
-        <div class="card-eyebrow">Stealth Startup &middot; 2026</div>
-        <h3 class="card-title">Atlas LMS</h3>
-        <p class="card-body">Revolutionizing learning. More soon.</p>
-      </div>
       <div class="work-card reveal reveal-delay-1">
         <div class="card-eyebrow">Personal &middot; 2026</div>
         <h3 class="card-title">Hermes JobApps</h3>
