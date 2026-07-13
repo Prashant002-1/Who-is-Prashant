@@ -866,8 +866,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .strip-ticker-track {
       display: inline-flex; gap: 36px; min-width: max-content;
       transform: translateX(0); will-change: transform;
-    }
-    .strip-ticker:hover .strip-ticker-track {
       animation: strip-ticker 7.5s linear infinite;
     }
     @keyframes strip-ticker {
@@ -1158,7 +1156,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .bg-aurora, .bg-aurora-2, .grain, .sky, .sky *, .orb-float, .strip-dot {
+      .bg-aurora, .bg-aurora-2, .grain, .sky, .sky *, .orb-float, .strip-dot, .strip-ticker-track {
         animation: none !important;
       }
     }
@@ -1237,8 +1235,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <span class="strip-label">Building</span>
     <span class="strip-value strip-ticker">
       <span class="strip-ticker-track">
-        <span>Atlas LMS &middot; Center for Food Action data infrastructure</span>
-        <span aria-hidden="true">Atlas LMS &middot; Center for Food Action data infrastructure</span>
+        <span>Personal Canvas Agent &middot; Atlas LMS &middot; Center for Food Action data infrastructure</span>
+        <span aria-hidden="true">Personal Canvas Agent &middot; Atlas LMS &middot; Center for Food Action data infrastructure</span>
       </span>
     </span>
   </div>
@@ -1374,34 +1372,39 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <h2 class="section-label" data-index="01">Selected Work</h2>
     <div class="work-featured reveal">
       <div>
-        <div class="card-eyebrow">Building &middot; 2026</div>
-        <h3 class="card-title featured-title">Atlas LMS</h3>
+        <div class="card-eyebrow">HackRamapo Winner &middot; 2026</div>
+        <h3 class="card-title featured-title">Personal Canvas Agent</h3>
         <div class="card-tags">
-          <span class="tag">Next.js 16</span><span class="tag">React 19</span>
-          <span class="tag">PostgreSQL</span><span class="tag">Drizzle</span>
-          <span class="tag">Vercel AI SDK</span><span class="tag">Auth.js</span>
+          <span class="tag">Next.js 15</span><span class="tag">React 19</span>
+          <span class="tag">PostgreSQL</span><span class="tag">pgvector</span>
+          <span class="tag">Vercel AI SDK</span><span class="tag">Tailwind CSS</span>
         </div>
-        <a href="https://github.com/Prashant002-1/Atlas-LMS" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+        <a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
         <div style="margin-top:12px">
           <button class="card-expand-btn" data-target="canvas-extra"><span class="exp-arrow">+</span><span class="exp-label">more detail</span></button>
         </div>
         <div class="card-extra" id="canvas-extra">
           <div class="card-extra-inner">
-            <p>Objectives, modules, assignments, submissions, proposals, and evidence share one course record. The agent works from deterministic context packs, emits validated blocks into review, and cannot change live course state until the proposal is applied.</p>
+            <p>The agent combines persistent memory, tool calling, and semantic search over Canvas data to answer questions across courses, track grades and deadlines, and surface what a student should work on next.</p>
           </div>
         </div>
       </div>
       <div class="featured-context">
-        <p class="card-body">Personal Canvas started with a simple problem: students leave the LMS to make sense of the course because the LMS stores records but does not help them reason across deadlines, objectives, and assignments. It won HackRamapo 2026.</p>
-        <p class="card-body">I am turning that project into Atlas, a multi-tenant course-record workspace where professors can draft course changes with AI and students learn against the same source of truth.</p>
-        <div class="featured-outcome">I am now developing Atlas as a product, with the hard decisions centered on what the system should own, what the agent can propose, and what still requires a person.</div>
+        <p class="card-body">Students leave the LMS to make sense of the course because it stores records without helping them reason across deadlines, grades, assignments, and study priorities.</p>
+        <p class="card-body">I built an AI study partner that works directly from a student&rsquo;s Canvas data, remembers context across conversations, and can use tools instead of only generating text.</p>
+        <div class="featured-outcome">Winner of HackRamapo 2026.</div>
       </div>
     </div>
     <div class="work-grid">
       <div class="work-card reveal reveal-delay-1">
+        <div class="card-eyebrow">Stealth Startup &middot; 2026</div>
+        <h3 class="card-title">Atlas LMS</h3>
+        <p class="card-body">Revolutionizing learning. More soon.</p>
+      </div>
+      <div class="work-card reveal reveal-delay-1">
         <div class="card-eyebrow">Personal &middot; 2026</div>
-        <h3 class="card-title">Local Agent Workflow Architecture</h3>
-        <p class="card-body">Agents forget decisions and report progress that never became real state. I built a local workflow cockpit where jobs, evidence, contacts, materials, and follow-ups live in SQLite while Hermes operates through structured tools.</p>
+        <h3 class="card-title">Hermes JobApps</h3>
+        <p class="card-body">I built a job-search command center around Hermes Agent. It discovers and evaluates roles, tailors LaTeX materials, organizes evidence and contacts, and tracks applications, outreach, and follow-ups in SQLite so the work survives beyond a chat session.</p>
         <div class="card-tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Hermes Agent</span><span class="tag">Tool Use</span><span class="tag">LaTeX</span></div>
         <a href="https://github.com/Prashant002-1/hermes-jobapps" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
         <div style="margin-top:12px">
@@ -1409,7 +1412,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         </div>
         <div class="card-extra" id="jobapps-extra">
           <div class="card-extra-inner">
-            <p>Streaming sessions, native tool dispatch, provenance records, and explicit external-action boundaries make each run inspectable. The agent can prepare work, while uploads, sends, and submissions remain visible human actions.</p>
+            <p>I built the dashboard, SQLite data model, Hermes plugin and tool layer, streaming sessions, material-prep pipeline, provenance records, and human-controlled boundaries for uploads, sends, and submissions.</p>
           </div>
         </div>
       </div>
