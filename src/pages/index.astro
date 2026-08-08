@@ -31,7 +31,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Prashant Shah, software engineer and data systems builder." />
-  <meta name="theme-color" content="#0D0A1A" />
+  <meta name="theme-color" content="#F4F5F7" />
   <meta property="og:title" content="Prashant Shah" />
   <meta property="og:description" content="Software engineer and data systems builder." />
   <meta property="og:type" content="website" />
@@ -44,39 +44,44 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      color-scheme: light;
       --font-heading: 'Sora', 'Helvetica Neue', sans-serif;
       --font-body:    'Source Serif 4', Georgia, serif;
       --font-mono:    'JetBrains Mono', monospace;
 
-      --color-bg:       #0D0A1A;
-      --color-surface:  #151131;
-      --color-panel:    rgba(21,17,49,0.72);
-      --color-panel-strong: rgba(21,17,49,0.92);
-      --color-text:     #F0EDFA;
-      --color-muted:    #A09CC5;
-      --color-faint:    #6B6790;
-      --color-border:   #2D2960;
-      --color-border-soft: rgba(160,156,197,0.12);
+      --color-bg:       #F4F5F7;
+      --color-surface:  #FFFFFF;
+      --color-panel:    rgba(255,255,255,0.82);
+      --color-panel-strong: rgba(255,255,255,0.96);
+      --color-card:     rgba(255,255,255,0.86);
+      --color-card-strong: rgba(255,255,255,0.94);
+      --color-card-hover: rgba(240,239,245,0.92);
+      --color-text:     #181522;
+      --color-muted:    #514C5D;
+      --color-faint:    #686272;
+      --color-border:   #C9C5D1;
+      --color-border-soft: rgba(24,21,34,0.13);
+      --color-shadow:   rgba(45,35,70,0.11);
 
-      --color-coral:    #FF6B6B;
-      --color-coral-hover: #FF8787;
-      --color-coral-glow: rgba(255,107,107,0.28);
-      --color-coral-dim: rgba(255,107,107,0.08);
+      --color-coral:    #C83D50;
+      --color-coral-hover: #A82E42;
+      --color-coral-glow: rgba(200,61,80,0.18);
+      --color-coral-dim: rgba(200,61,80,0.08);
 
-      --color-cyan:     #4ECDC4;
-      --color-cyan-glow: rgba(78,205,196,0.25);
-      --color-cyan-dim: rgba(78,205,196,0.07);
+      --color-cyan:     #087A76;
+      --color-cyan-glow: rgba(8,122,118,0.18);
+      --color-cyan-dim: rgba(8,122,118,0.07);
 
-      --color-gold:     #FFD166;
-      --color-gold-glow: rgba(255,209,102,0.22);
-      --color-gold-dim: rgba(255,209,102,0.07);
+      --color-gold:     #896100;
+      --color-gold-glow: rgba(137,97,0,0.17);
+      --color-gold-dim: rgba(137,97,0,0.07);
 
-      --color-purple:   #A78BFA;
-      --color-purple-glow: rgba(167,139,250,0.25);
-      --color-purple-dim: rgba(167,139,250,0.07);
+      --color-purple:   #6547B4;
+      --color-purple-glow: rgba(101,71,180,0.18);
+      --color-purple-dim: rgba(101,71,180,0.07);
 
-      --color-rose:     #FB7185;
-      --color-rose-dim: rgba(251,113,133,0.08);
+      --color-rose:     #B82E62;
+      --color-rose-dim: rgba(184,46,98,0.08);
 
       --max-content: 1100px;
       --transition: 180ms ease;
@@ -108,129 +113,14 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       position: relative;
     }
 
-    /* ── Background: aurora washes + dot grid ──── */
-    .bg-aurora {
-      position: fixed; inset: -20%; pointer-events: none; z-index: -5;
-      background:
-        radial-gradient(44% 38% at 14% 8%, rgba(255,107,107,0.28), transparent 62%),
-        radial-gradient(36% 32% at 24% 88%, rgba(255,209,102,0.18), transparent 60%),
-        radial-gradient(62% 56% at 50% 44%, rgba(21,17,49,0.5), transparent 72%);
-      animation:
-        aurora-warm 18s ease-in-out infinite alternate,
-        aurora-breathe-a 5.5s ease-in-out infinite alternate;
-      animation-delay: -4s, -2s;
-      will-change: transform, opacity; transform: translateZ(0);
-    }
-    @keyframes aurora-warm {
-      0%   { transform: translate3d(-12%, -5%, 0) rotate(-2deg) scale(1.02); }
-      52%  { transform: translate3d(2%, 7%, 0) rotate(0.5deg) scale(1.1); }
-      100% { transform: translate3d(11%, -2%, 0) rotate(1.8deg) scale(1.05); }
-    }
-    @keyframes aurora-breathe-a {
-      from { opacity: 0.66; }
-      to   { opacity: 1; }
-    }
-    .bg-aurora-2 {
-      position: fixed; inset: -20%; pointer-events: none; z-index: -5;
-      background:
-        radial-gradient(42% 40% at 86% 14%, rgba(167,139,250,0.28), transparent 62%),
-        radial-gradient(48% 44% at 84% 84%, rgba(78,205,196,0.22), transparent 64%),
-        radial-gradient(30% 26% at 8% 52%, rgba(251,113,133,0.14), transparent 58%);
-      animation:
-        aurora-cool 22s ease-in-out infinite alternate,
-        aurora-breathe-b 7s ease-in-out infinite alternate;
-      animation-delay: -7s, -4s;
-      will-change: transform, opacity; transform: translateZ(0);
-    }
-    @keyframes aurora-cool {
-      0%   { transform: translate3d(12%, 5%, 0) rotate(2deg) scale(1.08); }
-      48%  { transform: translate3d(-2%, -7%, 0) rotate(-0.4deg) scale(1.02); }
-      100% { transform: translate3d(-11%, 2%, 0) rotate(-1.8deg) scale(1.06); }
-    }
-    @keyframes aurora-breathe-b {
-      from { opacity: 1; }
-      to   { opacity: 0.6; }
-    }
-    .bg-grid {
-      position: fixed; inset: 0; pointer-events: none; z-index: -4;
-      background-image: radial-gradient(rgba(240,237,250,0.05) 1px, transparent 1.2px);
-      background-size: 30px 30px;
-      -webkit-mask-image: radial-gradient(120% 90% at 50% 38%, rgba(0,0,0,0.9), transparent 78%);
-      mask-image: radial-gradient(120% 90% at 50% 38%, rgba(0,0,0,0.9), transparent 78%);
-    }
-
-    /* Constellation sky */
-    .sky {
-      position: fixed; top: -4%; left: 0; width: 100%; height: 108%;
-      pointer-events: none; z-index: -3;
-      transform-origin: 50% 40%;
-      animation: sky-wheel 40s ease-in-out infinite alternate;
-      animation-delay: -15s;
-      will-change: transform;
-    }
-    @keyframes sky-wheel {
-      from { transform: rotate(-1.2deg) translate3d(0, 8px, 0); }
-      to   { transform: rotate(1.3deg) translate3d(0, -14px, 0); }
-    }
-    .sky path { stroke: rgba(240,237,250,0.06); stroke-width: 1; fill: none; }
-    .sky circle { fill: rgba(240,237,250,0.5); }
-    .sky .st-dim { fill: rgba(240,237,250,0.26); }
-    .sky .st-gold { fill: rgba(255,209,102,0.62); }
-    .sky .st-cyan { fill: rgba(78,205,196,0.55); }
-    .sky .st-coral { fill: rgba(255,107,107,0.55); }
-    .sky .st-purple { fill: rgba(167,139,250,0.55); }
-    .sky .tw {
-      transform-box: fill-box;
-      transform-origin: center;
-      filter: drop-shadow(0 0 1.5px rgba(240,237,250,0.24));
-      animation: twinkle 2.6s ease-in-out infinite;
-    }
-    .sky .tw2 { animation-duration: 3.4s; animation-delay: -1.2s; }
-    .sky .tw3 { animation-duration: 2.1s; animation-delay: -2.3s; }
-    .sky .tw4 { animation-duration: 4.2s; animation-delay: -0.6s; }
-    .sky .tw5 { animation-duration: 2.9s; animation-delay: -3.4s; }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      46% { opacity: 0.16; transform: scale(0.82); }
-      58% { opacity: 1; transform: scale(1.24); }
-    }
-    .sky .meteor {
-      stroke: rgba(240,237,250,0.85); stroke-width: 1.3; stroke-linecap: round;
-      opacity: 0;
-    }
-    .sky .meteor-1 { animation: meteor-1 7s linear infinite 1.2s; }
-    .sky .meteor-2 { animation: meteor-2 11s linear infinite 4s; }
-    .sky .meteor-3 { animation: meteor-3 15s linear infinite 8s; }
-    @keyframes meteor-1 {
-      0% { transform: translate(1194px, 108px) rotate(148deg); opacity: 0; }
-      2.2% { opacity: 0.9; }
-      11% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
-      100% { transform: translate(942px, 266px) rotate(148deg); opacity: 0; }
-    }
-    @keyframes meteor-2 {
-      0% { transform: translate(338px, 72px) rotate(141deg); opacity: 0; }
-      1.5% { opacity: 0.75; }
-      7% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
-      100% { transform: translate(158px, 218px) rotate(141deg); opacity: 0; }
-    }
-    @keyframes meteor-3 {
-      0% { transform: translate(660px, 520px) rotate(152deg); opacity: 0; }
-      1.2% { opacity: 0.65; }
-      5.8% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
-      100% { transform: translate(478px, 634px) rotate(152deg); opacity: 0; }
-    }
-
-    /* Grain overlay */
-    .grain {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 60;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.048'/%3E%3C/svg%3E");
-      background-repeat: repeat; background-size: 256px 256px;
-      animation: grain-shift 0.6s steps(2) infinite;
-    }
-    @keyframes grain-shift {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(1px, 1px); }
+    .ambient-field {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -5;
+      background: var(--color-bg);
     }
 
     /* Hide default cursor when custom is active */
@@ -242,7 +132,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     @media (hover: none), (pointer: coarse) {
       .cursor-dot, .cursor-ring { display: none; }
     }
-    ::selection { background: rgba(255,107,107,0.32); color: var(--color-text); }
+    ::selection { background: rgba(200,61,80,0.2); color: var(--color-text); }
     :focus-visible { outline: 1px solid var(--color-coral); outline-offset: 3px; }
 
     /* ── Orb navigation ─────────────────────── */
@@ -262,10 +152,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .orb-button {
       position: relative; width: 28px; height: 28px;
       border-radius: 50%;
-      border: 1px solid rgba(255,107,107,0.5);
+      border: 1px solid rgba(200,61,80,0.5);
       background:
-        radial-gradient(circle at 34% 28%, rgba(255,209,102,0.2), rgba(255,107,107,0.08) 28%, transparent 48%),
-        linear-gradient(135deg, rgba(255,107,107,0.2), rgba(13,10,26,0.7));
+        radial-gradient(circle at 34% 28%, rgba(255,213,113,0.34), rgba(200,61,80,0.18) 28%, transparent 48%),
+        linear-gradient(135deg, rgba(200,61,80,0.42), rgba(63,42,96,0.92));
       box-shadow:
         inset 0 1px 4px rgba(255,255,255,0.1),
         inset 0 -8px 16px rgba(0,0,0,0.3),
@@ -286,7 +176,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       width: 5px; height: 5px;
       top: 7px; left: 8px;
       border-radius: 50%;
-      background: rgba(255,209,102,0.9);
+      background: rgba(224,164,46,0.92);
       box-shadow: 0 0 8px var(--color-gold-glow);
     }
     .orb-trigger {
@@ -295,7 +185,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       background: transparent; padding: 0;
     }
     .orb-trigger:focus-visible {
-      outline: 1px solid rgba(255,107,107,0.8);
+      outline: 1px solid rgba(200,61,80,0.8);
       outline-offset: -28px;
     }
     .orb-label {
@@ -306,7 +196,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       color: var(--color-muted);
       padding: 5px 10px 5px 12px;
       border: 1px solid var(--color-border-soft); border-radius: 999px;
-      background: rgba(13,10,26,0.72);
+      background: rgba(255,255,255,0.84);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       white-space: nowrap; pointer-events: none;
@@ -315,7 +205,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .orb-nav:hover .orb-label,
     .orb-nav.pulling .orb-label {
       color: var(--color-text);
-      border-color: rgba(255,107,107,0.45);
+      border-color: rgba(200,61,80,0.45);
     }
     .orb-nav.open .orb-label { opacity: 0; }
     .orb-nav.hero-mode .orb-label {
@@ -328,7 +218,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     .orb-nav:focus-within .orb-label { opacity: 0; }
     .orb-nav.pulling .orb-button {
-      border-color: rgba(255,107,107,0.8);
+      border-color: rgba(200,61,80,0.8);
       box-shadow: inset 0 1px 4px rgba(255,255,255,0.12), inset 0 -8px 16px rgba(0,0,0,0.3), 0 0 30px var(--color-coral-glow);
     }
     .orb-nav.open .orb-button {
@@ -342,10 +232,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       width: 190px; padding: 12px;
       border: 1px solid var(--color-border-soft);
       border-radius: 18px;
-      background: rgba(13,10,26,0.88);
+      background: rgba(255,255,255,0.94);
       backdrop-filter: blur(20px) saturate(1.3);
       -webkit-backdrop-filter: blur(20px) saturate(1.3);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 54px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 18px var(--color-shadow);
       transform-origin: 88% 16%;
       transform: scale(0.18) translate3d(18px, -18px, 0);
       opacity: 0; pointer-events: none;
@@ -361,17 +251,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       transform: scale(1) translate3d(0, 0, 0);
     }
     .orb-menu a {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center;
       min-height: 34px; padding: 0 28px 0 10px;
       border-radius: 10px;
       font-family: var(--font-heading); font-size: 13px; font-weight: 600;
       color: var(--color-muted); text-decoration: none;
       transition: background 130ms ease, color 130ms ease, transform 130ms ease;
-    }
-    .orb-menu a::after {
-      content: attr(data-index);
-      font-family: var(--font-mono); font-size: 9px;
-      color: var(--color-faint);
     }
     .orb-menu a:hover,
     .orb-menu a.active {
@@ -383,7 +268,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       top: -172px; left: -142px; right: auto;
       width: 318px; height: auto; padding: 14px;
       border-radius: 18px;
-      background: linear-gradient(180deg, rgba(18,15,36,0.92), rgba(10,8,22,0.8));
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(242,240,247,0.94));
       display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
       opacity: 0; pointer-events: none;
       transition: opacity 200ms ease;
@@ -397,8 +282,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     .orb-nav.hero-mode .orb-menu a {
       position: relative; min-height: 36px; padding: 0 12px;
-      border: 1px solid rgba(240,237,250,0.08);
-      background: rgba(10,8,22,0.5); justify-content: space-between;
+      border: 1px solid var(--color-border-soft);
+      background: rgba(255,255,255,0.68); justify-content: space-between;
       transform: scale(0); opacity: 0;
       transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 200ms ease;
     }
@@ -427,11 +312,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(4) { transition-delay: 80ms; }
     .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(5) { transition-delay: 40ms; }
     .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(6) { transition-delay: 0ms; }
-    .orb-nav.hero-mode .orb-menu a::after { display: block; }
     .orb-nav.hero-mode .orb-menu a:hover,
     .orb-nav.hero-mode .orb-menu a.active {
       transform: scale(1) translateY(-1px);
-      border-color: rgba(255,107,107,0.25);
+      border-color: rgba(200,61,80,0.25);
     }
     @keyframes orb-float {
       0%, 100% { transform: translateY(-2px); }
@@ -445,11 +329,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       32% { transform: scale(1); }
     }
     @keyframes orb-ripple {
-      0%, 100% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0.3); }
-      8% { box-shadow: 0 0 18px var(--color-coral-glow), 0 0 0 14px rgba(255,107,107,0); }
-      16% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0); }
-      24% { box-shadow: 0 0 14px var(--color-coral-glow), 0 0 0 8px rgba(255,107,107,0); }
-      32% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(255,107,107,0); }
+      0%, 100% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0.3); }
+      8% { box-shadow: 0 0 18px var(--color-coral-glow), 0 0 0 14px rgba(200,61,80,0); }
+      16% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0); }
+      24% { box-shadow: 0 0 14px var(--color-coral-glow), 0 0 0 8px rgba(200,61,80,0); }
+      32% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0); }
     }
     .orb-nav.hero-mode .orb-float {
       animation: orb-heartbeat 2.2s ease-in-out infinite;
@@ -473,9 +357,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hero-eyebrow {
       font-family: var(--font-heading); font-size: 11px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      background: linear-gradient(135deg, var(--color-coral), var(--color-gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--color-cyan);
       margin-bottom: 20px;
     }
     .hero-name-block { position: relative; }
@@ -483,14 +365,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       display: table; line-height: 0.88; font-family: var(--font-heading);
       font-weight: 800; letter-spacing: -0.05em;
       font-size: clamp(4.4rem, 11vw, 10.5rem);
-      background: linear-gradient(135deg, var(--color-coral) 0%, var(--color-gold) 45%, var(--color-text) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 30px rgba(255,107,107,0.15));
+      color: var(--color-text);
     }
     .hero-cred {
-      padding-bottom: 6px; border-left: 1px solid rgba(255,107,107,0.3);
-      padding-left: 28px; display: flex; flex-direction: column; gap: 18px;
+      padding-bottom: 6px; display: flex; flex-direction: column; gap: 18px;
     }
     .cred-label {
       font-family: var(--font-mono); font-size: 9px; font-weight: 500;
@@ -530,18 +408,17 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hero-github {
       margin-top: 28px; width: fit-content; max-width: 100%;
       padding: 14px 16px 16px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(13,10,26,0.55);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      border: 1px solid var(--color-border-soft);
+      background: rgba(255,255,255,0.72);
     }
     .hero-github-label {
-      font-family: var(--font-mono); font-size: 10.5px; color: rgba(240,237,250,0.72);
+      font-family: var(--font-mono); font-size: 10.5px; color: var(--color-muted);
       letter-spacing: 0.08em; margin-bottom: 12px;
       display: flex; align-items: center; gap: 10px; white-space: nowrap;
     }
     .hero-github-label::after {
       content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(255,107,107,0.5), transparent);
+      background: linear-gradient(90deg, rgba(200,61,80,0.5), transparent);
       max-width: none;
     }
     .github-heatmap {
@@ -551,7 +428,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hm-col { display: flex; flex-direction: column; gap: 3px; }
     .hm-cell {
       width: 8px; height: 8px; border-radius: 2px;
-      background: rgba(240,237,250,0.05);
+      background: rgba(24,21,34,0.08);
       transition: transform 150ms, background 150ms, opacity 150ms;
     }
     .hm-cell[data-level="1"] { background: var(--color-coral); opacity: 0.35; }
@@ -559,7 +436,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .hm-cell[data-level="3"] { background: var(--color-coral); opacity: 0.85; }
     .hm-cell[data-level="4"] { background: var(--color-gold); opacity: 1; }
     .hm-cell:hover { opacity: 1 !important; transform: scale(1.3); outline: 1px solid var(--color-coral); outline-offset: 1px; z-index: 1; }
-    .hm-cell[data-future] { background: rgba(240,237,250,0.022); }
+    .hm-cell[data-future] { background: rgba(24,21,34,0.035); }
     .hm-cell[data-future]:hover { opacity: 1 !important; transform: none; outline: none; }
 
     /* ── Sections ────────────────────────────── */
@@ -567,36 +444,27 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .section-label {
       font-family: var(--font-heading); font-size: 11px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint);
-      margin-bottom: 48px; display: flex; align-items: center; gap: 16px;
+      margin-bottom: 48px; display: flex; align-items: baseline; gap: 12px;
     }
-    .section-label::before {
-      content: attr(data-index);
-      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
-      color: var(--color-coral); opacity: 0.9; letter-spacing: 0.08em;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--color-border), transparent); max-width: 80px; }
 
     /* ── Work ────────────────────────────────── */
     #work { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
     .work-featured {
-      margin-bottom: 24px; background: rgba(21,17,49,0.82);
+      margin-bottom: 24px; background: var(--color-card-strong);
       border: 1px solid var(--color-border-soft); border-radius: 16px;
       padding: 44px 48px; display: grid; grid-template-columns: 1fr 1fr;
       gap: 44px; align-items: start; position: relative; overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 70px rgba(0,0,0,0.2);
       transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
     }
     .work-featured:hover {
-      border-color: rgba(255,107,107,0.3);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 90px rgba(0,0,0,0.28);
+      border-color: rgba(200,61,80,0.3);
       transform: translateY(-2px);
     }
     .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .work-card {
-      background: linear-gradient(180deg, rgba(21,17,49,0.78), rgba(16,13,38,0.74));
+      background: var(--color-card);
       border: 1px solid var(--color-border-soft);
       border-radius: 16px; padding: 36px 40px; position: relative; overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
       transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
     }
     .work-atlas {
@@ -606,13 +474,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .work-atlas .card-title { margin-bottom: 0; }
     .work-atlas .card-body { margin-bottom: 0; max-width: 620px; }
     .work-card:hover {
-      border-color: rgba(78,205,196,0.3);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 22px 70px rgba(0,0,0,0.24);
+      border-color: rgba(8,122,118,0.3);
       transform: translateY(-2px);
     }
-    .work-card:nth-child(2):hover { border-color: rgba(167,139,250,0.3); }
-    .work-card:nth-child(3):hover { border-color: rgba(255,209,102,0.3); }
-    .work-card:nth-child(4):hover { border-color: rgba(255,107,107,0.3); }
+    .work-card:nth-child(2):hover { border-color: rgba(101,71,180,0.3); }
+    .work-card:nth-child(3):hover { border-color: rgba(137,97,0,0.3); }
+    .work-card:nth-child(4):hover { border-color: rgba(200,61,80,0.3); }
 
     @supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
       .work-featured::before,
@@ -626,19 +493,19 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         pointer-events: none;
       }
       .work-featured::before {
-        background: linear-gradient(135deg, rgba(255,107,107,0.8), rgba(255,209,102,0.14) 40%, rgba(255,209,102,0.14) 60%, rgba(78,205,196,0.8));
+        background: linear-gradient(135deg, rgba(200,61,80,0.8), rgba(137,97,0,0.14) 40%, rgba(137,97,0,0.14) 60%, rgba(8,122,118,0.8));
       }
       .work-card::before {
-        background: linear-gradient(135deg, rgba(78,205,196,0.75), rgba(78,205,196,0.1) 42%, rgba(167,139,250,0.1) 58%, rgba(167,139,250,0.75));
+        background: linear-gradient(135deg, rgba(8,122,118,0.75), rgba(8,122,118,0.1) 42%, rgba(101,71,180,0.1) 58%, rgba(101,71,180,0.75));
       }
       .work-card:nth-child(2)::before {
-        background: linear-gradient(135deg, rgba(167,139,250,0.75), rgba(167,139,250,0.1) 42%, rgba(255,107,107,0.1) 58%, rgba(255,107,107,0.75));
+        background: linear-gradient(135deg, rgba(101,71,180,0.75), rgba(101,71,180,0.1) 42%, rgba(200,61,80,0.1) 58%, rgba(200,61,80,0.75));
       }
       .work-card:nth-child(3)::before {
-        background: linear-gradient(135deg, rgba(255,209,102,0.75), rgba(255,209,102,0.1) 42%, rgba(255,107,107,0.1) 58%, rgba(255,107,107,0.75));
+        background: linear-gradient(135deg, rgba(137,97,0,0.75), rgba(137,97,0,0.1) 42%, rgba(200,61,80,0.1) 58%, rgba(200,61,80,0.75));
       }
       .work-card:nth-child(4)::before {
-        background: linear-gradient(135deg, rgba(255,107,107,0.75), rgba(255,107,107,0.1) 42%, rgba(251,113,133,0.1) 58%, rgba(251,113,133,0.75));
+        background: linear-gradient(135deg, rgba(200,61,80,0.75), rgba(200,61,80,0.1) 42%, rgba(184,46,98,0.1) 58%, rgba(184,46,98,0.75));
       }
       .work-featured:hover, .work-card:hover { border-color: var(--color-border-soft); }
       .work-featured:hover::before, .work-card:hover::before { opacity: 1; }
@@ -649,10 +516,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .featured-title { font-size: 26px; }
     .card-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--color-muted); margin-bottom: 20px; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--color-muted); background: rgba(13,10,26,0.6); border: 1px solid var(--color-border-soft); border-radius: 999px; padding: 3px 10px; }
+    .tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--color-muted); background: rgba(255,255,255,0.72); border: 1px solid var(--color-border-soft); border-radius: 999px; padding: 3px 10px; }
     .card-link { font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-coral); text-decoration: none; transition: color var(--transition); }
     .card-link:hover { color: var(--color-coral-hover); }
-    .featured-outcome { font-family: var(--font-body); font-style: italic; font-size: 15px; line-height: 1.65; color: var(--color-muted); border-left: 2px solid var(--color-gold); padding-left: 20px; margin-top: 28px; }
+    .featured-outcome { font-family: var(--font-body); font-style: italic; font-size: 15px; line-height: 1.65; color: var(--color-muted); margin-top: 28px; }
     .card-expand-btn {
       background: none; border: none; font-family: var(--font-mono); font-size: 10px;
       color: var(--color-faint); padding: 0; letter-spacing: 0.06em;
@@ -674,17 +541,14 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .research-heading {
       font-family: var(--font-heading); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
       font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
-      background: linear-gradient(135deg, var(--color-text), var(--color-purple));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--color-text);
       margin-bottom: 24px;
     }
     .research-lead { font-family: var(--font-body); font-size: 17px; line-height: 1.75; color: var(--color-muted); margin-bottom: 32px; }
     .research-stat-block {
       display: flex; flex-direction: column; gap: 20px;
       border: 1px solid var(--color-border-soft); border-radius: 16px; padding: 28px 32px;
-      background: rgba(21,17,49,0.54);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      background: var(--color-card);
     }
     .research-stat {
       padding-bottom: 20px; border-bottom: 1px solid var(--color-border-soft);
@@ -695,9 +559,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .stat-value {
       font-family: var(--font-heading); font-size: 28px; font-weight: 700;
       letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px;
-      background: linear-gradient(135deg, var(--color-purple), var(--color-cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--color-purple);
       transition: filter 300ms;
     }
     .stat-label { font-family: var(--font-body); font-size: 14px; color: var(--color-muted); line-height: 1.5; }
@@ -708,9 +570,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     #experience { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
     .exp-rows {
       display: flex; flex-direction: column;
-      border: 1px solid var(--color-border-soft); border-radius: 16px;
-      overflow: hidden; background: rgba(21,17,49,0.52);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      background: transparent;
     }
     .exp-row {
       display: grid; grid-template-columns: 170px minmax(0, 1fr) auto;
@@ -719,18 +579,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       transition: background 180ms ease;
       position: relative;
     }
-    .exp-row::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-      opacity: 0; transition: opacity 180ms ease;
-    }
-    .exp-row:nth-child(1)::before { background: var(--color-coral); }
-    .exp-row:nth-child(2)::before { background: var(--color-purple); }
-    .exp-row:nth-child(3)::before { background: var(--color-cyan); }
-    .exp-row:nth-child(4)::before { background: var(--color-gold); }
-    .exp-row:nth-child(5)::before { background: var(--color-rose); }
     .exp-row:last-child { border-bottom: none; }
-    .exp-row:hover { background: rgba(13,10,26,0.5); }
-    .exp-row:hover::before { opacity: 1; }
+    .exp-row:hover { background: var(--color-card-hover); }
     .exp-when {
       font-family: var(--font-mono); font-size: 11px; color: var(--color-faint);
       letter-spacing: 0.04em; white-space: nowrap;
@@ -753,7 +603,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .exp-stack {
       margin-top: 28px; display: flex; flex-direction: column; gap: 9px;
       padding: 24px 32px; border: 1px solid var(--color-border-soft); border-radius: 16px;
-      background: rgba(13,10,26,0.4);
+      background: rgba(255,255,255,0.68);
     }
     .stack-row { display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: baseline; }
     .stack-label {
@@ -771,11 +621,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       background: var(--color-panel);
       border: 1px solid var(--color-border-soft); border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(167,139,250,0.08);
     }
     .about-photo::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,107,107,0.15), transparent 40%, transparent 60%, rgba(78,205,196,0.1));
+      background: linear-gradient(135deg, rgba(200,61,80,0.1), transparent 40%, transparent 60%, rgba(8,122,118,0.08));
       pointer-events: none; z-index: 1;
     }
     .about-photo-img {
@@ -785,24 +634,21 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .about-prose p { font-family: var(--font-body); font-size: 16px; line-height: 1.8; color: var(--color-muted); margin-bottom: 20px; }
     .about-prose p:first-of-type {
       font-size: 19px; line-height: 1.7; color: var(--color-text); font-style: italic;
-      border-left: 2px solid var(--color-coral);
-      padding-left: 20px;
     }
     .about-facts { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
     .about-fact {
       font-family: var(--font-body); font-size: 14px; color: var(--color-muted);
-      padding-left: 20px; line-height: 1.5;
-      border-left: 2px solid var(--color-purple);
-      transition: border-color 150ms, color 150ms;
+      line-height: 1.5;
+      transition: color 150ms;
     }
-    .about-fact:hover { color: var(--color-text); border-color: var(--color-coral); }
+    .about-fact:hover { color: var(--color-text); }
 
     /* ── Now ─────────────────────────────────── */
     #now { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
     .now-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       border: 1px solid var(--color-border-soft); border-radius: 16px; overflow: hidden;
-      background: rgba(21,17,49,0.50);
+      background: var(--color-card);
     }
     .now-item {
       padding: 34px 38px; border-right: 1px solid var(--color-border-soft);
@@ -818,7 +664,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .now-item:nth-child(2)::before { background: var(--color-purple); box-shadow: 0 0 14px var(--color-purple-glow); }
     .now-item:nth-child(3)::before { background: var(--color-cyan); box-shadow: 0 0 14px var(--color-cyan-glow); }
     .now-item:nth-child(4)::before { background: var(--color-gold); box-shadow: 0 0 14px var(--color-gold-glow); }
-    .now-item:nth-child(5)::before { background: var(--color-rose); box-shadow: 0 0 14px rgba(251,113,133,0.25); }
+    .now-item:nth-child(5)::before { background: var(--color-rose); box-shadow: 0 0 14px rgba(184,46,98,0.2); }
     .now-item:nth-child(6)::before { background: var(--color-coral); box-shadow: 0 0 14px var(--color-coral-glow); }
     .now-item:hover::before { opacity: 0.85; }
     .now-item:last-child { border-right: none; }
@@ -850,13 +696,13 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     #now-strip {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
       height: 38px; border-top: 1px solid var(--color-border);
-      background: rgba(13,10,26,0.9);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       display: flex; align-items: center; padding: 0 48px; gap: 18px;
       font-family: var(--font-mono); font-size: 11px; color: var(--color-faint);
       letter-spacing: 0.04em;
-      box-shadow: 0 -10px 34px rgba(0,0,0,0.25);
+      box-shadow: 0 -4px 8px var(--color-shadow);
     }
     .strip-item { min-width: 0; display: flex; align-items: center; gap: 9px; white-space: nowrap; }
     .building-item { flex: 1 1 330px; }
@@ -910,7 +756,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     }
     .cursor-ring {
       position: fixed; width: 28px; height: 28px;
-      border: 1.5px solid rgba(255,107,107,0.5);
+      border: 1.5px solid rgba(200,61,80,0.55);
       border-radius: 50%;
       pointer-events: none; z-index: 10001;
       transform: translate(-50%,-50%);
@@ -920,22 +766,22 @@ for (let i = 0; i < githubContributions.length; i += 7) {
                   border-color 200ms, background 200ms, opacity 300ms,
                   box-shadow 220ms ease, transform 220ms ease;
       opacity: 0; background: transparent;
-      box-shadow: 0 0 28px rgba(255,107,107,0.08);
+      box-shadow: 0 0 20px rgba(200,61,80,0.08);
     }
     body:hover .cursor-dot, body:hover .cursor-ring { opacity: 1; }
 
     /* Lens: hero name */
     .cursor-ring.cur-lens {
       width: 76px; height: 76px;
-      border: 1px solid rgba(255,209,102,0.4);
-      backdrop-filter: blur(3px) brightness(1.2) saturate(1.2);
-      -webkit-backdrop-filter: blur(3px) brightness(1.2) saturate(1.2);
-      background: radial-gradient(circle at 35% 32%, rgba(255,255,255,0.14), rgba(255,107,107,0.06) 45%, rgba(255,209,102,0.03));
-      box-shadow: inset 0 1px 12px rgba(255,255,255,0.1), 0 0 50px var(--color-coral-glow);
+      border: 1px solid rgba(137,97,0,0.45);
+      backdrop-filter: blur(3px) brightness(0.98) saturate(1.2);
+      -webkit-backdrop-filter: blur(3px) brightness(0.98) saturate(1.2);
+      background: radial-gradient(circle at 35% 32%, rgba(255,255,255,0.5), rgba(200,61,80,0.05) 45%, rgba(137,97,0,0.03));
+      box-shadow: inset 0 1px 8px rgba(255,255,255,0.52), 0 0 24px var(--color-coral-glow);
     }
     .cursor-ring.cur-lens::after {
       content: ''; position: absolute; opacity: 1; inset: 13px;
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+      border: 1px solid rgba(24,21,34,0.1); border-radius: 50%;
       pointer-events: none;
     }
     .cursor-dot.cur-lens { width: 3px; height: 3px; opacity: 0.35; }
@@ -943,8 +789,8 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* Nav orb */
     .cursor-ring.cur-nav {
       width: 34px; height: 34px; border-radius: 50%;
-      border-color: rgba(255,107,107,0.45);
-      background: conic-gradient(from 40deg, rgba(255,107,107,0), rgba(255,107,107,0.4), rgba(255,209,102,0));
+      border-color: rgba(200,61,80,0.45);
+      background: conic-gradient(from 40deg, rgba(200,61,80,0), rgba(200,61,80,0.4), rgba(137,97,0,0));
       box-shadow: 0 0 30px var(--color-coral-glow);
     }
     .cursor-ring.cur-nav::before {
@@ -967,10 +813,10 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* Grid: heatmap */
     .cursor-ring.cur-grid {
       width: 34px; height: 18px; border-radius: 4px;
-      border-color: rgba(255,107,107,0.5);
+      border-color: rgba(200,61,80,0.5);
       background:
-        linear-gradient(90deg, transparent 7px, rgba(255,107,107,0.22) 8px, transparent 9px),
-        linear-gradient(0deg, transparent 7px, rgba(255,107,107,0.22) 8px, transparent 9px);
+        linear-gradient(90deg, transparent 7px, rgba(200,61,80,0.22) 8px, transparent 9px),
+        linear-gradient(0deg, transparent 7px, rgba(200,61,80,0.22) 8px, transparent 9px);
       background-size: 9px 9px;
       transform: translate(-50%,-50%) skewX(-10deg);
     }
@@ -986,7 +832,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* Expand: cards */
     .cursor-ring.cur-expand {
       width: 20px; height: 20px; border-radius: 2px;
-      border-color: rgba(78,205,196,0.9);
+      border-color: rgba(8,122,118,0.9);
       box-shadow: 0 0 20px var(--color-cyan-glow);
     }
     .cursor-dot.cur-expand {
@@ -1008,7 +854,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     .cursor-ring.cur-close {
       width: 30px; height: 30px; border-radius: 4px;
-      border-color: rgba(255,107,107,0.85);
+      border-color: rgba(200,61,80,0.85);
       transform: translate(-50%,-50%) rotate(45deg);
     }
     .cursor-dot.cur-close {
@@ -1025,7 +871,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .cursor-ring.cur-square {
       width: 10px; height: 10px; border-radius: 2px;
       border-color: var(--color-purple);
-      background: rgba(167,139,250,0.14);
+      background: rgba(101,71,180,0.14);
       box-shadow: 0 0 20px var(--color-purple-glow);
     }
     .cursor-dot.cur-square { width: 4px; height: 4px; border-radius: 1px; }
@@ -1033,14 +879,14 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     /* CTA pulse */
     .cursor-ring.cur-cta {
       width: 64px; height: 64px;
-      border-color: rgba(255,107,107,0.55);
+      border-color: rgba(200,61,80,0.55);
       animation: cta-ring-pulse 1.2s ease-in-out infinite;
-      background: rgba(255,107,107,0.03);
+      background: rgba(200,61,80,0.03);
     }
     .cursor-dot.cur-cta { width: 6px; height: 6px; }
     @keyframes cta-ring-pulse {
       0%, 100% { box-shadow: 0 0 0 0 var(--color-coral-glow); }
-      50% { box-shadow: 0 0 0 10px rgba(255,107,107,0); }
+      50% { box-shadow: 0 0 0 10px rgba(200,61,80,0); }
     }
 
     /* Arrow: links */
@@ -1072,13 +918,13 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     .cursor-ring.cur-orb {
       width: 36px; height: 36px;
-      border-color: rgba(255,209,102,0.6);
-      background: rgba(255,107,107,0.04);
+      border-color: rgba(137,97,0,0.6);
+      background: rgba(200,61,80,0.04);
       box-shadow: inset 0 1px 10px rgba(255,255,255,0.1), 0 0 30px var(--color-coral-glow);
     }
     .cursor-dot.cur-orb {
       width: 8px; height: 8px;
-      background: rgba(255,209,102,0.95);
+      background: rgba(224,164,46,0.95);
       box-shadow: 0 0 14px var(--color-gold-glow);
     }
 
@@ -1163,7 +1009,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .bg-aurora, .bg-aurora-2, .grain, .sky, .sky *, .orb-float, .strip-dot, .strip-ticker-track {
+      .orb-float, .strip-dot, .strip-ticker-track {
         animation: none !important;
       }
     }
@@ -1171,67 +1017,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 </head>
 <body>
 
-<div class="bg-aurora" aria-hidden="true"></div>
-<div class="bg-aurora-2" aria-hidden="true"></div>
-<div class="bg-grid" aria-hidden="true"></div>
-<svg class="sky" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <path d="M1128 96 L1204 148 L1298 122 L1352 208 M1298 122 L1310 236"/>
-  <path d="M96 388 L176 428 L152 516 L242 560"/>
-  <path d="M872 742 L948 700 L1042 726 L1096 788"/>
-  <line class="meteor meteor-1" x1="0" y1="0" x2="86" y2="0"/>
-  <line class="meteor meteor-2" x1="0" y1="0" x2="64" y2="0"/>
-  <line class="meteor meteor-3" x1="0" y1="0" x2="52" y2="0"/>
-  <circle cx="1128" cy="96" r="1.5" class="tw"/>
-  <circle cx="1204" cy="148" r="1.3" class="st-gold tw tw2"/>
-  <circle cx="1298" cy="122" r="1.6" class="tw tw3"/>
-  <circle cx="1352" cy="208" r="1.4"/>
-  <circle cx="1310" cy="236" r="1.2" class="st-cyan tw tw5"/>
-  <circle cx="96" cy="388" r="1.4" class="tw tw4"/>
-  <circle cx="176" cy="428" r="1.5" class="st-purple tw"/>
-  <circle cx="152" cy="516" r="1.2"/>
-  <circle cx="242" cy="560" r="1.5" class="st-coral tw tw2"/>
-  <circle cx="872" cy="742" r="1.4" class="tw tw5"/>
-  <circle cx="948" cy="700" r="1.5" class="st-gold tw tw4"/>
-  <circle cx="1042" cy="726" r="1.2"/>
-  <circle cx="1096" cy="788" r="1.4" class="st-cyan tw"/>
-  <circle cx="72" cy="84" r="1.2" class="st-dim"/>
-  <circle cx="233" cy="166" r="1" class="tw tw5"/>
-  <circle cx="388" cy="64" r="1.3" class="st-gold tw tw2"/>
-  <circle cx="521" cy="142" r="0.9" class="st-dim"/>
-  <circle cx="668" cy="88" r="1.1" class="tw tw3"/>
-  <circle cx="804" cy="178" r="1" class="st-purple"/>
-  <circle cx="943" cy="66" r="1.2" class="st-dim"/>
-  <circle cx="1062" cy="182" r="0.9" class="tw tw4"/>
-  <circle cx="1394" cy="86" r="1.1" class="st-cyan tw tw3"/>
-  <circle cx="58" cy="262" r="1" class="tw tw2"/>
-  <circle cx="177" cy="332" r="1.2" class="st-cyan"/>
-  <circle cx="334" cy="282" r="0.9" class="st-dim"/>
-  <circle cx="626" cy="244" r="1.3" class="tw tw4"/>
-  <circle cx="766" cy="318" r="0.9" class="st-dim"/>
-  <circle cx="1013" cy="296" r="1.1" class="st-gold"/>
-  <circle cx="1226" cy="318" r="1" class="st-dim tw tw3"/>
-  <circle cx="1408" cy="354" r="1.2" class="tw"/>
-  <circle cx="268" cy="458" r="1" class="st-dim"/>
-  <circle cx="438" cy="414" r="1.2" class="st-coral tw tw5"/>
-  <circle cx="588" cy="486" r="0.9" class="st-dim"/>
-  <circle cx="872" cy="438" r="1" class="tw tw4"/>
-  <circle cx="1120" cy="462" r="1.3" class="st-purple tw tw2"/>
-  <circle cx="1322" cy="514" r="0.9" class="st-dim tw"/>
-  <circle cx="94" cy="648" r="1.1" class="tw tw2"/>
-  <circle cx="296" cy="688" r="1.3" class="st-gold tw tw3"/>
-  <circle cx="494" cy="634" r="0.9" class="st-dim"/>
-  <circle cx="642" cy="712" r="1.1" class="st-cyan"/>
-  <circle cx="752" cy="626" r="0.9" class="st-dim"/>
-  <circle cx="1214" cy="642" r="1.1"/>
-  <circle cx="1372" cy="708" r="1.2" class="st-coral"/>
-  <circle cx="180" cy="822" r="0.9" class="st-dim"/>
-  <circle cx="418" cy="796" r="1.1" class="tw tw5"/>
-  <circle cx="568" cy="846" r="1" class="st-dim"/>
-  <circle cx="704" cy="806" r="1.2" class="st-purple tw tw4"/>
-  <circle cx="1152" cy="852" r="1" class="st-dim"/>
-  <circle cx="1288" cy="796" r="0.9"/>
-</svg>
-<div class="grain" aria-hidden="true"></div>
+<canvas class="ambient-field" id="ambientField" aria-hidden="true"></canvas>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -1240,12 +1026,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <div class="strip-item building-item">
     <span class="strip-dot"></span>
     <span class="strip-label">Building</span>
-    <span class="strip-value strip-ticker">
-      <span class="strip-ticker-track">
-        <span>Atlas LMS &middot; Canvas Agent &middot; Ramapo DMC data infrastructure</span>
-        <span aria-hidden="true">Atlas LMS &middot; Canvas Agent &middot; Ramapo DMC data infrastructure</span>
+      <span class="strip-value strip-ticker">
+        <span class="strip-ticker-track">
+        <span>Atlas LMS</span>
+        <span aria-hidden="true">Atlas LMS</span>
+        </span>
       </span>
-    </span>
   </div>
   <span class="strip-sep recognition-sep">&middot;</span>
   <div class="strip-item recognition-item">
@@ -1312,12 +1098,12 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   </div>
   <span class="orb-label" aria-hidden="true">Menu</span>
   <nav class="orb-menu" id="orbMenu" aria-label="Site navigation">
-    <a href="#work" data-index="01">Work</a>
-    <a href="#research" data-index="02">Research</a>
-    <a href="#experience" data-index="03">Experience</a>
-    <a href="#about" data-index="04">About</a>
-    <a href="#now" data-index="05">Now</a>
-    <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`} data-index="PDF">Resume</a>
+    <a href="#work">Work</a>
+    <a href="#research">Research</a>
+    <a href="#experience">Experience</a>
+    <a href="#about">About</a>
+    <a href="#now">Now</a>
+    <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`}>Resume</a>
   </nav>
 </div>
 
@@ -1376,7 +1162,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <!-- Work -->
 <section id="work">
   <div class="section-inner">
-    <h2 class="section-label" data-index="01">Selected Work</h2>
+    <h2 class="section-label">Selected Work</h2>
     <div class="work-card work-atlas reveal reveal-delay-1">
       <div>
         <div class="card-eyebrow">Stealth Startup &middot; 2026</div>
@@ -1452,9 +1238,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <div class="card-tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Azure Functions</span><span class="tag">SPFx</span></div>
       </div>
       <div class="work-card reveal reveal-delay-4">
-        <div class="card-eyebrow">Ramapo DMC - Center for Food Action &middot; 2025&ndash;Present</div>
+        <div class="card-eyebrow">Ramapo DMC - Center for Food Action &middot; 2025&ndash;2026</div>
         <h3 class="card-title">Food Pantry Data Infrastructure</h3>
-        <p class="card-body">I am overhauling the data path from donation intake through pricing, inventory, review, PantrySoft handoff, reconciliation, dashboards, and recurring reports. The organization reaches about 40,000 people annually across 6 pantries. Featured on News 12 NJ.</p>
+        <p class="card-body">I overhauled the data path from donation intake through pricing, inventory, review, PantrySoft handoff, reconciliation, dashboards, and recurring reports. The organization reaches about 40,000 people annually across 6 pantries. Featured on News 12 NJ.</p>
         <div class="card-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span></div>
       </div>
       <div class="work-card reveal reveal-delay-4">
@@ -1471,7 +1257,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <!-- Research -->
 <section id="research">
   <div class="section-inner">
-    <h2 class="section-label" data-index="02">Research</h2>
+    <h2 class="section-label">Research</h2>
     <div class="research-layout">
       <div>
         <h3 class="research-heading">Resolving Intent-Content Conflict in Retrieval</h3>
@@ -1506,14 +1292,23 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <!-- Experience -->
 <section id="experience">
   <div class="section-inner">
-    <h2 class="section-label" data-index="03">Experience</h2>
+    <h2 class="section-label">Experience</h2>
     <div class="exp-rows reveal">
       <div class="exp-row">
-        <span class="exp-when">Sep 2025 &mdash; Now</span>
+        <span class="exp-when">Jun 2026 &mdash; Now</span>
+        <div class="exp-main">
+          <span class="exp-title">Founder</span>
+          <span class="exp-at">&middot; Atlas LMS</span>
+          <p class="exp-detail">Building an agent-first learning platform.</p>
+        </div>
+        <span class="exp-note">Startup</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-when">Sep 2025 &mdash; Jun 2026</span>
         <div class="exp-main">
           <span class="exp-title">Data Engineer</span>
           <span class="exp-at">&middot; Ramapo DMC - Center for Food Action &middot; Contract</span>
-          <p class="exp-detail">Overhauling the data path from intake through pricing, inventory, reconciliation, PantrySoft handoff, dashboards, and reporting.</p>
+          <p class="exp-detail">Overhauled the data path from intake through pricing, inventory, reconciliation, PantrySoft handoff, dashboards, and reporting.</p>
         </div>
         <span class="exp-note">Featured on News 12 NJ</span>
       </div>
@@ -1600,7 +1395,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <!-- About -->
 <section id="about">
   <div class="section-inner">
-    <h2 class="section-label" data-index="04">About</h2>
+    <h2 class="section-label">About</h2>
     <div class="about-layout">
       <div class="about-photo reveal">
         <picture>
@@ -1629,7 +1424,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <p class="reveal">I grew up speaking three languages and moving between worlds. That shapes how I see problems: I'm always translating, always aware there's more than one way to frame something.</p>
         <p class="reveal reveal-delay-1">I came to computer science because software is one of the few tools that actually scales. At Ramapo I studied CS and Data Science and worked as a Data Analyst, building reporting workflows over student records, surveys, attendance, and performance data. I also managed 17 resident assistants and a residential community of 200+ students.</p>
         <p class="reveal reveal-delay-2">At Trimble, Novartis, and Ramapo DMC - Center for Food Action, I kept returning to the same problem: useful software starts with understanding how data moves, where decisions break, and what the person using the system needs to trust. My research applies that question to retrieval systems and learning technology.</p>
-        <p class="reveal reveal-delay-3">I am building Atlas LMS toward a startup while continuing the Ramapo DMC - Center for Food Action infrastructure overhaul. I am also looking for full-time Software Engineer and Data Engineer roles where I can own real systems.</p>
+        <p class="reveal reveal-delay-3">I am building Atlas LMS as a startup. I am also looking for full-time Software Engineer and Data Engineer roles where I can own real systems.</p>
         <div class="about-facts reveal reveal-delay-4">
           <div class="about-fact">Canstruction: 1st place, building structures from canned food</div>
           <div class="about-fact">Best Research Award, Ramapo College</div>
@@ -1644,11 +1439,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <!-- Now -->
 <section id="now">
   <div class="section-inner">
-    <h2 class="section-label" data-index="05">Now <span style="font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--color-faint);letter-spacing:0.04em;text-transform:none">Updated July 2026</span></h2>
+    <h2 class="section-label">Now <span style="font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--color-faint);letter-spacing:0.04em;text-transform:none">Updated August 2026</span></h2>
     <div class="now-grid">
       <div class="now-item reveal">
         <div class="now-item-label">Building</div>
-        <p class="now-item-text">Building Atlas LMS as a startup. At Ramapo DMC - Center for Food Action, overhauling the path from intake and inventory through reconciliation, dashboards, and reporting.</p>
+        <p class="now-item-text">Atlas LMS.</p>
       </div>
       <div class="now-item reveal reveal-delay-1">
         <div class="now-item-label">Researching</div>
@@ -1710,6 +1505,9 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
 <script>
 import Lenis from 'lenis';
+import { startAmbientField } from '../scripts/ambient-field';
+
+startAmbientField(document.getElementById('ambientField'));
 
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
