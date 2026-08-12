@@ -470,9 +470,11 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .work-atlas {
       display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
       align-items: center; gap: 44px; margin-bottom: 20px; padding-block: 26px;
+      color: inherit; text-decoration: none; cursor: pointer;
     }
     .work-atlas .card-title { margin-bottom: 0; }
-    .work-atlas .card-body { margin-bottom: 0; max-width: 620px; }
+    .work-atlas-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .work-atlas .card-body { margin-bottom: 0; max-width: 680px; }
     .work-card:hover {
       border-color: rgba(8,122,118,0.3);
       transform: translateY(-2px);
@@ -1163,14 +1165,32 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 <section id="work">
   <div class="section-inner">
     <h2 class="section-label">Selected Work</h2>
-    <div class="work-card work-atlas reveal reveal-delay-1">
+    <div class="work-featured reveal">
       <div>
-        <div class="card-eyebrow">Stealth Startup &middot; 2026</div>
+        <div class="card-eyebrow">Personal &middot; 2024</div>
+        <h3 class="card-title featured-title">Moodie</h3>
+        <div class="card-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
+        <a href="https://moodie-server-mauve.vercel.app/" class="card-link" target="_blank" rel="noopener">View Live &rarr;</a>
+        <a href="https://github.com/Prashant002-1/Moodie.git" class="card-link" style="margin-left:16px" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+      </div>
+      <div class="featured-context">
+        <p class="card-body">Movie recommendations usually ignore how you are feeling. I built Moodie to detect emotion on-device and combine it with genre preferences through a hybrid recommendation system.</p>
+        <div class="featured-outcome">69 tests covering authentication, SQL injection, and recommendation accuracy.</div>
+      </div>
+    </div>
+    <a href="https://atlas-lms.com" class="work-card work-atlas reveal reveal-delay-1" target="_blank" rel="noopener" aria-label="Visit Atlas LMS">
+      <div>
+        <div class="card-eyebrow">Startup &middot; Soft launch &middot; 2026</div>
         <h3 class="card-title">Atlas LMS</h3>
       </div>
-      <p class="card-body">Revolutionizing learning. More soon.</p>
-    </div>
-    <div class="work-featured reveal">
+      <div class="work-atlas-copy">
+        <p class="card-body">Atlas LMS is in soft launch. We have early customer interest, and I am testing it with people now.</p>
+        <p class="card-body">AI in education is still early. Atlas takes a different approach: I am turning the strongest ideas from modern agent harnesses into a system built specifically for education, where AI operates inside courses, student records, teacher controls, and the work already happening in an LMS.</p>
+        <p class="card-body">I started the product and codebase from scratch, lead engineering as the only developer, manage its multi-tenant AWS infrastructure, and ship features every day.</p>
+        <span class="card-link">Visit atlas-lms.com &rarr;</span>
+      </div>
+    </a>
+    <div class="work-featured reveal reveal-delay-2">
       <div>
         <div class="card-eyebrow">HackRamapo Winner &middot; 2026</div>
         <h3 class="card-title featured-title">Canvas Agent</h3>
@@ -1196,14 +1216,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       </div>
     </div>
     <div class="work-grid">
-      <div class="work-card reveal reveal-delay-1">
-        <div class="card-eyebrow">Personal &middot; 2024</div>
-        <h3 class="card-title">Moodie</h3>
-        <p class="card-body">Movie recommendations ignore how you're feeling. On-device facial emotion detection mapped to genre preferences via hybrid scoring. 69 tests covering auth, SQL injection, and recommendation accuracy.</p>
-        <div class="card-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
-        <a href="https://moodie-server-mauve.vercel.app/" class="card-link" target="_blank" rel="noopener">View Live &rarr;</a>
-        <a href="https://github.com/Prashant002-1/Moodie.git" class="card-link" style="margin-left:16px" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-      </div>
       <div class="work-card reveal reveal-delay-1">
         <div class="card-eyebrow">Personal &middot; 2026</div>
         <h3 class="card-title">Hermes JobApps</h3>
@@ -1261,28 +1273,29 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     <div class="research-layout">
       <div>
         <h3 class="research-heading">Resolving Intent-Content Conflict in Retrieval</h3>
-        <p class="research-lead">When someone asks for "a happy movie about war," intent and content semantics disagree. Most systems optimize one signal. This work asks whether you can separate topical match from affective fit and resolve the conflict explicitly.</p>
-        <p class="research-method"><strong>How:</strong> KRAG on MovieLens 25M: a heterogeneous knowledge graph with User, Movie, and Emotion nodes and weighted EVOKES edges. A Graph Transformer encoder is aligned to Sentence-BERT so graph and text scores fuse coherently; ranking uses semantic + graph relevance minus a tunable affective displacement penalty.</p>
-        <p class="research-method"><strong>What we found:</strong> Dissonance (topic vs. emotion conflict) is the hard case, and where evidence concentrates: larger gains vs. baselines there than under agreement, including a large paired effect on affective displacement when the penalty is on (<em>d</em><sub>z</sub> = &minus;1.51). Edge-removal tests show emotion edges are causally necessary; necessity is ~2.3&times; higher under dissonance than agreement, so the graph matters most when signals clash.</p>
+        <p class="research-lead">Most retrieval systems treat relevance as topical similarity. A request for "a happy movie about war" exposes the failure: the topic is right, but the intended experience conflicts with the topic&rsquo;s usual affect. We formalized this as intent-content conflict and built KRAG to rank for both.</p>
+        <p class="research-method"><strong>How:</strong> KRAG aligns two-hop graph representations with Sentence-BERT, then reranks semantic candidates using topical, relational, and six-dimensional affective signals. The evaluated graph contains 56,320 movies, 19 genres, 6 emotions, and 322,791 directed edges. Graph construction and message passing happen offline, so online retrieval stays bounded to 30 candidates.</p>
+        <p class="research-method"><strong>What we found:</strong> Across 1,600 controlled trials, the strongest gains appeared where topic and intent disagreed. Against the same KRAG candidate pool with affective weighting off, ADE@10 fell from 0.384 to 0.347 (<em>d</em><sub>z</sub> = &minus;2.12), improving in all six conflict scenarios. Affective KRAG returned at least one jointly relevant top-ten result in 521 of 800 conflict trials, compared with 263 for Vector-RAG.</p>
+        <p class="research-method"><strong>Mechanism:</strong> Removing each top result&rsquo;s dominant Movie&ndash;Emotion relation produced a 2.3&times; larger rank-aware score reduction under conflict than agreement. The intervention supports the intended mechanism: graph evidence matters most when the signals disagree.</p>
         <p class="research-method">KRAG Paper accepted to NGEN-AI 2026. Received the Best Research Award at Ramapo College. Presented at the Ramapo DMC Fair and Scholar&rsquo;s Day.</p>
         <p class="research-method" style="margin-bottom:0"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" class="card-link" target="_blank" rel="noopener">KRAG on GitHub &rarr;</a></p>
       </div>
       <div class="research-stat-block">
         <div class="research-stat reveal">
           <div class="stat-value">1,600</div>
-          <div class="stat-label">synthetic queries (agreement vs. dissonance)</div>
+          <div class="stat-label">controlled trials split evenly between agreement and intent-content conflict</div>
         </div>
         <div class="research-stat reveal reveal-delay-1">
-          <div class="stat-value">&minus;1.51</div>
-          <div class="stat-label">large <em>d</em><sub>z</sub> paired effect: affective displacement error drops in conflict when the penalty is on</div>
+          <div class="stat-value">521 / 800</div>
+          <div class="stat-label">conflict trials with at least one jointly relevant result in the top ten, compared with 263 / 800 for Vector-RAG</div>
         </div>
         <div class="research-stat reveal reveal-delay-2">
-          <div class="stat-value">Causal</div>
-          <div class="stat-label">perturbing dominant EVOKES edges drops fused scores; baselines that ignore the graph show zero necessity by design</div>
+          <div class="stat-value">&minus;2.12</div>
+          <div class="stat-label">paired <em>d</em><sub>z</sub> effect as affective displacement error fell from 0.384 to 0.347 under conflict</div>
         </div>
         <div class="research-stat reveal reveal-delay-3">
-          <div class="stat-value">~2.3&times;</div>
-          <div class="stat-label">higher edge-necessity (FNS) in dissonance vs. agreement</div>
+          <div class="stat-value">2.3&times;</div>
+          <div class="stat-label">larger rank-aware score reduction after removing the dominant emotion relation under conflict than agreement</div>
         </div>
       </div>
     </div>
@@ -1299,7 +1312,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <div class="exp-main">
           <span class="exp-title">Founder</span>
           <span class="exp-at">&middot; Atlas LMS</span>
-          <p class="exp-detail">Building an agent-first learning platform.</p>
+          <p class="exp-detail">Leading product and engineering solo across a multi-tenant AWS learning platform built from scratch.</p>
         </div>
         <span class="exp-note">Startup</span>
       </div>
@@ -1326,7 +1339,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
         <div class="exp-main">
           <span class="exp-title">Research Assistant</span>
           <span class="exp-at">&middot; Ramapo College</span>
-          <p class="exp-detail">Built and evaluated a Vertex AI retrieval pipeline over MovieLens 25M for cases where topical relevance and user intent disagree.</p>
+          <p class="exp-detail">Built and evaluated an emotion-aware knowledge graph retriever over MovieLens 25M for cases where topical relevance and user intent disagree.</p>
         </div>
         <span class="exp-note">Best Research Award</span>
       </div>
@@ -1447,7 +1460,7 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       </div>
       <div class="now-item reveal reveal-delay-1">
         <div class="now-item-label">Researching</div>
-        <p class="now-item-text">The KRAG Paper was accepted to NGEN-AI 2026. I am continuing the research thread on what retrieval systems do when topical similarity and a user&rsquo;s actual intent point in different directions.</p>
+        <p class="now-item-text">The KRAG Paper was accepted to NGEN-AI 2026. Across 1,600 controlled trials, it showed the largest gains when topical relevance and a user&rsquo;s intended experience pointed in different directions.</p>
       </div>
       <div class="now-item reveal reveal-delay-2">
         <div class="now-item-label">Learning</div>
