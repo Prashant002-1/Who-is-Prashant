@@ -1,47 +1,24 @@
 ---
-type Contribution = {
-  date: string;
-  count: number;
-  level: number;
-};
-
-const githubYear = "2026";
-const todayIso = new Date().toISOString().slice(0, 10);
-const githubResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/Prashant002-1?y=${githubYear}`);
-
-if (!githubResponse.ok) {
-  throw new Error(`GitHub contributions request failed: ${githubResponse.status}`);
-}
-
-const githubData = await githubResponse.json();
-const githubContributions: Contribution[] = (githubData.contributions || [])
-  .filter((day: Contribution) => day.date?.startsWith(githubYear));
-
-const githubTotal = githubContributions.reduce((sum, day) => day.date <= todayIso ? sum + (day.count || 0) : sum, 0);
-const githubWeeks: Contribution[][] = [];
-
-for (let i = 0; i < githubContributions.length; i += 7) {
-  githubWeeks.push(githubContributions.slice(i, i + 7));
-}
+import '../styles/portfolio.css';
 ---
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Prashant Shah, software engineer and data systems builder." />
+  <meta name="description" content="Prashant Shah. Software and data engineer who builds AI products. Selected work, retrieval research, and experience at Trimble, Novartis, and Ramapo DMC." />
   <meta name="theme-color" content="#F4F5F7" />
   <meta property="og:title" content="Prashant Shah" />
-  <meta property="og:description" content="Software engineer and data systems builder." />
+  <meta property="og:description" content="Software and data engineer who builds AI products." />
+  <link rel="canonical" href="https://www.prashantshah.tech/" />
+  <meta property="og:url" content="https://www.prashantshah.tech/" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Prashant Shah</title>
+  <title>Prashant Shah | Software &amp; Data Engineer</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       color-scheme: light;
@@ -86,613 +63,6 @@ for (let i = 0; i < githubContributions.length; i += 7) {
       --max-content: 1100px;
       --transition: 180ms ease;
     }
-
-    html { scroll-behavior: smooth; }
-    html.lenis {
-      height: auto;
-      scroll-behavior: auto;
-    }
-    html.lenis body { height: auto; }
-    .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
-    .lenis [data-lenis-prevent],
-    .lenis [data-lenis-prevent-wheel],
-    .lenis [data-lenis-prevent-touch],
-    .lenis [data-lenis-prevent-vertical],
-    .lenis [data-lenis-prevent-horizontal] {
-      overscroll-behavior: contain;
-    }
-    .lenis.lenis-smooth iframe { pointer-events: none; }
-    body {
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      padding-bottom: 86px;
-      isolation: isolate;
-      position: relative;
-    }
-
-    .ambient-field {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -5;
-      background: var(--color-bg);
-    }
-
-    /* Hide default cursor when custom is active */
-    @media (hover: hover) and (pointer: fine) {
-      html, body, body *, body *::before, body *::after {
-        cursor: none !important;
-      }
-    }
-    @media (hover: none), (pointer: coarse) {
-      .cursor-dot, .cursor-ring { display: none; }
-    }
-    ::selection { background: rgba(200,61,80,0.2); color: var(--color-text); }
-    :focus-visible { outline: 1px solid var(--color-coral); outline-offset: 3px; }
-
-    /* ── Orb navigation ─────────────────────── */
-    .orb-nav {
-      --pull-x: 0px; --pull-y: 0px;
-      --orb-x: calc(100vw - 68px); --orb-y: 34px;
-      position: fixed; top: 0; left: 0; z-index: 260;
-      width: 34px; height: 34px;
-      display: grid; place-items: center;
-      transform: translate3d(var(--orb-x), var(--orb-y), 0);
-      transition: transform 260ms cubic-bezier(0.16,1,0.3,1);
-    }
-    .orb-float {
-      display: grid; place-items: center;
-      animation: orb-float 4.8s ease-in-out infinite;
-    }
-    .orb-button {
-      position: relative; width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 1px solid rgba(200,61,80,0.5);
-      background:
-        radial-gradient(circle at 34% 28%, rgba(255,213,113,0.34), rgba(200,61,80,0.18) 28%, transparent 48%),
-        linear-gradient(135deg, rgba(200,61,80,0.42), rgba(63,42,96,0.92));
-      box-shadow:
-        inset 0 1px 4px rgba(255,255,255,0.1),
-        inset 0 -8px 16px rgba(0,0,0,0.3),
-        0 0 20px var(--color-coral-glow);
-      backdrop-filter: blur(10px) saturate(1.3);
-      -webkit-backdrop-filter: blur(10px) saturate(1.3);
-      transform: translate3d(var(--pull-x), var(--pull-y), 0);
-      transition: transform 120ms ease-out, opacity 150ms ease, scale 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
-    }
-    .orb-button::before {
-      content: ''; position: absolute; inset: 7px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.12);
-      opacity: 0.9;
-    }
-    .orb-button::after {
-      content: ''; position: absolute;
-      width: 5px; height: 5px;
-      top: 7px; left: 8px;
-      border-radius: 50%;
-      background: rgba(224,164,46,0.92);
-      box-shadow: 0 0 8px var(--color-gold-glow);
-    }
-    .orb-trigger {
-      position: absolute; inset: -42px;
-      border: 0; border-radius: 999px;
-      background: transparent; padding: 0;
-    }
-    .orb-trigger:focus-visible {
-      outline: 1px solid rgba(200,61,80,0.8);
-      outline-offset: -28px;
-    }
-    .orb-label {
-      position: absolute; top: 50%; right: 46px;
-      transform: translateY(-50%);
-      font-family: var(--font-heading); font-size: 9.5px; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--color-muted);
-      padding: 5px 10px 5px 12px;
-      border: 1px solid var(--color-border-soft); border-radius: 999px;
-      background: rgba(255,255,255,0.84);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      white-space: nowrap; pointer-events: none;
-      transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
-    }
-    .orb-nav:hover .orb-label,
-    .orb-nav.pulling .orb-label {
-      color: var(--color-text);
-      border-color: rgba(200,61,80,0.45);
-    }
-    .orb-nav.open .orb-label { opacity: 0; }
-    .orb-nav.hero-mode .orb-label {
-      top: -36px; right: 50%; bottom: auto;
-      transform: translateX(50%);
-    }
-    .orb-nav:focus-within .orb-menu {
-      opacity: 1; pointer-events: auto;
-      transform: scale(1) translate3d(0, 0, 0);
-    }
-    .orb-nav:focus-within .orb-label { opacity: 0; }
-    .orb-nav.pulling .orb-button {
-      border-color: rgba(200,61,80,0.8);
-      box-shadow: inset 0 1px 4px rgba(255,255,255,0.12), inset 0 -8px 16px rgba(0,0,0,0.3), 0 0 30px var(--color-coral-glow);
-    }
-    .orb-nav.open .orb-button {
-      opacity: 0; scale: 0.22;
-    }
-    .orb-nav.collapsing .orb-button {
-      scale: 1.18; opacity: 0.78;
-    }
-    .orb-menu {
-      position: absolute; top: -8px; right: -8px;
-      width: 190px; padding: 12px;
-      border: 1px solid var(--color-border-soft);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(20px) saturate(1.3);
-      -webkit-backdrop-filter: blur(20px) saturate(1.3);
-      box-shadow: 0 8px 18px var(--color-shadow);
-      transform-origin: 88% 16%;
-      transform: scale(0.18) translate3d(18px, -18px, 0);
-      opacity: 0; pointer-events: none;
-      transition: opacity 140ms ease, transform 180ms cubic-bezier(0.16,1,0.3,1);
-    }
-    .orb-nav.collapsing .orb-menu {
-      opacity: 0;
-      transform: scale(0.14) translate3d(18px, -18px, 0);
-      transition-duration: 150ms;
-    }
-    .orb-nav.open .orb-menu {
-      opacity: 1; pointer-events: auto;
-      transform: scale(1) translate3d(0, 0, 0);
-    }
-    .orb-menu a {
-      display: flex; align-items: center;
-      min-height: 34px; padding: 0 28px 0 10px;
-      border-radius: 10px;
-      font-family: var(--font-heading); font-size: 13px; font-weight: 600;
-      color: var(--color-muted); text-decoration: none;
-      transition: background 130ms ease, color 130ms ease, transform 130ms ease;
-    }
-    .orb-menu a:hover,
-    .orb-menu a.active {
-      color: var(--color-text);
-      background: var(--color-coral-dim);
-      transform: translateX(2px);
-    }
-    .orb-nav.hero-mode .orb-menu {
-      top: -172px; left: -142px; right: auto;
-      width: 318px; height: auto; padding: 14px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(242,240,247,0.94));
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 200ms ease;
-    }
-    .orb-nav.hero-mode.open .orb-menu,
-    .orb-nav.hero-mode:focus-within .orb-menu {
-      opacity: 1; pointer-events: auto;
-    }
-    .orb-nav.hero-mode.collapsing .orb-menu {
-      opacity: 0; pointer-events: none;
-    }
-    .orb-nav.hero-mode .orb-menu a {
-      position: relative; min-height: 36px; padding: 0 12px;
-      border: 1px solid var(--color-border-soft);
-      background: rgba(255,255,255,0.68); justify-content: space-between;
-      transform: scale(0); opacity: 0;
-      transition: transform 300ms cubic-bezier(0.16,1,0.3,1), opacity 200ms ease;
-    }
-    .orb-nav.hero-mode .orb-menu a:nth-child(1) { transition-delay: 200ms; }
-    .orb-nav.hero-mode .orb-menu a:nth-child(2) { transition-delay: 160ms; }
-    .orb-nav.hero-mode .orb-menu a:nth-child(3) { transition-delay: 120ms; }
-    .orb-nav.hero-mode .orb-menu a:nth-child(4) { transition-delay: 80ms; }
-    .orb-nav.hero-mode .orb-menu a:nth-child(5) { transition-delay: 40ms; }
-    .orb-nav.hero-mode .orb-menu a:nth-child(6) { transition-delay: 0ms; }
-    .orb-nav.hero-mode.open .orb-menu a,
-    .orb-nav.hero-mode:focus-within .orb-menu a {
-      transform: scale(1); opacity: 1;
-    }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(1) { transition-delay: 0ms; }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(2) { transition-delay: 40ms; }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(3) { transition-delay: 80ms; }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(4) { transition-delay: 120ms; }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(5) { transition-delay: 160ms; }
-    .orb-nav.hero-mode.open .orb-menu a:nth-child(6) { transition-delay: 200ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a {
-      transform: scale(0); opacity: 0;
-    }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(1) { transition-delay: 200ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(2) { transition-delay: 160ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(3) { transition-delay: 120ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(4) { transition-delay: 80ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(5) { transition-delay: 40ms; }
-    .orb-nav.hero-mode.collapsing .orb-menu a:nth-child(6) { transition-delay: 0ms; }
-    .orb-nav.hero-mode .orb-menu a:hover,
-    .orb-nav.hero-mode .orb-menu a.active {
-      transform: scale(1) translateY(-1px);
-      border-color: rgba(200,61,80,0.25);
-    }
-    @keyframes orb-float {
-      0%, 100% { transform: translateY(-2px); }
-      50% { transform: translateY(5px); }
-    }
-    @keyframes orb-heartbeat {
-      0%, 100% { transform: scale(1); }
-      8% { transform: scale(1.14); }
-      16% { transform: scale(1); }
-      24% { transform: scale(1.08); }
-      32% { transform: scale(1); }
-    }
-    @keyframes orb-ripple {
-      0%, 100% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0.3); }
-      8% { box-shadow: 0 0 18px var(--color-coral-glow), 0 0 0 14px rgba(200,61,80,0); }
-      16% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0); }
-      24% { box-shadow: 0 0 14px var(--color-coral-glow), 0 0 0 8px rgba(200,61,80,0); }
-      32% { box-shadow: 0 0 10px var(--color-coral-glow), 0 0 0 0 rgba(200,61,80,0); }
-    }
-    .orb-nav.hero-mode .orb-float {
-      animation: orb-heartbeat 2.2s ease-in-out infinite;
-    }
-    .orb-nav.hero-mode .orb-button {
-      animation: orb-ripple 2.2s ease-out infinite;
-    }
-
-    /* ── Hero ────────────────────────────────── */
-    #hero {
-      min-height: 100dvh; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 0 48px 118px;
-      position: relative; overflow: hidden;
-    }
-    .hero-canvas { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-    .hero-layout {
-      display: grid; grid-template-columns: 1fr 260px;
-      gap: 56px; align-items: flex-end; margin-bottom: 32px;
-    }
-    .hero-left { display: flex; flex-direction: column; }
-    .hero-eyebrow {
-      font-family: var(--font-heading); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--color-cyan);
-      margin-bottom: 20px;
-    }
-    .hero-name-block { position: relative; }
-    .hero-name-row {
-      display: table; line-height: 0.88; font-family: var(--font-heading);
-      font-weight: 800; letter-spacing: -0.05em;
-      font-size: clamp(4.4rem, 11vw, 10.5rem);
-      color: var(--color-text);
-    }
-    .hero-cred {
-      padding-bottom: 6px; display: flex; flex-direction: column; gap: 18px;
-    }
-    .cred-label {
-      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--color-faint); margin-bottom: 5px;
-    }
-    .cred-value {
-      font-family: var(--font-heading); font-size: 13px; font-weight: 500;
-      color: var(--color-text); line-height: 1.5;
-    }
-    .cred-value.muted { color: var(--color-muted); font-weight: 400; }
-    .hero-bottom { display: grid; grid-template-columns: minmax(0, 480px) 64px 1fr; gap: 36px; align-items: end; }
-    .orb-hero-anchor {
-      width: 34px; height: 34px;
-      align-self: center; justify-self: center;
-      pointer-events: none; transform: translateY(78px);
-    }
-    .hero-oneliner {
-      font-family: var(--font-body); font-style: italic;
-      font-size: clamp(1rem, 1.4vw, 1.3rem); line-height: 1.55;
-      color: var(--color-muted); max-width: 480px;
-    }
-    .hero-actions { display: flex; gap: 28px; justify-content: flex-end; align-items: center; }
-    .hero-actions a {
-      font-family: var(--font-heading); font-size: 13px; font-weight: 600;
-      text-decoration: none; display: inline-block;
-      transition: transform 200ms ease, color 150ms ease, border-color 150ms ease;
-    }
-    .cta-primary {
-      color: var(--color-coral); border-bottom: 1px solid var(--color-coral); padding-bottom: 2px;
-    }
-    .cta-primary:hover { color: var(--color-coral-hover); border-color: var(--color-coral-hover); }
-    .cta-secondary { color: var(--color-muted); }
-    .cta-secondary:hover { color: var(--color-gold); }
-
-    /* ── GitHub heatmap ──────────────────────── */
-    .hero-github {
-      margin-top: 28px; width: fit-content; max-width: 100%;
-      padding: 14px 16px 16px; border-radius: 12px;
-      border: 1px solid var(--color-border-soft);
-      background: rgba(255,255,255,0.72);
-    }
-    .hero-github-label {
-      font-family: var(--font-mono); font-size: 10.5px; color: var(--color-muted);
-      letter-spacing: 0.08em; margin-bottom: 12px;
-      display: flex; align-items: center; gap: 10px; white-space: nowrap;
-    }
-    .hero-github-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(200,61,80,0.5), transparent);
-      max-width: none;
-    }
-    .github-heatmap {
-      display: flex; gap: 3px; flex-wrap: nowrap; overflow: hidden;
-      max-width: 100%; min-height: 74px;
-    }
-    .hm-col { display: flex; flex-direction: column; gap: 3px; }
-    .hm-cell {
-      width: 8px; height: 8px; border-radius: 2px;
-      background: rgba(24,21,34,0.08);
-      transition: transform 150ms, background 150ms, opacity 150ms;
-    }
-    .hm-cell[data-level="1"] { background: var(--color-coral); opacity: 0.35; }
-    .hm-cell[data-level="2"] { background: var(--color-coral); opacity: 0.60; }
-    .hm-cell[data-level="3"] { background: var(--color-coral); opacity: 0.85; }
-    .hm-cell[data-level="4"] { background: var(--color-gold); opacity: 1; }
-    .hm-cell:hover { opacity: 1 !important; transform: scale(1.3); outline: 1px solid var(--color-coral); outline-offset: 1px; z-index: 1; }
-    .hm-cell[data-future] { background: rgba(24,21,34,0.035); }
-    .hm-cell[data-future]:hover { opacity: 1 !important; transform: none; outline: none; }
-
-    /* ── Sections ────────────────────────────── */
-    section { padding: 100px 48px; max-width: var(--max-content); margin: 0 auto; scroll-margin-top: 82px; contain: layout style; }
-    .section-label {
-      font-family: var(--font-heading); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint);
-      margin-bottom: 48px; display: flex; align-items: baseline; gap: 12px;
-    }
-
-    /* ── Work ────────────────────────────────── */
-    #work { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
-    .work-featured {
-      margin-bottom: 24px; background: var(--color-card-strong);
-      border: 1px solid var(--color-border-soft); border-radius: 16px;
-      padding: 44px 48px; display: grid; grid-template-columns: 1fr 1fr;
-      gap: 44px; align-items: start; position: relative; overflow: hidden;
-      transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
-    }
-    .work-featured:hover {
-      border-color: rgba(200,61,80,0.3);
-      transform: translateY(-2px);
-    }
-    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .work-card {
-      background: var(--color-card);
-      border: 1px solid var(--color-border-soft);
-      border-radius: 16px; padding: 36px 40px; position: relative; overflow: hidden;
-      transition: border-color var(--transition), box-shadow var(--transition), transform 200ms ease;
-    }
-    .work-atlas {
-      display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-      align-items: center; gap: 44px; margin-bottom: 20px; padding-block: 26px;
-      color: inherit; text-decoration: none; cursor: pointer;
-    }
-    .work-atlas .card-title { margin-bottom: 0; }
-    .work-atlas-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-    .work-atlas .card-body { margin-bottom: 0; max-width: 680px; }
-    .work-card:hover {
-      border-color: rgba(8,122,118,0.3);
-      transform: translateY(-2px);
-    }
-    .work-card:nth-child(2):hover { border-color: rgba(101,71,180,0.3); }
-    .work-card:nth-child(3):hover { border-color: rgba(137,97,0,0.3); }
-    .work-card:nth-child(4):hover { border-color: rgba(200,61,80,0.3); }
-
-    @supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-      .work-featured::before,
-      .work-card::before {
-        content: ''; position: absolute; inset: 0; border-radius: 16px; padding: 1px;
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        opacity: 0; transition: opacity 240ms ease;
-        pointer-events: none;
-      }
-      .work-featured::before {
-        background: linear-gradient(135deg, rgba(200,61,80,0.8), rgba(137,97,0,0.14) 40%, rgba(137,97,0,0.14) 60%, rgba(8,122,118,0.8));
-      }
-      .work-card::before {
-        background: linear-gradient(135deg, rgba(8,122,118,0.75), rgba(8,122,118,0.1) 42%, rgba(101,71,180,0.1) 58%, rgba(101,71,180,0.75));
-      }
-      .work-card:nth-child(2)::before {
-        background: linear-gradient(135deg, rgba(101,71,180,0.75), rgba(101,71,180,0.1) 42%, rgba(200,61,80,0.1) 58%, rgba(200,61,80,0.75));
-      }
-      .work-card:nth-child(3)::before {
-        background: linear-gradient(135deg, rgba(137,97,0,0.75), rgba(137,97,0,0.1) 42%, rgba(200,61,80,0.1) 58%, rgba(200,61,80,0.75));
-      }
-      .work-card:nth-child(4)::before {
-        background: linear-gradient(135deg, rgba(200,61,80,0.75), rgba(200,61,80,0.1) 42%, rgba(184,46,98,0.1) 58%, rgba(184,46,98,0.75));
-      }
-      .work-featured:hover, .work-card:hover { border-color: var(--color-border-soft); }
-      .work-featured:hover::before, .work-card:hover::before { opacity: 1; }
-    }
-
-    .card-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--color-faint); letter-spacing: 0.04em; margin-bottom: 10px; }
-    .card-title { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--color-text); letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
-    .featured-title { font-size: 26px; }
-    .card-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--color-muted); margin-bottom: 20px; }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--color-muted); background: rgba(255,255,255,0.72); border: 1px solid var(--color-border-soft); border-radius: 999px; padding: 3px 10px; }
-    .card-link { font-family: var(--font-heading); font-size: 12px; font-weight: 600; color: var(--color-coral); text-decoration: none; transition: color var(--transition); }
-    .card-link:hover { color: var(--color-coral-hover); }
-    .featured-outcome { font-family: var(--font-body); font-style: italic; font-size: 15px; line-height: 1.65; color: var(--color-muted); margin-top: 28px; }
-    .card-expand-btn {
-      background: none; border: none; font-family: var(--font-mono); font-size: 10px;
-      color: var(--color-faint); padding: 0; letter-spacing: 0.06em;
-      margin-top: 4px; display: inline-flex; align-items: center; gap: 5px; transition: color 150ms;
-    }
-    .card-expand-btn:hover { color: var(--color-coral); }
-    .card-expand-btn .exp-arrow { display: inline-block; transition: transform 200ms ease; }
-    .work-card.expanded .card-expand-btn .exp-arrow,
-    .work-featured.expanded .card-expand-btn .exp-arrow { transform: rotate(45deg); }
-    .card-extra { max-height: 0; overflow: hidden; transition: max-height 400ms cubic-bezier(0.16,1,0.3,1), opacity 300ms ease; opacity: 0; }
-    .work-card.expanded .card-extra,
-    .work-featured.expanded .card-extra { max-height: 300px; opacity: 1; }
-    .card-extra-inner { padding-top: 16px; border-top: 1px solid var(--color-border); margin-top: 16px; }
-    .card-extra-inner p { font-family: var(--font-body); font-size: 14px; line-height: 1.7; color: var(--color-muted); }
-
-    /* ── Research ─────────────────────────────── */
-    #research { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
-    .research-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .research-heading {
-      font-family: var(--font-heading); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
-      color: var(--color-text);
-      margin-bottom: 24px;
-    }
-    .research-lead { font-family: var(--font-body); font-size: 17px; line-height: 1.75; color: var(--color-muted); margin-bottom: 32px; }
-    .research-stat-block {
-      display: flex; flex-direction: column; gap: 20px;
-      border: 1px solid var(--color-border-soft); border-radius: 16px; padding: 28px 32px;
-      background: var(--color-card);
-    }
-    .research-stat {
-      padding-bottom: 20px; border-bottom: 1px solid var(--color-border-soft);
-      transition: transform 200ms ease;
-    }
-    .research-stat:hover { transform: translateX(6px); }
-    .research-stat:last-child { border-bottom: none; padding-bottom: 0; }
-    .stat-value {
-      font-family: var(--font-heading); font-size: 28px; font-weight: 700;
-      letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px;
-      color: var(--color-purple);
-      transition: filter 300ms;
-    }
-    .stat-label { font-family: var(--font-body); font-size: 14px; color: var(--color-muted); line-height: 1.5; }
-    .research-method { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--color-muted); margin-bottom: 16px; }
-    .research-method strong { font-weight: 500; color: var(--color-text); }
-
-    /* ── Experience ──────────────────────────── */
-    #experience { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
-    .exp-rows {
-      display: flex; flex-direction: column;
-      background: transparent;
-    }
-    .exp-row {
-      display: grid; grid-template-columns: 170px minmax(0, 1fr) auto;
-      column-gap: 28px; align-items: baseline;
-      padding: 26px 32px; border-bottom: 1px solid var(--color-border-soft);
-      transition: background 180ms ease;
-      position: relative;
-    }
-    .exp-row:last-child { border-bottom: none; }
-    .exp-row:hover { background: var(--color-card-hover); }
-    .exp-when {
-      font-family: var(--font-mono); font-size: 11px; color: var(--color-faint);
-      letter-spacing: 0.04em; white-space: nowrap;
-    }
-    .exp-main { min-width: 0; }
-    .exp-title {
-      font-family: var(--font-heading); font-size: 16px; font-weight: 600;
-      color: var(--color-text); letter-spacing: -0.015em; line-height: 1.3;
-    }
-    .exp-at {
-      font-family: var(--font-body); font-style: italic; font-size: 14.5px;
-      color: var(--color-muted);
-    }
-    .exp-detail {
-      font-family: var(--font-body); font-size: 13.5px; line-height: 1.65;
-      color: var(--color-faint); margin-top: 5px;
-    }
-    .exp-row:hover .exp-detail { color: var(--color-muted); }
-    .exp-note { font-family: var(--font-mono); font-size: 10px; color: var(--color-faint); text-align: right; white-space: nowrap; }
-    .exp-stack {
-      margin-top: 28px; display: flex; flex-direction: column; gap: 9px;
-      padding: 24px 32px; border: 1px solid var(--color-border-soft); border-radius: 16px;
-      background: rgba(255,255,255,0.68);
-    }
-    .stack-row { display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: baseline; }
-    .stack-label {
-      font-family: var(--font-heading); font-size: 10px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint);
-    }
-    .stack-items { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.9; color: var(--color-muted); }
-    .stack-items em { font-style: normal; color: var(--color-text); }
-
-    /* ── About ───────────────────────────────── */
-    #about { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
-    .about-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
-    .about-photo {
-      min-width: 0; width: 100%; aspect-ratio: 4 / 5; position: relative;
-      background: var(--color-panel);
-      border: 1px solid var(--color-border-soft); border-radius: 16px;
-      overflow: hidden;
-    }
-    .about-photo::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(200,61,80,0.1), transparent 40%, transparent 60%, rgba(8,122,118,0.08));
-      pointer-events: none; z-index: 1;
-    }
-    .about-photo-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    .about-prose p { font-family: var(--font-body); font-size: 16px; line-height: 1.8; color: var(--color-muted); margin-bottom: 20px; }
-    .about-prose p:first-of-type {
-      font-size: 19px; line-height: 1.7; color: var(--color-text); font-style: italic;
-    }
-    .about-facts { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
-    .about-fact {
-      font-family: var(--font-body); font-size: 14px; color: var(--color-muted);
-      line-height: 1.5;
-      transition: color 150ms;
-    }
-    .about-fact:hover { color: var(--color-text); }
-
-    /* ── Now ─────────────────────────────────── */
-    #now { border-top: 1px solid var(--color-border); position: relative; overflow: hidden; }
-    .now-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-      border: 1px solid var(--color-border-soft); border-radius: 16px; overflow: hidden;
-      background: var(--color-card);
-    }
-    .now-item {
-      padding: 34px 38px; border-right: 1px solid var(--color-border-soft);
-      position: relative; transition: background 200ms ease;
-    }
-    .now-item:hover { background: var(--color-coral-dim); }
-    .now-item::before {
-      content: ''; position: absolute; top: 20px; right: 20px;
-      width: 5px; height: 5px; border-radius: 50%;
-      opacity: 0; transition: opacity 200ms ease, box-shadow 200ms ease;
-    }
-    .now-item:nth-child(1)::before { background: var(--color-coral); box-shadow: 0 0 14px var(--color-coral-glow); }
-    .now-item:nth-child(2)::before { background: var(--color-purple); box-shadow: 0 0 14px var(--color-purple-glow); }
-    .now-item:nth-child(3)::before { background: var(--color-cyan); box-shadow: 0 0 14px var(--color-cyan-glow); }
-    .now-item:nth-child(4)::before { background: var(--color-gold); box-shadow: 0 0 14px var(--color-gold-glow); }
-    .now-item:nth-child(5)::before { background: var(--color-rose); box-shadow: 0 0 14px rgba(184,46,98,0.2); }
-    .now-item:nth-child(6)::before { background: var(--color-coral); box-shadow: 0 0 14px var(--color-coral-glow); }
-    .now-item:hover::before { opacity: 0.85; }
-    .now-item:last-child { border-right: none; }
-    .now-item:nth-child(n+4) { border-top: 1px solid var(--color-border-soft); }
-    .now-item-label {
-      font-family: var(--font-heading); font-size: 10px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .now-item:nth-child(1) .now-item-label { color: var(--color-coral); }
-    .now-item:nth-child(2) .now-item-label { color: var(--color-purple); }
-    .now-item:nth-child(3) .now-item-label { color: var(--color-cyan); }
-    .now-item:nth-child(4) .now-item-label { color: var(--color-gold); }
-    .now-item:nth-child(5) .now-item-label { color: var(--color-rose); }
-    .now-item:nth-child(6) .now-item-label { color: var(--color-coral); }
-    .now-item-text { font-family: var(--font-body); font-size: 14.5px; line-height: 1.65; color: var(--color-muted); }
-    .now-contact-icons {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px;
-    }
-    .now-contact-icons a {
-      width: 18px; height: 18px; display: grid; place-items: center;
-      color: var(--color-muted); text-decoration: none;
-      transition: color var(--transition), transform 200ms ease;
-    }
-    .now-contact-icons a:hover { color: var(--color-coral-hover); transform: translateY(-2px); }
-    .now-contact-icons svg { width: 13px; height: 13px; display: block; }
 
     /* ── Status strip ────────────────────────── */
     #now-strip {
@@ -745,265 +115,23 @@ for (let i = 0; i < githubContributions.length; i += 7) {
     .strip-social-icons svg { width: 12px; height: 12px; display: block; }
     .strip-clock { margin-left: auto; color: var(--color-faint); min-width: 66px; text-align: right; }
 
-    /* ── Custom cursor ───────────────────────── */
-    .cursor-dot {
-      position: fixed; width: 5px; height: 5px;
-      background: var(--color-coral); border-radius: 50%;
-      pointer-events: none; z-index: 10002;
-      transform: translate(-50%,-50%);
-      transition: width 220ms ease, height 220ms ease, opacity 200ms,
-                  border-radius 220ms ease, background 200ms, transform 200ms,
-                  box-shadow 200ms ease;
-      opacity: 0; box-shadow: 0 0 12px var(--color-coral-glow);
-    }
-    .cursor-ring {
-      position: fixed; width: 28px; height: 28px;
-      border: 1.5px solid rgba(200,61,80,0.55);
-      border-radius: 50%;
-      pointer-events: none; z-index: 10001;
-      transform: translate(-50%,-50%);
-      transition: width 280ms cubic-bezier(0.16,1,0.3,1),
-                  height 280ms cubic-bezier(0.16,1,0.3,1),
-                  border-radius 280ms cubic-bezier(0.16,1,0.3,1),
-                  border-color 200ms, background 200ms, opacity 300ms,
-                  box-shadow 220ms ease, transform 220ms ease;
-      opacity: 0; background: transparent;
-      box-shadow: 0 0 20px rgba(200,61,80,0.08);
-    }
-    body:hover .cursor-dot, body:hover .cursor-ring { opacity: 1; }
 
-    /* Lens: hero name */
-    .cursor-ring.cur-lens {
-      width: 76px; height: 76px;
-      border: 1px solid rgba(137,97,0,0.45);
-      backdrop-filter: blur(3px) brightness(0.98) saturate(1.2);
-      -webkit-backdrop-filter: blur(3px) brightness(0.98) saturate(1.2);
-      background: radial-gradient(circle at 35% 32%, rgba(255,255,255,0.5), rgba(200,61,80,0.05) 45%, rgba(137,97,0,0.03));
-      box-shadow: inset 0 1px 8px rgba(255,255,255,0.52), 0 0 24px var(--color-coral-glow);
-    }
-    .cursor-ring.cur-lens::after {
-      content: ''; position: absolute; opacity: 1; inset: 13px;
-      border: 1px solid rgba(24,21,34,0.1); border-radius: 50%;
-      pointer-events: none;
-    }
-    .cursor-dot.cur-lens { width: 3px; height: 3px; opacity: 0.35; }
-
-    /* Nav orb */
-    .cursor-ring.cur-nav {
-      width: 34px; height: 34px; border-radius: 50%;
-      border-color: rgba(200,61,80,0.45);
-      background: conic-gradient(from 40deg, rgba(200,61,80,0), rgba(200,61,80,0.4), rgba(137,97,0,0));
-      box-shadow: 0 0 30px var(--color-coral-glow);
-    }
-    .cursor-ring.cur-nav::before {
-      content: ''; position: absolute; opacity: 1;
-      width: 5px; height: 5px; right: 1px; top: 5px;
-      border-radius: 50%; background: var(--color-coral);
-      box-shadow: 0 0 14px var(--color-coral-glow);
-      pointer-events: none;
-    }
-    .cursor-ring.cur-nav::after {
-      content: ''; position: absolute; opacity: 1;
-      left: 50%; top: 50%; width: 12px; height: 1px;
-      background: var(--color-coral);
-      transform: translate(-1px,-50%) rotate(-35deg);
-      transform-origin: left center;
-      pointer-events: none;
-    }
-    .cursor-dot.cur-nav { width: 3px; height: 3px; opacity: 0.5; }
-
-    /* Grid: heatmap */
-    .cursor-ring.cur-grid {
-      width: 34px; height: 18px; border-radius: 4px;
-      border-color: rgba(200,61,80,0.5);
-      background:
-        linear-gradient(90deg, transparent 7px, rgba(200,61,80,0.22) 8px, transparent 9px),
-        linear-gradient(0deg, transparent 7px, rgba(200,61,80,0.22) 8px, transparent 9px);
-      background-size: 9px 9px;
-      transform: translate(-50%,-50%) skewX(-10deg);
-    }
-    .cursor-dot.cur-grid {
-      width: 4px; height: 4px; border-radius: 1px;
-      animation: cursor-zig 620ms steps(2, end) infinite;
-    }
-    @keyframes cursor-zig {
-      0%, 100% { transform: translate(-50%,-50%) translate(-5px,-3px); }
-      50% { transform: translate(-50%,-50%) translate(5px,3px); }
-    }
-
-    /* Expand: cards */
-    .cursor-ring.cur-expand {
-      width: 20px; height: 20px; border-radius: 2px;
-      border-color: rgba(8,122,118,0.9);
-      box-shadow: 0 0 20px var(--color-cyan-glow);
-    }
-    .cursor-dot.cur-expand {
-      width: 2px; height: 18px; border-radius: 1px;
-      background: var(--color-cyan); box-shadow: none;
-    }
-    .cursor-dot.cur-expand::before {
-      content: ''; position: absolute; pointer-events: none; opacity: 1;
-      left: -8px; top: 8px; width: 18px; height: 2px;
-      background: var(--color-cyan); border-radius: 1px;
-    }
-    .cursor-ring.cur-expand::before,
-    .cursor-ring.cur-expand::after {
-      content: ''; position: absolute; pointer-events: none; opacity: 1;
-      background: var(--color-cyan);
-    }
-    .cursor-ring.cur-expand::before { left: 50%; top: -5px; width: 1px; height: 4px; box-shadow: 0 25px 0 var(--color-cyan); }
-    .cursor-ring.cur-expand::after { top: 50%; left: -5px; width: 4px; height: 1px; box-shadow: 25px 0 0 var(--color-cyan); }
-
-    .cursor-ring.cur-close {
-      width: 30px; height: 30px; border-radius: 4px;
-      border-color: rgba(200,61,80,0.85);
-      transform: translate(-50%,-50%) rotate(45deg);
-    }
-    .cursor-dot.cur-close {
-      width: 2px; height: 18px; border-radius: 1px; background: var(--color-coral);
-      transform: translate(-50%,-50%) rotate(45deg);
-    }
-    .cursor-dot.cur-close::before {
-      content: ''; position: absolute; pointer-events: none; opacity: 1;
-      left: -8px; top: 8px; width: 18px; height: 2px;
-      background: var(--color-coral); border-radius: 1px;
-    }
-
-    /* Stats square */
-    .cursor-ring.cur-square {
-      width: 10px; height: 10px; border-radius: 2px;
-      border-color: var(--color-purple);
-      background: rgba(101,71,180,0.14);
-      box-shadow: 0 0 20px var(--color-purple-glow);
-    }
-    .cursor-dot.cur-square { width: 4px; height: 4px; border-radius: 1px; }
-
-    /* CTA pulse */
-    .cursor-ring.cur-cta {
-      width: 64px; height: 64px;
-      border-color: rgba(200,61,80,0.55);
-      animation: cta-ring-pulse 1.2s ease-in-out infinite;
-      background: rgba(200,61,80,0.03);
-    }
-    .cursor-dot.cur-cta { width: 6px; height: 6px; }
-    @keyframes cta-ring-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 var(--color-coral-glow); }
-      50% { box-shadow: 0 0 0 10px rgba(200,61,80,0); }
-    }
-
-    /* Arrow: links */
-    .cursor-ring.cur-arrow {
-      width: 22px; height: 22px;
-      border-radius: 50% 50% 50% 3px;
-      transform: translate(-50%,-50%) rotate(-45deg);
-      border-color: var(--color-gold);
-    }
-    .cursor-ring.cur-arrow::after {
-      content: ''; position: absolute; pointer-events: none; opacity: 1;
-      right: 2px; top: 2px;
-      width: 7px; height: 7px; border-top: 1px solid var(--color-gold); border-right: 1px solid var(--color-gold);
-    }
-    .cursor-dot.cur-arrow { opacity: 0; }
-
-    /* Live blink: now grid */
-    .cursor-ring.cur-live {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--color-coral); border: none;
-      animation: live-blink 1s step-end infinite;
-      box-shadow: 0 0 24px var(--color-coral-glow);
-    }
-    .cursor-dot.cur-live { opacity: 0; }
-    @keyframes live-blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-
-    .cursor-ring.cur-orb {
-      width: 36px; height: 36px;
-      border-color: rgba(137,97,0,0.6);
-      background: rgba(200,61,80,0.04);
-      box-shadow: inset 0 1px 10px rgba(255,255,255,0.1), 0 0 30px var(--color-coral-glow);
-    }
-    .cursor-dot.cur-orb {
-      width: 8px; height: 8px;
-      background: rgba(224,164,46,0.95);
-      box-shadow: 0 0 14px var(--color-gold-glow);
-    }
-
-    /* ── Scroll reveal ───────────────────────── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ── Responsive ──────────────────────────── */
     @media (min-width: 1280px) {
-      :root { --max-content: 1180px; }
-      #hero { padding-inline: clamp(48px, 6vw, 96px); }
-      section { padding-inline: clamp(48px, 6vw, 96px); }
       #now-strip { padding-left: clamp(48px, 6vw, 96px); }
     }
-
     @media (max-width: 1024px) {
-      #hero { padding: 0 32px 112px; }
-      .hero-layout { grid-template-columns: 1fr 240px; gap: 36px; }
-      .hero-name-row { font-size: clamp(4rem, 12vw, 7rem); }
-      section { padding: 80px 32px; }
-      .research-layout, .about-layout { gap: 48px; }
       #now-strip { padding: 0 32px; gap: 14px; }
       .recognition-item, .recognition-sep { display: none; }
     }
-
     @media (max-width: 768px) {
-      body { padding-bottom: 84px; }
-      .exp-row { grid-template-columns: 1fr; row-gap: 7px; padding: 22px 24px; }
-      .exp-note { text-align: left; }
-      .stack-row { grid-template-columns: 1fr; gap: 4px; }
-      .exp-stack { padding: 20px 24px; }
-      .orb-float, .orb-nav.hero-mode .orb-float { animation: none; }
-      .orb-trigger { inset: -18px; }
-      .orb-menu { width: 172px; top: -6px; right: -6px; }
-      #hero { min-height: 92dvh; padding: 0 22px 104px; }
-      .hero-layout { grid-template-columns: 1fr; gap: 28px; }
-      .hero-cred {
-        border-left: none; padding-left: 0; border-top: 1px solid var(--color-border);
-        padding-top: 18px; display: grid; grid-template-columns: 1fr 1fr;
-      }
-      .hero-name-row { font-size: clamp(3.3rem, 15vw, 6rem); }
-      .hero-bottom { grid-template-columns: 1fr; gap: 22px; }
-      .orb-hero-anchor { display: none; }
-      .hero-actions { justify-content: flex-start; }
-      section { padding: 70px 22px; scroll-margin-top: 76px; }
-      .work-grid, .research-layout, .about-layout { grid-template-columns: 1fr; gap: 28px; }
-      .work-featured { grid-template-columns: 1fr; gap: 24px; padding: 32px 28px; }
-      .work-atlas { grid-template-columns: 1fr; gap: 14px; padding: 28px; }
-      .work-card { padding: 28px; }
-      .now-grid { grid-template-columns: 1fr 1fr; }
-      .now-item { padding: 26px 24px; }
-      #now-strip {
-        height: 48px; padding: 0 18px; gap: 10px; font-size: 10px;
-      }
+      #now-strip { height: 48px; padding: 0 18px; gap: 10px; font-size: 10px; }
       .recognition-item, .watching-item, .strip-sep, .strip-clock { display: none; }
       .strip-item { gap: 7px; }
       .strip-value { max-width: 42vw; line-height: 1.25; }
       .strip-social-icons { margin-left: auto; gap: 8px; }
       .strip-social-icons a { width: 22px; height: 22px; }
     }
-
     @media (max-width: 520px) {
-      body { padding-bottom: 84px; }
-      .hero-eyebrow { font-size: 9px; line-height: 1.6; max-width: 260px; }
-      .hero-cred { grid-template-columns: 1fr; }
-      .hero-actions { gap: 20px; }
-      .hero-github { padding: 10px 11px 12px; }
-      .github-heatmap { max-width: 310px; min-height: 67px; }
-      .hm-cell { width: 7px; height: 7px; }
-      .work-featured, .work-card { padding: 24px 22px; }
-      .now-grid { grid-template-columns: 1fr; }
-      .now-item { border-right: none; border-top: 1px solid var(--color-border-soft); }
-      .now-item:first-child { border-top: none; }
       .strip-label { display: none; }
       .strip-value { display: none; }
       .strip-social-icons { margin-left: auto; }
@@ -1011,18 +139,13 @@ for (let i = 0; i < githubContributions.length; i += 7) {
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .orb-float, .strip-dot, .strip-ticker-track {
-        animation: none !important;
-      }
+      .strip-dot, .strip-ticker-track { animation: none !important; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
 <body>
-
-<canvas class="ambient-field" id="ambientField" aria-hidden="true"></canvas>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
+<a class="skip-link" href="#main">Skip to content</a>
 <!-- Status strip -->
 <div id="now-strip">
   <div class="strip-item building-item">
@@ -1093,716 +216,297 @@ for (let i = 0; i < githubContributions.length; i += 7) {
   <span class="strip-clock" id="stripClock"></span>
 </div>
 
-<div class="orb-nav" id="orbNav">
-  <button class="orb-trigger" id="orbTrigger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="orbMenu"></button>
-  <div class="orb-float" aria-hidden="true">
-    <div class="orb-button"></div>
-  </div>
-  <span class="orb-label" aria-hidden="true">Menu</span>
-  <nav class="orb-menu" id="orbMenu" aria-label="Site navigation">
+
+<header class="site-header page-shell">
+  <nav class="site-nav" aria-label="Site navigation">
     <a href="#work">Work</a>
     <a href="#research">Research</a>
-    <a href="#experience">Experience</a>
-    <a href="#about">About</a>
-    <a href="#now">Now</a>
-    <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`}>Resume</a>
+    <a href="#experience">Background</a>
+    <a href="#now">Contact</a>
   </nav>
-</div>
+</header>
 
-<!-- Hero -->
-<section id="hero">
-  <div class="hero-layout">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Software Engineer &nbsp;&middot;&nbsp; Data Architect &nbsp;&middot;&nbsp; AI Engineer</div>
-      <h1 class="hero-name-block reveal">
-        <span class="hero-name-row">Prashant</span>
-        <span class="hero-name-row">Shah</span>
-      </h1>
-      <div class="hero-github reveal reveal-delay-1">
-        <div class="hero-github-label">{githubTotal.toLocaleString()} contributions in {githubYear}</div>
-        <div class="github-heatmap">
-          {githubWeeks.map((week) => (
-            <div class="hm-col">
-              {week.map((day) => (
-                <div
-                  class="hm-cell"
-                  data-level={day.date <= todayIso && day.level > 0 ? Math.min(day.level, 4) : undefined}
-                  data-future={day.date > todayIso ? "" : undefined}
-                  title={day.date > todayIso ? day.date : `${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
+<main id="main" class="page-shell" tabindex="-1">
+  <section id="hero" aria-labelledby="intro-title">
+    <div class="hero-layout">
+      <h1 id="intro-title">Prashant Shah</h1>
+      <p class="hero-role">Software and data engineer who builds AI products.</p>
+      <p class="hero-intro">I’m building <a href="https://atlas-lms.com" target="_blank" rel="noopener">Atlas</a>, a learning system where teachers shape how students work with AI and review the reasoning behind the result.</p>
+      <p class="hero-history">Previously, I built software at Trimble and Novartis, and data infrastructure for the Center for Food Action through Ramapo DMC. My research focuses on intent-aware retrieval.</p>
+      <div class="hero-links" aria-label="Contact and profiles">
+        <a href="mailto:shahp0021@gmail.com">Email <span aria-hidden="true">↗</span></a>
+        <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`}>Resume <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
+      <p class="hero-availability">Open to full-time software, data, and AI engineering roles.</p>
     </div>
-    <div class="hero-cred reveal reveal-delay-2">
-      <div class="cred-block">
-        <div class="cred-label">Education</div>
-        <div class="cred-value">Ramapo College of NJ</div>
-        <div class="cred-value muted">B.S. Computer Science &amp; Data Science &middot; Graduated May 2026</div>
+    <figure class="hero-art">
+      <div id="line-study" class="art-surface" role="img" aria-label="An abstract line sculpture, a folded surface that turns slowly in space.">
+        <img class="art-fallback" src={`${import.meta.env.BASE_URL}line-study.svg`} alt="" width="360" height="450" />
+        <canvas aria-hidden="true"></canvas>
       </div>
-      <div class="cred-block">
-        <div class="cred-label">Experience</div>
-        <div class="cred-value muted">Trimble &nbsp;&middot;&nbsp; Novartis &nbsp;&middot;&nbsp; Ramapo DMC</div>
-      </div>
-    </div>
-  </div>
+    </figure>
+  </section>
 
-  <div class="hero-bottom">
-    <p class="hero-oneliner reveal reveal-delay-1">
-      I build software and data systems that turn unreliable inputs into tools people can understand and trust.
-    </p>
-    <div class="orb-hero-anchor" id="orbHeroAnchor" aria-hidden="true"></div>
-    <div class="hero-actions reveal reveal-delay-2">
-      <a href="https://www.linkedin.com/in/prashant210/" class="cta-secondary" target="_blank" rel="noopener">Get in touch</a>
-      <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`} class="cta-primary">Resume &darr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- Work -->
-<section id="work">
-  <div class="section-inner">
-    <h2 class="section-label">Selected Work</h2>
-    <a href="https://atlas-lms.com" class="work-card work-atlas reveal" target="_blank" rel="noopener" aria-label="Visit Atlas LMS">
+  <section id="work" class="portfolio-section" aria-labelledby="work-title">
+    <h2 class="section-heading" id="work-title">Selected work</h2>
+    <article class="project project-featured">
       <div>
-        <div class="card-eyebrow">Startup &middot; Soft launch &middot; 2026</div>
-        <h3 class="card-title">Atlas LMS</h3>
+        <h3 class="project-title"><a href="https://atlas-lms.com" target="_blank" rel="noopener">Atlas LMS <span aria-hidden="true">↗</span></a></h3>
+        <p class="project-meta">Founder &amp; engineer<br/>2026 · Private pilot</p>
       </div>
-      <div class="work-atlas-copy">
-        <p class="card-body">Atlas LMS is in soft launch. We have early customer interest, and I am testing it with people now.</p>
-        <p class="card-body">AI in education is still early. Atlas takes a different approach: I am turning the strongest ideas from modern agent harnesses into a system built specifically for education, where AI operates inside courses, student records, teacher controls, and the work already happening in an LMS.</p>
-        <p class="card-body">I started the product and codebase from scratch, lead engineering as the only developer, manage its multi-tenant AWS infrastructure, and ship features every day.</p>
-        <span class="card-link">Visit atlas-lms.com &rarr;</span>
-      </div>
-    </a>
-    <div class="work-featured reveal reveal-delay-1">
       <div>
-        <div class="card-eyebrow">OpenAI Build Week &middot; 2026</div>
-        <h3 class="card-title featured-title">Moodie</h3>
-        <div class="card-tags"><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Express</span><span class="tag">PGlite</span></div>
-        <a href="https://moodie-server-mauve.vercel.app/" class="card-link" target="_blank" rel="noopener">View Live &rarr;</a>
-        <a href="https://github.com/Prashant002-1/Moodie.git" class="card-link" style="margin-left:16px" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-      </div>
-      <div class="featured-context">
-        <p class="card-body">Moodie is a social film diary and people-led recommendation system. People record what a film meant to them and how it felt; Moodie connects them through similar responses to shared films, then recommends other films that moved those people.</p>
-      </div>
-    </div>
-    <div class="work-grid">
-      <div class="work-card reveal reveal-delay-1">
-        <div class="card-eyebrow">HackRamapo Winner &middot; 2026</div>
-        <h3 class="card-title">Canvas Agent</h3>
-        <p class="card-body">I built an AI study partner that works directly from a student&rsquo;s Canvas data, remembers context across conversations, and uses tools to reason across courses, grades, deadlines, assignments, and study priorities. Winner of HackRamapo 2026.</p>
-        <div class="card-tags">
-          <span class="tag">Next.js 15</span><span class="tag">React 19</span>
-          <span class="tag">PostgreSQL</span><span class="tag">pgvector</span>
-          <span class="tag">Vercel AI SDK</span><span class="tag">Tailwind CSS</span>
+        <div class="project-description">
+          <p>Students already use AI. I started Atlas to give teachers a way to design the learning around it. In an AI Assignment, the teacher sets the learning goal, course material, and the agent’s boundaries. Students build an argument, answer challenges, and revise. Their sources, decisions, and revisions return as evidence for teacher review.</p>
+          <p>I own the product and engineering, from the interface and agent system to the multi-tenant AWS infrastructure. Courses, assignments, grades, and agents share one learning record, with teachers deciding what becomes final.</p>
         </div>
-        <a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <div style="margin-top:12px">
-          <button class="card-expand-btn" data-target="canvas-extra"><span class="exp-arrow">+</span><span class="exp-label">more detail</span></button>
-        </div>
-        <div class="card-extra" id="canvas-extra">
-          <div class="card-extra-inner">
-            <p>The agent combines persistent memory, tool calling, and semantic search over Canvas data to answer questions across courses, track grades and deadlines, and surface what a student should work on next.</p>
-          </div>
+        <p class="project-stack">TypeScript · Next.js · PostgreSQL · Agent systems · AWS</p>
+        <div class="project-links">
+          <a href="https://atlas-lms.com" target="_blank" rel="noopener">Explore Atlas <span aria-hidden="true">↗</span></a>
+          <a href="https://atlas-lms.com/about/" target="_blank" rel="noopener">Why I’m building it <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="work-card reveal reveal-delay-2">
-        <div class="card-eyebrow">Personal &middot; 2026</div>
-        <h3 class="card-title">Hermes JobApps</h3>
-        <p class="card-body">I built a job-search command center around Hermes Agent. It discovers and evaluates roles, prepares and verifies application materials, organizes proof points and contacts, and tracks applications, outreach, and follow-ups in SQLite so the work survives beyond a chat session.</p>
-        <div class="card-tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Hermes Agent</span><span class="tag">Tool Use</span><span class="tag">Typst</span><span class="tag">TeX</span></div>
-        <a href="https://github.com/Prashant002-1/hermes-jobapps" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-        <div style="margin-top:12px">
-          <button class="card-expand-btn" data-target="jobapps-extra"><span class="exp-arrow">+</span><span class="exp-label">more detail</span></button>
-        </div>
-        <div class="card-extra" id="jobapps-extra">
-          <div class="card-extra-inner">
-            <p>I built the dashboard, SQLite data model, Hermes plugin and tool layer, streaming sessions, material-prep pipeline, provenance records, and human-controlled boundaries for uploads, sends, and submissions.</p>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal reveal-delay-2">
-        <div class="card-eyebrow">Trimble &middot; 2025</div>
-        <h3 class="card-title">Configuration Management Platform</h3>
-        <p class="card-body">Config conflicts across a distributed broker architecture cost engineering teams hours. I built a production platform in C#/.NET and Azure centralizing service settings across messaging, event handling, and dispatch.</p>
-        <div class="card-tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">Azure</span><span class="tag">Blazor</span></div>
-        <button class="card-expand-btn" data-target="trimble-extra"><span class="exp-arrow">+</span><span class="exp-label">more detail</span></button>
-        <div class="card-extra" id="trimble-extra">
-          <div class="card-extra-inner">
-            <p>Auth proxy using Azure Workload Identity Federation for role-based access. REST APIs integrating with TMW Suite. Built and shipped to production, not a prototype.</p>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal reveal-delay-3">
-        <div class="card-eyebrow">Novartis &middot; 2024</div>
-        <h3 class="card-title">Project Proposal Automation</h3>
-        <p class="card-body">Proposals took 2 days through a manual approval pipeline. I built a React/TypeScript frontend with serverless Azure Functions, integrated with SharePoint. Real-time dashboards for budget and team tracking.</p>
-        <div class="card-tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Azure Functions</span><span class="tag">SPFx</span></div>
-      </div>
-      <div class="work-card reveal reveal-delay-4">
-        <div class="card-eyebrow">Ramapo DMC - Center for Food Action &middot; 2025&ndash;2026</div>
-        <h3 class="card-title">Food Pantry Data Infrastructure</h3>
-        <p class="card-body">I overhauled the data path from donation intake through pricing, inventory, review, PantrySoft handoff, reconciliation, dashboards, and recurring reports. The organization reaches about 40,000 people annually across 6 pantries. Featured on News 12 NJ.</p>
-        <div class="card-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span></div>
-      </div>
-      <div class="work-card reveal reveal-delay-4">
-        <div class="card-eyebrow">Data Science Capstone &middot; 2026</div>
-        <h3 class="card-title">DeepScenario Collision Predictor</h3>
-        <p class="card-body">Full-fidelity autonomous-driving simulations are expensive. I built a screening model that ranks 33,366 scenarios from initialization-only features, then tested how well collision risk transfers across random, greedy, and reinforcement-learning scenario generators.</p>
-        <div class="card-tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">GroupKFold</span><span class="tag">Distribution Shift</span></div>
-        <a href="https://github.com/Prashant002-1/DeepScenario-Collision-Predictor-Capstone" class="card-link" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </article>
+  </section>
 
-<!-- Research -->
-<section id="research">
-  <div class="section-inner">
-    <h2 class="section-label">Research</h2>
+  <section id="research" class="portfolio-section" aria-labelledby="research-title">
+    <h2 class="section-heading" id="research-title">Research</h2>
     <div class="research-layout">
       <div>
-        <h3 class="research-heading">Resolving Intent-Content Conflict in Retrieval</h3>
-        <p class="research-lead">Retrieval systems often equate relevance with topical similarity, even when a user&rsquo;s intended experience conflicts with a topic&rsquo;s usual properties. We formalized this failure mode as intent-content conflict.</p>
-        <p class="research-method">I built KRAG, an emotion-aware knowledge graph framework that represents affect as graph evidence, aligns graph representations with Sentence-BERT, and reranks semantic candidates using topical, relational, and affective signals.</p>
-        <p class="research-method">KRAG improved intent fidelity across every conflict scenario while preserving a semantic relevance scaffold. Edge-removal experiments confirmed that graph relationships mattered most when content and intent diverged.</p>
-        <p class="research-method">The paper was accepted to NGEN-AI 2026 for publication in Springer proceedings. The work received Ramapo College&rsquo;s Best Research Award and was presented at the Ramapo DMC Fair and Scholar&rsquo;s Day.</p>
-        <p class="research-method" style="margin-bottom:0"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" class="card-link" target="_blank" rel="noopener">KRAG on GitHub &rarr;</a></p>
+        <p class="research-question" aria-label="a happy movie about war"><span class="intent">a happy movie</span><span class="topic">about war</span></p>
+        <p class="research-question-note">One request. Two constraints a retrieval system needs to hold together.</p>
+      <p class="research-meta">KRAG · Accepted to NGEN-AI 2026<br/>Best Research Award, Ramapo College</p>
       </div>
-      <div class="research-stat-block">
-        <div class="research-stat reveal">
-          <div class="stat-value">1,600</div>
-          <div class="stat-label">controlled trials across agreement and intent-content conflict</div>
-        </div>
-        <div class="research-stat reveal reveal-delay-1">
-          <div class="stat-value">6 / 6</div>
-          <div class="stat-label">conflict scenarios with improved intent fidelity</div>
-        </div>
-        <div class="research-stat reveal reveal-delay-2">
-          <div class="stat-value">521 / 800</div>
-          <div class="stat-label">conflict trials with a jointly relevant top-ten result, versus 263 / 800 for Vector-RAG</div>
-        </div>
-        <div class="research-stat reveal reveal-delay-3">
-          <div class="stat-value">2.3&times;</div>
-          <div class="stat-label">stronger rank impact from emotion-edge evidence under conflict</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <article class="research-article">
+      <h3 class="research-title">When a relevant answer misses the intent</h3>
 
-<!-- Experience -->
-<section id="experience">
-  <div class="section-inner">
-    <h2 class="section-label">Experience</h2>
-    <div class="exp-rows reveal">
-      <div class="exp-row">
-        <span class="exp-when">Jun 2026 &mdash; Now</span>
-        <div class="exp-main">
-          <span class="exp-title">Founder</span>
-          <span class="exp-at">&middot; Atlas LMS</span>
-          <p class="exp-detail">Leading product and engineering solo across a multi-tenant AWS learning platform built from scratch.</p>
-        </div>
-        <span class="exp-note">Startup</span>
+      <div class="research-prose">
+        <p>A request for a happy movie about war contains two different constraints. A retrieval system can match the topic and still miss the experience the person wanted. My research formalizes this as <em>intent-content conflict</em>.</p>
+        <p>I built Knowledge-graph Retrieval with Affective Grounding (KRAG), combining semantic retrieval with graph relationships and an explicit affective constraint. Across controlled movie-retrieval trials, it improved intent fidelity in all six conflict scenarios while retaining topical relevance.</p>
+        <p class="research-finding">In conflict trials, KRAG found a jointly relevant top-ten result in 521 of 800 cases, compared with 263 for Vector-RAG.</p>
       </div>
-      <div class="exp-row">
-        <span class="exp-when">Sep 2025 &mdash; Jun 2026</span>
-        <div class="exp-main">
-          <span class="exp-title">Data Engineer</span>
-          <span class="exp-at">&middot; Ramapo DMC - Center for Food Action &middot; Contract</span>
-          <p class="exp-detail">Overhauled the data path from intake through pricing, inventory, reconciliation, PantrySoft handoff, dashboards, and reporting.</p>
-        </div>
-        <span class="exp-note">Featured on News 12 NJ</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">May &mdash; Aug 2025</span>
-        <div class="exp-main">
-          <span class="exp-title">Software Engineering Intern</span>
-          <span class="exp-at">&middot; Trimble</span>
-          <p class="exp-detail">Configuration management platform shipped to production.</p>
-        </div>
-        <span class="exp-note">C# &middot; .NET &middot; Azure</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">May 2025 &mdash; May 2026</span>
-        <div class="exp-main">
-          <span class="exp-title">Research Assistant</span>
-          <span class="exp-at">&middot; Ramapo College</span>
-          <p class="exp-detail">Built and evaluated an emotion-aware knowledge graph retriever over MovieLens 25M for cases where topical relevance and user intent disagree.</p>
-        </div>
-        <span class="exp-note">Best Research Award</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">Jun &mdash; Aug 2024</span>
-        <div class="exp-main">
-          <span class="exp-title">Software Engineering Intern, Business Analytics</span>
-          <span class="exp-at">&middot; Novartis</span>
-          <p class="exp-detail">A recurring 2-day reporting workload became refreshable views across 100+ initiatives.</p>
-        </div>
-        <span class="exp-note">PostgreSQL &middot; Power BI</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">Aug 2023 &mdash; Jan 2026</span>
-        <div class="exp-main">
-          <span class="exp-title">Data Analyst</span>
-          <span class="exp-at">&middot; Ramapo College</span>
-          <p class="exp-detail">Built Python and Quarto reporting workflows across 6,000+ student records, surveys, attendance, performance, and retention data.</p>
-        </div>
-        <span class="exp-note">Student Success</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">Sep 2022 &mdash; May 2023</span>
-        <div class="exp-main">
-          <span class="exp-title">Undergraduate Researcher</span>
-          <span class="exp-at">&middot; Ramapo College</span>
-          <p class="exp-detail">Mapped Self-Determination Theory and Bloom&rsquo;s Taxonomy to feedback, game mechanics, and an introductory IT course deployment plan.</p>
-        </div>
-        <span class="exp-note">SAM Conference &middot; Top Poster</span>
-      </div>
-      <div class="exp-row">
-        <span class="exp-when">Class of 2026</span>
-        <div class="exp-main">
-          <span class="exp-title">B.S. Computer Science &amp; Data Science</span>
-          <span class="exp-at">&middot; Ramapo College of NJ</span>
-          <p class="exp-detail">Mathematics minor.</p>
-        </div>
-        <span class="exp-note">GPA 3.8</span>
-      </div>
-    </div>
-    <div class="exp-stack reveal reveal-delay-1">
-      <div class="stack-row">
-        <span class="stack-label">Languages</span>
-        <span class="stack-items"><em>Python</em> &middot; <em>C#</em> &middot; <em>TypeScript</em> &middot; Java &middot; C/C++ &middot; SQL &middot; Bash</span>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Backend &amp; Data</span>
-        <span class="stack-items"><em>PostgreSQL</em> &middot; .NET &middot; Flask &middot; FastAPI &middot; Node.js &middot; pgvector &middot; SQLAlchemy &middot; ETL</span>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Cloud &amp; Ops</span>
-        <span class="stack-items"><em>Azure</em> &middot; Azure Functions &middot; AWS &middot; Docker &middot; Linux &middot; GitHub Actions &middot; CI/CD</span>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">AI &amp; Product</span>
-        <span class="stack-items"><em>Tool-calling agents</em> &middot; RAG &middot; embeddings &middot; React &middot; Next.js &middot; Vercel AI SDK</span>
-      </div>
-      <div class="stack-row">
-        <span class="stack-label">Practices</span>
-        <span class="stack-items">pytest &middot; Playwright &middot; schema design &middot; validation &middot; code review</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- About -->
-<section id="about">
-  <div class="section-inner">
-    <h2 class="section-label">About</h2>
+      <details>
+        <summary>Read the method and results</summary>
+      <table class="research-results">
+        <caption>Results from the controlled benchmark</caption>
+        <tbody>
+          <tr><th scope="row">Evaluation</th><td>1,600 trials: 800 agreement, 800 conflict</td></tr>
+          <tr><th scope="row">Conflict trials with a jointly relevant top-ten result</th><td>521 / 800 for KRAG<br/>263 / 800 for Vector-RAG</td></tr>
+          <tr><th scope="row">Affective displacement error at 10, under conflict</th><td>0.384 → 0.347 with affective weighting</td></tr>
+          <tr><th scope="row">Rank impact of removing emotion-edge evidence</th><td>2.3× greater under conflict than agreement</td></tr>
+        </tbody>
+      </table>
+        <div class="detail-copy">
+          <p>KRAG represents affect as graph evidence, aligns graph representations with Sentence-BERT, and reranks semantic candidates using topical, relational, and affective signals. Edge-removal experiments test how much the rankings depend on emotion relationships.</p>
+          <p>The paper, <em>Resolving Intent-Content Conflict in Retrieval: An Emotion-Aware Knowledge Graph Framework</em>, was accepted to NGEN-AI 2026 for publication in Springer proceedings. I presented the work at the Ramapo DMC Fair and Scholar’s Day.</p>
+        </div>
+      </details>
+      <div class="project-links"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener">Research &amp; code <span aria-hidden="true">↗</span></a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="other-work" class="portfolio-section further-work" aria-labelledby="further-title">
+    <h2 class="section-heading" id="further-title">Further work</h2>
+<article class="project">
+      <div>
+        <h3 class="project-title"><a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Moodie <span aria-hidden="true">↗</span></a></h3>
+        <p class="project-meta">OpenAI Build Week · 2026</p>
+      </div>
+      <div>
+        <div class="project-description"><p>A film diary and recommendation system built around what a film meant to someone. People record their responses and feelings; shared films connect people with similar experiences, then lead them to other films those people loved. The person and response behind each recommendation stay visible.</p></div>
+        <p class="project-stack">React · TypeScript · Express · PGlite</p>
+        <div class="project-links">
+          <a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Try Moodie <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Prashant002-1/Moodie" target="_blank" rel="noopener" aria-label="Moodie source on GitHub">Source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener">Hermes JobApps <span aria-hidden="true">↗</span></a></h3>
+        <p class="project-meta">Agent workflow system · 2026</p>
+      </div>
+      <div>
+        <div class="project-description"><p>I built a local agent workflow system so work could survive beyond a conversation. SQLite holds the state; Hermes tools act on it. Job search is the working application: researching roles, preparing materials, and tracking the next action, with provenance and human approval for external steps.</p></div>
+        <p class="project-stack">Python · SQLite · Hermes Agent · Typst</p>
+        <div class="project-links"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener" aria-label="Hermes JobApps source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+        <details>
+          <summary>How the system is structured</summary>
+          <p class="detail-copy">I built the data model, native Hermes plugin and tools, workflow views, material pipeline, and provenance records. Hermes handles sessions, memory, and tool dispatch; the application owns structured state and reviewable transitions.</p>
+        </details>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener">Canvas Agent <span aria-hidden="true">↗</span></a></h3>
+        <p class="project-meta">HackRamapo winner · 2026</p>
+      </div>
+      <div>
+        <div class="project-description"><p>An AI study partner that works from a student’s Canvas data. Persistent memory, tool calling, and semantic search let it reason across courses, grades, deadlines, and assignments, then help the student decide what to work on next.</p></div>
+        <p class="project-stack">Next.js · PostgreSQL · pgvector · Vercel AI SDK</p>
+        <div class="project-links"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener" aria-label="Canvas Agent source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article>
+    <div class="other-work">
+      <h3 class="other-heading">More projects &amp; experiments</h3>
+      <article class="small-project">
+        <h3>DeepScenario<br/>Collision Predictor</h3>
+        <div>
+          <p>A screening model for 33,366 driving simulations, using initialization-only features to rank collision risk. My data science capstone examined how predictions transfer across scenario generators.</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/DeepScenario-Collision-Predictor-Capstone" target="_blank" rel="noopener" aria-label="DeepScenario Collision Predictor source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>RoomDex</h3>
+        <div>
+          <p>A shared 3D room planner for people and browser agents, built for the WebMCP hackathon. Both work on the same measurable room, with precise edits, spatial checks, and undoable revisions.</p>
+          <div class="project-links">
+            <a href="https://roomdex.vercel.app/" target="_blank" rel="noopener">Try RoomDex <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/Prashant002-1/roomdex" target="_blank" rel="noopener" aria-label="RoomDex source on GitHub">Source <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>Legal workflow<br/>design study</h3>
+        <div>
+          <p>A visual and interaction study for a legal technology project: responsive interfaces, an interactive assessment, and WebGL and WebGPU light treatments. The public study uses anonymized sample content.</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/legal-workflow-design-study" target="_blank" rel="noopener">View design study <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="background-layout">
+  <section id="experience" class="portfolio-section" aria-labelledby="experience-title">
+    <h2 class="section-heading" id="experience-title">Experience</h2>
+    <ol class="experience-list">
+      <li class="experience-item">
+        <p class="experience-period">Jun 2026 – Present</p>
+        <div><h3 class="experience-title">Founder &amp; Engineer</h3><p class="experience-org">Atlas LMS</p><p class="experience-detail">Building the company and product, from product direction and interface design to agent architecture, backend services, AWS operations, and feedback from early testers.</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">Sep 2025 – Jun 2026</p>
+        <div><h3 class="experience-title">Data Engineer · Contract</h3><p class="experience-org">Ramapo DMC / Center for Food Action</p><p class="experience-detail">Rebuilt the data path from donation intake through pricing, inventory, human review, PantrySoft handoff, reconciliation, and reporting. Designed the tools around the people using them across six pantries serving about 40,000 people annually.</p><p class="experience-note">Python · Flask · PostgreSQL · Featured on News 12 NJ</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">May – Aug 2025</p>
+        <div><h3 class="experience-title">Software Engineering Intern</h3><p class="experience-org">Trimble</p><p class="experience-detail">Built and shipped a configuration management platform for distributed services. Brought service settings into one workflow, integrated TMW Suite APIs, and implemented role-based access through Azure Workload Identity Federation.</p><p class="experience-note">C# · .NET · Azure · Blazor</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">May 2025 – May 2026</p>
+        <div><h3 class="experience-title">Research Assistant</h3><p class="experience-org">Ramapo College</p><p class="experience-detail">Built and evaluated KRAG over MovieLens 25M, studying retrieval when topical relevance and user intent disagree.</p><p class="experience-note">Best Research Award · NGEN-AI 2026 acceptance</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">Jun – Aug 2024</p>
+        <div><h3 class="experience-title">Software Engineering Intern, Business Analytics</h3><p class="experience-org">Novartis</p><p class="experience-detail">Built proposal automation and business intelligence tools for Site Operations, connecting a React frontend, Azure Functions, and SharePoint. Turned recurring two-day reporting work into refreshable views across more than 100 initiatives.</p><p class="experience-note">TypeScript · Azure Functions · PostgreSQL · Power BI</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">Aug 2023 – Jan 2026</p>
+        <div><h3 class="experience-title">Data Analyst</h3><p class="experience-org">Ramapo College · Student Success</p><p class="experience-detail">Built Python and Quarto reporting workflows across more than 6,000 student records, surveys, attendance, performance, and retention data.</p></div>
+      </li>
+      <li class="experience-item">
+        <p class="experience-period">Sep 2022 – May 2023</p>
+        <div><h3 class="experience-title">Undergraduate Researcher</h3><p class="experience-org">Ramapo College</p><p class="experience-detail">Studied how Self-Determination Theory and Bloom’s Taxonomy could inform feedback and game mechanics in an introductory IT course.</p><p class="experience-note">SAM Conference · Top Poster</p></div>
+      </li>
+    </ol>
+    <details class="toolbox">
+      <summary>Languages, tools, and practices</summary>
+      <dl>
+        <dt>Languages</dt><dd>Python, C#, TypeScript, Java, C/C++, SQL, Bash</dd>
+        <dt>Backend &amp; data</dt><dd>PostgreSQL, .NET, Flask, FastAPI, Node.js, pgvector, SQLAlchemy, ETL</dd>
+        <dt>Cloud &amp; operations</dt><dd>Azure, Azure Functions, AWS, Docker, Linux, GitHub Actions, CI/CD</dd>
+        <dt>AI &amp; interfaces</dt><dd>Tool-calling agents, RAG, embeddings, React, Next.js, Vercel AI SDK</dd>
+        <dt>Practices</dt><dd>pytest, Playwright, schema design, validation, code review</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section id="about" class="portfolio-section" aria-labelledby="about-title">
+    <h2 class="section-heading" id="about-title">About</h2>
     <div class="about-layout">
-      <div class="about-photo reveal">
-        <picture>
-          <source
-            type="image/avif"
-            srcset={`${import.meta.env.BASE_URL}photo-430.avif 430w, ${import.meta.env.BASE_URL}photo-860.avif 860w`}
-            sizes="(max-width: 768px) 90vw, 430px"
-          />
-          <source
-            type="image/webp"
-            srcset={`${import.meta.env.BASE_URL}photo-430.webp 430w, ${import.meta.env.BASE_URL}photo-860.webp 860w`}
-            sizes="(max-width: 768px) 90vw, 430px"
-          />
-          <img
-            class="about-photo-img"
-            src={`${import.meta.env.BASE_URL}photo-860.jpg`}
-            alt="Prashant Shah"
-            width="860"
-            height="1075"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </div>
+      <picture>
+        <source type="image/avif" srcset={`${import.meta.env.BASE_URL}photo-430.avif`} />
+        <source type="image/webp" srcset={`${import.meta.env.BASE_URL}photo-430.webp`} />
+        <img class="about-photo" src={`${import.meta.env.BASE_URL}photo-860.jpg`} alt="Prashant Shah" width="160" height="200" loading="lazy" decoding="async" />
+      </picture>
       <div class="about-prose">
-        <p class="reveal">I grew up speaking three languages and moving between worlds. That shapes how I see problems: I'm always translating, always aware there's more than one way to frame something.</p>
-        <p class="reveal reveal-delay-1">I came to computer science because software is one of the few tools that actually scales. At Ramapo I studied CS and Data Science and worked as a Data Analyst, building reporting workflows over student records, surveys, attendance, and performance data. I also managed 17 resident assistants and a residential community of 200+ students.</p>
-        <p class="reveal reveal-delay-2">At Trimble, Novartis, and Ramapo DMC - Center for Food Action, I kept returning to the same problem: useful software starts with understanding how data moves, where decisions break, and what the person using the system needs to trust. My research applies that question to retrieval systems and learning technology.</p>
-        <p class="reveal reveal-delay-3">I am building Atlas LMS as a startup. I am also looking for full-time Software Engineer and Data Engineer roles where I can own real systems.</p>
-        <div class="about-facts reveal reveal-delay-4">
-          <div class="about-fact">Canstruction: 1st place, building structures from canned food</div>
-          <div class="about-fact">Best Research Award, Ramapo College</div>
-          <div class="about-fact">Presidential Scholar</div>
-          <div class="about-fact">ICPC competitor</div>
-        </div>
+        <p>I grew up speaking three languages and moving between worlds. That shapes how I see problems: I’m always translating, always aware there’s more than one way to frame something.</p>
+        <p>I graduated from Ramapo College in May 2026 with a B.S. in Computer Science and Data Science, a mathematics minor, and a 3.8 GPA. Alongside my technical work, I managed 17 resident assistants and a residential community of more than 200 students.</p>
+        <p>At Trimble, Novartis, and the Center for Food Action, I kept returning to how data moves, where decisions break, and what someone needs to trust the system they’re using. That question now runs through Atlas and my retrieval research.</p>
+        <p class="about-facts">Presidential Scholar · ICPC competitor · Canstruction first place</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Now -->
-<section id="now">
-  <div class="section-inner">
-    <h2 class="section-label">Now <span style="font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--color-faint);letter-spacing:0.04em;text-transform:none">Updated August 2026</span></h2>
-    <div class="now-grid">
-      <div class="now-item reveal">
-        <div class="now-item-label">Building</div>
-        <p class="now-item-text">Building the learning system for the AI era with Atlas LMS.</p>
-      </div>
-      <div class="now-item reveal reveal-delay-1">
-        <div class="now-item-label">Researching</div>
-        <p class="now-item-text">The KRAG paper was accepted to NGEN-AI 2026 for publication in Springer proceedings. The work received Ramapo College&rsquo;s Best Research Award.</p>
-      </div>
-      <div class="now-item reveal reveal-delay-2">
-        <div class="now-item-label">Learning</div>
-        <p class="now-item-text">Understanding harnesses, building AI tools, and product scope. Also photography.</p>
-      </div>
-      <div class="now-item reveal reveal-delay-3">
-        <div class="now-item-label">Looking for</div>
-        <p class="now-item-text">Full-time SWE / Data Engineer / AI Engineer roles. Recently graduated in May 2026.</p>
-      </div>
-      <div class="now-item reveal reveal-delay-4">
-        <div class="now-item-label">Open to</div>
-        <p class="now-item-text">Conversations with engineers, founders, and researchers working on data systems, learning products, or AI that has to operate inside a real workflow.</p>
-      </div>
-      <div class="now-item reveal reveal-delay-4" style="background:var(--color-coral-dim)">
-        <div class="now-item-label" style="color:var(--color-coral)">Contact</div>
-        <p class="now-item-text"><a href="mailto:shahp0021@gmail.com" style="color:var(--color-coral);text-decoration:none">shahp0021@gmail.com</a></p>
-        <div class="now-contact-icons" aria-label="Social and links">
-          <a href="mailto:shahp0021@gmail.com" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2"/>
-              <path d="M4 7l8 6 8-6"/>
-            </svg>
-          </a>
-          <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 19c-4 1.5-4-2-5.5-2.5"/>
-              <path d="M15 22v-3.5c0-1 .2-1.7-.5-2.5 2.4-.3 5-1.2 5-5.2 0-1.2-.4-2.2-1.1-3 .1-.3.5-1.5-.1-3 0 0-.9-.3-3 1.1A10.5 10.5 0 0 0 12 5c-1 0-2 .1-2.9.4-2.1-1.4-3-1.1-3-1.1-.6 1.5-.2 2.7-.1 3a4.2 4.2 0 0 0-1.1 3c0 4 2.6 4.9 5 5.2-.5.5-.8 1.1-.8 2.2V22"/>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v2"/>
-              <path d="M2 9h4v12H2z"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-          </a>
-          <a href="https://x.com/Prashant020510" target="_blank" rel="noopener" aria-label="X">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4l16 16"/>
-              <path d="M20 4L4 20"/>
-            </svg>
-          </a>
-          <a href="https://letterboxd.com/_prashant_/" target="_blank" rel="noopener" aria-label="Letterboxd">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
   </div>
-</section>
+
+  <section id="now" class="portfolio-section" aria-labelledby="now-title">
+    <h2 class="section-heading now-heading" id="now-title">Now <span class="now-date">Updated September 2026</span></h2>
+    <dl class="now-notes">
+      <dt>Building</dt><dd>Atlas, with AI Assignments and teacher-reviewed learning evidence at the center.</dd>
+      <dt>Learning</dt><dd>Agent harnesses, building AI tools, and product scope. Also photography.</dd>
+      <dt>Looking for</dt><dd>Full-time software, data, and AI engineering work where I can own real systems and learn from the people around me.</dd>
+      <dt>Open to</dt><dd>Conversations with engineers, founders, and researchers working on data systems, learning products, or AI inside real workflows.</dd>
+    </dl>
+    <p class="footer-contact">You can reach me at <a href="mailto:shahp0021@gmail.com">shahp0021@gmail.com</a>.</p>
+  </section>
+</main>
 
 <script>
-import Lenis from 'lenis';
-import { startAmbientField } from '../scripts/ambient-field';
+  import Lenis from 'lenis';
+  import('../scripts/line-study.js').then(({ startLineStudy }) => startLineStudy(document.getElementById('line-study'))).catch(() => {});
 
-startAmbientField(document.getElementById('ambientField'));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let lenis: Lenis | null = null;
+  let frame = 0;
 
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-setTimeout(() => {
-  document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
-}, 100);
-
-const orbNavEl = document.getElementById('orbNav');
-const orbTriggerEl = document.getElementById('orbTrigger');
-const orbMenuEl = document.getElementById('orbMenu');
-const orbHeroAnchor = document.getElementById('orbHeroAnchor');
-const heroSection = document.getElementById('hero');
-
-function positionOrb() {
-  if (!orbNavEl) return;
-  const heroRect = heroSection?.getBoundingClientRect();
-  const anchorRect = orbHeroAnchor?.getBoundingClientRect();
-  const canUseHeroAnchor = anchorRect && anchorRect.width > 0;
-  const heroInView = canUseHeroAnchor && heroRect && heroRect.bottom > window.innerHeight * 0.28 && heroRect.top < window.innerHeight * 0.78;
-
-  if (heroInView) {
-    orbNavEl.classList.add('hero-mode');
-    orbNavEl.style.setProperty('--orb-x', `${anchorRect.left + anchorRect.width / 2 - 17}px`);
-    orbNavEl.style.setProperty('--orb-y', `${anchorRect.top + anchorRect.height / 2 - 17}px`);
-  } else {
-    orbNavEl.classList.remove('hero-mode');
-    orbNavEl.style.setProperty('--orb-x', `${window.innerWidth - 68}px`);
-    orbNavEl.style.setProperty('--orb-y', '34px');
-  }
-}
-
-positionOrb();
-requestAnimationFrame(positionOrb);
-requestAnimationFrame(() => requestAnimationFrame(positionOrb));
-window.addEventListener('load', positionOrb);
-document.fonts?.ready?.then(positionOrb);
-setTimeout(positionOrb, 250);
-window.addEventListener('scroll', positionOrb, { passive: true });
-window.addEventListener('resize', positionOrb);
-
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-let lenis = null;
-let lenisFrame = 0;
-
-function startWeightedScroll() {
-  if (lenis || reducedMotion.matches) return;
-  lenis = new Lenis({
-    lerp: 0.12,
-    wheelMultiplier: 1,
-    anchors: true,
-    syncTouch: false,
-    smoothWheel: true,
-    stopInertiaOnNavigate: true,
-  });
-  lenis.on('scroll', positionOrb);
-
-  function raf(time) {
-    if (!lenis) return;
-    lenis.raf(time);
-    lenisFrame = requestAnimationFrame(raf);
-  }
-
-  lenisFrame = requestAnimationFrame(raf);
-}
-
-function stopWeightedScroll() {
-  if (!lenis) return;
-  window.cancelAnimationFrame(lenisFrame);
-  lenis.destroy();
-  lenis = null;
-  lenisFrame = 0;
-  positionOrb();
-}
-
-startWeightedScroll();
-reducedMotion.addEventListener('change', e => {
-  if (e.matches) stopWeightedScroll();
-  else startWeightedScroll();
-});
-
-const cursorDot = document.getElementById('cursorDot');
-const cursorRing = document.getElementById('cursorRing');
-if (!window.matchMedia('(hover: none)').matches) {
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  let ringFrame = 0;
-  let lastMove = 0;
-  function animRing() {
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
-    const settled = Math.abs(mx - rx) < 0.15 && Math.abs(my - ry) < 0.15;
-    if (settled && performance.now() - lastMove > 1200) { ringFrame = 0; return; }
-    ringFrame = requestAnimationFrame(animRing);
-  }
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    lastMove = performance.now();
-    cursorDot.style.left = mx + 'px'; cursorDot.style.top = my + 'px';
-    if (!ringFrame) ringFrame = requestAnimationFrame(animRing);
-  });
-  function setCursor(ringClass, dotClass) {
-    cursorRing.className = 'cursor-ring' + (ringClass ? ' ' + ringClass : '');
-    cursorDot.className  = 'cursor-dot'  + (dotClass  ? ' ' + dotClass  : '');
-  }
-  function bindCursor(selector, ringClass, dotClass) {
-    document.querySelectorAll(selector).forEach(el => {
-      el.addEventListener('mouseenter', () => setCursor(ringClass, dotClass));
-      el.addEventListener('mouseleave', () => setCursor('', ''));
-    });
-  }
-  bindCursor('.hero-name-row', 'cur-lens', 'cur-lens');
-  bindCursor('.github-heatmap', 'cur-grid', 'cur-grid');
-  bindCursor('.work-card, .work-featured', 'cur-expand', 'cur-expand');
-  document.querySelectorAll('.card-expand-btn').forEach(btn => {
-    btn.addEventListener('mouseenter', () => setCursor('cur-close', 'cur-close'));
-    btn.addEventListener('mouseleave', () => setCursor('cur-expand', 'cur-expand'));
-  });
-  bindCursor('.stat-value, .research-stat', 'cur-square', 'cur-square');
-  bindCursor('.cta-primary, .cta-secondary', 'cur-cta', 'cur-cta');
-  bindCursor('a[target="_blank"]', 'cur-arrow', 'cur-arrow');
-  bindCursor('.now-item', 'cur-live', 'cur-live');
-
-  const orbNav = orbNavEl;
-  const orbTrigger = orbTriggerEl;
-  const orbMenu = orbMenuEl;
-  if (orbNav && orbTrigger && orbMenu) {
-    let absorbed = false;
-    let collapseTimer = null;
-
-    function openOrb() {
-      if (collapseTimer) window.clearTimeout(collapseTimer);
-      absorbed = true;
-      orbNav.classList.add('open');
-      orbNav.classList.remove('pulling', 'collapsing');
-      orbNav.style.setProperty('--pull-x', '0px');
-      orbNav.style.setProperty('--pull-y', '0px');
-      orbTrigger.setAttribute('aria-expanded', 'true');
-      setCursor('cur-orb', 'cur-orb');
+  function setScrollMotion() {
+    cancelAnimationFrame(frame);
+    lenis?.destroy();
+    lenis = null;
+    if (reducedMotion.matches) return;
+    lenis = new Lenis({ lerp: 0.12, anchors: true, syncTouch: false, smoothWheel: true, stopInertiaOnNavigate: true });
+    function tick(time: number) {
+      if (!lenis) return;
+      lenis.raf(time);
+      frame = requestAnimationFrame(tick);
     }
+    frame = requestAnimationFrame(tick);
+  }
+  setScrollMotion();
+  reducedMotion.addEventListener('change', setScrollMotion);
 
-    function closeOrb() {
-      absorbed = false;
-      orbNav.classList.add('collapsing');
-      orbNav.classList.remove('open', 'pulling');
-      orbNav.style.setProperty('--pull-x', '0px');
-      orbNav.style.setProperty('--pull-y', '0px');
-      orbTrigger.setAttribute('aria-expanded', 'false');
-      if (orbNav.contains(document.activeElement)) document.activeElement.blur();
-      setCursor('', '');
-      if (collapseTimer) window.clearTimeout(collapseTimer);
-      collapseTimer = window.setTimeout(() => orbNav.classList.remove('collapsing'), 170);
-    }
-
-    let magnetEvent = null;
-    let magnetFrame = 0;
-
-    function processMagnet() {
-      magnetFrame = 0;
-      const e = magnetEvent;
-      if (!e) return;
-
-      if (absorbed) {
-        const menuRect = orbMenu.getBoundingClientRect();
-        const navRect = orbNav.getBoundingClientRect();
-        const cx = navRect.left + navRect.width / 2;
-        const cy = navRect.top + navRect.height / 2;
-        const outsideMenu =
-          e.clientX < menuRect.left - 40 ||
-          e.clientX > menuRect.right + 40 ||
-          e.clientY < menuRect.top - 40 ||
-          e.clientY > menuRect.bottom + 40;
-
-        if (outsideMenu && Math.hypot(e.clientX - cx, e.clientY - cy) > 190) closeOrb();
-        return;
-      }
-
-      const r = orbNav.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.hypot(dx, dy);
-
-      if (dist < 118) {
-        const strength = Math.max(0, 1 - dist / 118);
-        orbNav.classList.add('pulling');
-        orbNav.style.setProperty('--pull-x', `${dx * strength * 0.72}px`);
-        orbNav.style.setProperty('--pull-y', `${dy * strength * 0.72}px`);
-        setCursor('cur-orb', 'cur-orb');
-        if (dist < 26) openOrb();
-      } else {
-        orbNav.classList.remove('pulling');
-        orbNav.style.setProperty('--pull-x', '0px');
-        orbNav.style.setProperty('--pull-y', '0px');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.site-nav a');
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const sectionId = entry.target.id === 'about' ? 'experience' : entry.target.id === 'other-work' ? 'work' : entry.target.id;
+      for (const link of navLinks) {
+        if (link.hash === `#${sectionId}`) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
       }
     }
+  }, { rootMargin: '-10% 0px -65% 0px' });
+  document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
 
-    document.addEventListener('mousemove', e => {
-      magnetEvent = e;
-      if (!magnetFrame) magnetFrame = requestAnimationFrame(processMagnet);
-    });
-
-    orbTrigger.addEventListener('click', () => {
-      if (orbNav.classList.contains('open')) closeOrb();
-      else openOrb();
-    });
-
-    document.addEventListener('click', e => {
-      if (!orbNav.contains(e.target)) closeOrb();
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeOrb();
-    });
-
-    orbMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => setTimeout(closeOrb, 120));
-    });
+  const clockEl = document.getElementById('stripClock');
+  function tick() {
+    if (clockEl) clockEl.textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
   }
-}
+  tick();
+  const clock = setInterval(tick, 1000);
 
-if (window.matchMedia('(hover: none)').matches) {
-  const orbNav = orbNavEl;
-  const orbTrigger = orbTriggerEl;
-  const orbMenu = orbMenuEl;
-
-  if (orbNav && orbTrigger && orbMenu) {
-    function closeTouchOrb() {
-      orbNav.classList.remove('open');
-      orbTrigger.setAttribute('aria-expanded', 'false');
-      if (orbNav.contains(document.activeElement)) document.activeElement.blur();
-    }
-
-    orbTrigger.addEventListener('click', () => {
-      const isOpen = orbNav.classList.toggle('open');
-      orbTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      if (!isOpen) orbTrigger.blur();
-    });
-
-    document.addEventListener('click', e => {
-      if (!orbNav.contains(e.target)) closeTouchOrb();
-    });
-
-    orbMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => setTimeout(closeTouchOrb, 120));
-    });
-  }
-}
-
-document.querySelectorAll('.cta-primary, .cta-secondary').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    const r = el.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width / 2)) * 0.28;
-    const dy = (e.clientY - (r.top + r.height / 2)) * 0.28;
-    el.style.transform = `translate(${dx}px,${dy}px)`;
-  });
-  el.addEventListener('mouseleave', () => { el.style.transform = 'translate(0,0)'; });
-});
-
-const navLinks = document.querySelectorAll('.orb-menu a[href^="#"]');
-if (navLinks.length) {
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-
-  document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
-}
-
-document.querySelectorAll('.card-expand-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.work-card, .work-featured');
-    const isOpen = card.classList.toggle('expanded');
-    const label = btn.querySelector('.exp-label');
-    if (label) label.textContent = isOpen ? 'less' : 'more detail';
-  });
-});
-
-const clockEl = document.getElementById('stripClock');
-function tick() {
-  if (clockEl) clockEl.textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-}
-tick(); setInterval(tick, 1000);
+  window.addEventListener('pagehide', (event) => {
+    if (event.persisted) return;
+    cancelAnimationFrame(frame);
+    lenis?.destroy();
+    observer.disconnect();
+    clearInterval(clock);
+    reducedMotion.removeEventListener('change', setScrollMotion);
+  }, { once: true });
 </script>
-
 </body>
 </html>
