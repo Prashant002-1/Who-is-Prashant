@@ -59,7 +59,14 @@ Both sides use the same five material colors. Sampled contour arcs are projected
 through a fixed orthographic camera and drawn from farther to nearer, with lower
 opacity on distant curves. This is an intentionally translucent wire rendering;
 it does not claim physically opaque occlusion. The static SVG uses the same
-geometry, palette, projection, and identity pose as the canvas.
+geometry, sRGB palette, projection, and identity pose as the canvas.
+
+The Midnight & jade palette has separate sRGB and Display P3 values. On a P3
+display, the renderer probes canvas support before selecting p5's P2DP3 mode.
+It uses the P3 material colors only when the created context reports Display P3;
+otherwise it uses the sRGB palette. CSS uses the same display and syntax checks
+over sRGB defaults. Stronger strand opacity keeps the colors legible against the
+dark background without changing the geometry or animation.
 
 Analytic symmetry identities, group states, and permutations are exact.
 Coordinates, trigonometric evaluation, curve sampling, and rasterization use

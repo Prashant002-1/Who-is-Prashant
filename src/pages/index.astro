@@ -7,7 +7,7 @@ import '../styles/portfolio.css';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Prashant Shah. Software and data engineer who builds AI products. Selected work, retrieval research, and experience at Trimble, Novartis, and Ramapo DMC." />
-  <meta name="theme-color" content="#F4F5F7" />
+  <meta name="theme-color" content="#03130f" />
   <meta property="og:title" content="Prashant Shah" />
   <meta property="og:description" content="Software and data engineer who builds AI products." />
   <link rel="canonical" href="https://www.prashantshah.tech/" />
@@ -21,7 +21,7 @@ import '../styles/portfolio.css';
   <style>
 
     :root {
-      color-scheme: light;
+      color-scheme: dark;
       --font-site: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --text-caption: 0.75rem;
       --text-small: 0.875rem;
@@ -32,55 +32,53 @@ import '../styles/portfolio.css';
       --leading-label: 1.6;
       --leading-heading: 1.4;
 
-      --color-bg:       #F4F5F7;
-      --color-surface:  #FFFFFF;
-      --color-panel:    rgba(255,255,255,0.82);
-      --color-panel-strong: rgba(255,255,255,0.96);
-      --color-card:     rgba(255,255,255,0.86);
-      --color-card-strong: rgba(255,255,255,0.94);
-      --color-card-hover: rgba(240,239,245,0.92);
-      --color-text:     #181522;
-      --color-muted:    #514C5D;
-      --color-faint:    #686272;
-      --color-border:   #C9C5D1;
-      --color-border-soft: rgba(24,21,34,0.13);
-      --color-shadow:   rgba(45,35,70,0.11);
-
-      --color-coral:    #C83D50;
-      --color-coral-hover: #A82E42;
-      --color-coral-glow: rgba(200,61,80,0.18);
-      --color-coral-dim: rgba(200,61,80,0.08);
-
-      --color-cyan:     #087A76;
-      --color-cyan-glow: rgba(8,122,118,0.18);
-      --color-cyan-dim: rgba(8,122,118,0.07);
-
-      --color-gold:     #896100;
-      --color-gold-glow: rgba(137,97,0,0.17);
-      --color-gold-dim: rgba(137,97,0,0.07);
-
-      --color-purple:   #6547B4;
-      --color-purple-glow: rgba(101,71,180,0.18);
-      --color-purple-dim: rgba(101,71,180,0.07);
-
-      --color-rose:     #B82E62;
-      --color-rose-dim: rgba(184,46,98,0.08);
+      --color-bg: #03130f;
+      --color-text: #f2f6f4;
+      --color-muted: #b9cdc4;
+      --color-faint: #93aba1;
+      --color-accent: #00eaa5;
+      --color-accent-hover: #c1fbde;
+      --color-border: #243e37;
+      --color-research: #04241d;
+      --color-research-text: #f2f6f4;
+      --color-research-muted: #c0d7cd;
+      --color-research-faint: #98b6a9;
+      --color-research-accent: #1cf1ab;
+      --color-strip: #03130f;
+      --color-border-soft: var(--color-border);
 
       --max-content: 1100px;
       --transition: 180ms ease;
+    }
+
+    @supports (color: color(display-p3 1 0 0)) {
+      @media (color-gamut: p3) {
+        :root {
+          --color-bg: color(display-p3 0.025855 0.072726 0.058497);
+          --color-text: color(display-p3 0.950739 0.965611 0.957325);
+          --color-muted: color(display-p3 0.738793 0.800786 0.770859);
+          --color-faint: color(display-p3 0.595516 0.667670 0.633183);
+          --color-accent: color(display-p3 0.385577 0.912103 0.660400);
+          --color-accent-hover: color(display-p3 0.803618 0.976426 0.877144);
+          --color-border: color(display-p3 0.163225 0.240439 0.216153);
+          --color-research: color(display-p3 0.052201 0.139095 0.114717);
+          --color-research-text: color(display-p3 0.950739 0.965611 0.957325);
+          --color-research-muted: color(display-p3 0.771153 0.841275 0.807494);
+          --color-research-faint: color(display-p3 0.617813 0.710536 0.666572);
+          --color-research-accent: color(display-p3 0.444534 0.932437 0.691754);
+          --color-strip: color(display-p3 0.025855 0.072726 0.058497);
+        }
+      }
     }
 
     /* ── Status strip ────────────────────────── */
     #now-strip {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
       height: 38px; border-top: 1px solid var(--color-border);
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: var(--color-strip);
       display: flex; align-items: center; padding: 0 48px; gap: 18px;
       font-size: var(--text-caption); line-height: var(--leading-label); color: var(--color-muted);
       letter-spacing: 0;
-      box-shadow: 0 -4px 8px var(--color-shadow);
     }
     .strip-item { min-width: 0; display: flex; align-items: center; gap: 9px; white-space: nowrap; }
     .building-item { flex: 1 1 330px; }
