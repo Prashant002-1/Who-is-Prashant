@@ -16,15 +16,21 @@ import '../styles/portfolio.css';
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap" rel="stylesheet" />
   <title>Prashant Shah | Software &amp; Data Engineer</title>
   <style>
 
     :root {
       color-scheme: light;
-      --font-heading: 'Sora', 'Helvetica Neue', sans-serif;
-      --font-body:    'Source Serif 4', Georgia, serif;
-      --font-mono:    'JetBrains Mono', monospace;
+      --font-site: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --text-caption: 0.75rem;
+      --text-small: 0.875rem;
+      --text-body: 1rem;
+      --text-title: 1.25rem;
+      --text-display: clamp(1.75rem, 1.4rem + 0.75vw, 2rem);
+      --leading-body: 1.75;
+      --leading-label: 1.6;
+      --leading-heading: 1.4;
 
       --color-bg:       #F4F5F7;
       --color-surface:  #FFFFFF;
@@ -72,7 +78,7 @@ import '../styles/portfolio.css';
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       display: flex; align-items: center; padding: 0 48px; gap: 18px;
-      font-family: var(--font-body); font-size: 13px; color: var(--color-muted);
+      font-size: var(--text-caption); line-height: var(--leading-label); color: var(--color-muted);
       letter-spacing: 0;
       box-shadow: 0 -4px 8px var(--color-shadow);
     }
@@ -101,7 +107,7 @@ import '../styles/portfolio.css';
       background: var(--color-faint);
       flex: 0 0 auto;
     }
-    .strip-sep { color: var(--color-border); font-size: 14px; flex: 0 0 auto; }
+    .strip-sep { color: var(--color-border); font-size: var(--text-small); flex: 0 0 auto; }
     .strip-social-icons { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
     .strip-social-icons a {
       width: 16px; height: 16px; display: grid; place-items: center;
@@ -121,7 +127,7 @@ import '../styles/portfolio.css';
       .recognition-item, .recognition-sep { display: none; }
     }
     @media (max-width: 768px) {
-      #now-strip { height: 48px; padding: 0 18px; gap: 10px; font-size: 12px; }
+      #now-strip { height: 48px; padding: 0 18px; gap: 10px; }
       .recognition-item, .watching-item, .strip-sep, .strip-clock { display: none; }
       .strip-item { gap: 7px; }
       .strip-value { max-width: 42vw; line-height: 1.25; }
