@@ -42,8 +42,6 @@ h1 { font-size: 32px; font-weight: 600; letter-spacing: -.035em; line-height: 1.
 .project:first-of-type { padding-top: 0; }
 .project-title { font-size: 20px; line-height: 1.5; font-weight: 500; letter-spacing: -.02em; }
 .project-title a { text-decoration: none; }
-.project-title span { display: inline-block; font-family: var(--font-body); font-size: .85em; transition: transform 250ms ease; }
-.project:focus-within .project-title span, .project:hover .project-title span { transform: translate(3px, -3px); }
 .project-meta, .project-stack { font-family: var(--font-mono); font-size: 10px; line-height: 1.85; color: var(--color-faint); }
 .project-meta { margin-top: 12px; }
 .project-stack { margin-top: 18px; }

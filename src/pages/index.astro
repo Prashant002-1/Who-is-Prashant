@@ -72,17 +72,17 @@ import '../styles/portfolio.css';
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       display: flex; align-items: center; padding: 0 48px; gap: 18px;
-      font-family: var(--font-mono); font-size: 11px; color: var(--color-faint);
-      letter-spacing: 0.04em;
+      font-family: var(--font-body); font-size: 13px; color: var(--color-muted);
+      letter-spacing: 0;
       box-shadow: 0 -4px 8px var(--color-shadow);
     }
     .strip-item { min-width: 0; display: flex; align-items: center; gap: 9px; white-space: nowrap; }
     .building-item { flex: 1 1 330px; }
     .recognition-item { flex: 1 1 300px; }
     .watching-item { flex: 0 1 190px; }
-    .strip-label { color: var(--color-faint); letter-spacing: 0.04em; }
+    .strip-label { color: var(--color-muted); }
     .strip-value { min-width: 0; color: var(--color-text); overflow: hidden; text-overflow: ellipsis; }
-    .strip-value.accent { color: var(--color-coral); }
+    .strip-emphasis { font-weight: 600; }
     .strip-ticker {
       display: block; position: relative; min-width: 0; max-width: 100%;
       overflow: hidden; text-overflow: clip;
@@ -90,20 +90,18 @@ import '../styles/portfolio.css';
     .strip-ticker-track {
       display: inline-flex; gap: 36px; min-width: max-content;
       transform: translateX(0); will-change: transform;
-      animation: strip-ticker 7.5s linear infinite;
+      animation: strip-ticker 24s linear infinite;
     }
+    #now-strip:hover .strip-ticker-track, #now-strip:focus-within .strip-ticker-track { animation-play-state: paused; }
     @keyframes strip-ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(calc(-50% - 18px)); }
+      0%, 12% { transform: translateX(0); }
+      88%, 100% { transform: translateX(calc(-50% - 18px)); }
     }
     .strip-dot {
       width: 7px; height: 7px; border-radius: 50%;
-      background: var(--color-coral);
-      animation: pulse-dot 2.5s ease-in-out infinite;
-      box-shadow: 0 0 14px var(--color-coral-glow);
+      background: var(--color-faint);
       flex: 0 0 auto;
     }
-    @keyframes pulse-dot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     .strip-sep { color: var(--color-border); font-size: 14px; flex: 0 0 auto; }
     .strip-social-icons { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
     .strip-social-icons a {
@@ -111,9 +109,9 @@ import '../styles/portfolio.css';
       color: var(--color-faint); text-decoration: none;
       transition: color var(--transition), transform 200ms ease;
     }
-    .strip-social-icons a:hover { color: var(--color-coral-hover); transform: translateY(-2px); }
+    .strip-social-icons a:hover { color: var(--color-text); transform: translateY(-2px); }
     .strip-social-icons svg { width: 12px; height: 12px; display: block; }
-    .strip-clock { margin-left: auto; color: var(--color-faint); min-width: 66px; text-align: right; }
+    .strip-clock { margin-left: auto; color: var(--color-faint); min-width: 66px; text-align: right; font-variant-numeric: tabular-nums; }
 
 
     @media (min-width: 1280px) {
@@ -124,7 +122,7 @@ import '../styles/portfolio.css';
       .recognition-item, .recognition-sep { display: none; }
     }
     @media (max-width: 768px) {
-      #now-strip { height: 48px; padding: 0 18px; gap: 10px; font-size: 10px; }
+      #now-strip { height: 48px; padding: 0 18px; gap: 10px; font-size: 12px; }
       .recognition-item, .watching-item, .strip-sep, .strip-clock { display: none; }
       .strip-item { gap: 7px; }
       .strip-value { max-width: 42vw; line-height: 1.25; }
@@ -161,7 +159,7 @@ import '../styles/portfolio.css';
   <span class="strip-sep recognition-sep">&middot;</span>
   <div class="strip-item recognition-item">
     <span class="strip-label">Recent Recognition:</span>
-    <span class="strip-value strip-ticker accent">
+    <span class="strip-value strip-ticker strip-emphasis">
       <span class="strip-ticker-track">
         <span>KRAG Paper presented at NGEN-AI 2026</span>
         <span aria-hidden="true">KRAG Paper presented at NGEN-AI 2026</span>
@@ -171,12 +169,7 @@ import '../styles/portfolio.css';
   <span class="strip-sep watching-sep">&middot;</span>
   <div class="strip-item watching-item">
     <span class="strip-label">Current Favorite:</span>
-    <span class="strip-value strip-ticker">
-      <span class="strip-ticker-track">
-        <span>Pluto</span>
-        <span aria-hidden="true">Pluto</span>
-      </span>
-    </span>
+    <span class="strip-value">Pluto</span>
   </div>
   <span class="strip-sep social-sep">&middot;</span>
   <div class="strip-social-icons" aria-label="Social links">
@@ -234,10 +227,10 @@ import '../styles/portfolio.css';
       <p class="hero-intro">I’m building <a href="https://atlas-lms.com" target="_blank" rel="noopener">Atlas</a>, a learning system where teachers shape how students work with AI and review the reasoning behind the result.</p>
       <p class="hero-history">Previously, I built software at Trimble and Novartis, and data infrastructure for the Center for Food Action through Ramapo DMC. My research focuses on intent-aware retrieval.</p>
       <div class="hero-links" aria-label="Contact and profiles">
-        <a href="mailto:shahp0021@gmail.com">Email <span aria-hidden="true">↗</span></a>
-        <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`}>Resume <span aria-hidden="true">↗</span></a>
-        <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-        <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="mailto:shahp0021@gmail.com">Email</a>
+        <a href={`${import.meta.env.BASE_URL}Prashant-Resume.pdf`}>Resume</a>
+        <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <p class="hero-availability">Open to full-time software, data, and AI engineering roles.</p>
     </div>
@@ -260,7 +253,7 @@ import '../styles/portfolio.css';
     <h2 class="section-heading" id="work-title">Selected work</h2>
     <article class="project project-featured">
       <div>
-        <h3 class="project-title"><a href="https://atlas-lms.com" target="_blank" rel="noopener">Atlas LMS <span aria-hidden="true">↗</span></a></h3>
+        <h3 class="project-title"><a href="https://atlas-lms.com" target="_blank" rel="noopener">Atlas LMS</a></h3>
         <p class="project-meta">Founder &amp; engineer<br/>2026 · Private pilot</p>
       </div>
       <div>
@@ -270,8 +263,8 @@ import '../styles/portfolio.css';
         </div>
         <p class="project-stack">TypeScript · Next.js · PostgreSQL · Agent systems · AWS</p>
         <div class="project-links">
-          <a href="https://atlas-lms.com" target="_blank" rel="noopener">Explore Atlas <span aria-hidden="true">↗</span></a>
-          <a href="https://atlas-lms.com/about/" target="_blank" rel="noopener">Why I’m building it <span aria-hidden="true">↗</span></a>
+          <a href="https://atlas-lms.com" target="_blank" rel="noopener">Explore Atlas</a>
+          <a href="https://atlas-lms.com/about/" target="_blank" rel="noopener">Why I’m building it</a>
         </div>
       </div>
     </article>
@@ -310,7 +303,7 @@ import '../styles/portfolio.css';
           <p>I presented <em>Resolving Intent-Content Conflict in Retrieval: An Emotion-Aware Knowledge Graph Framework</em> at NGEN-AI 2026 in September, following presentations at the Ramapo DMC Fair and Scholar’s Day. The conference proceedings are forthcoming in <a href="https://www.ngen-ai.org/" target="_blank" rel="noopener">Springer’s CCIS series</a>.</p>
         </div>
       </details>
-      <div class="project-links"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener">Research &amp; code <span aria-hidden="true">↗</span></a></div>
+      <div class="project-links"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener">Research &amp; code</a></div>
       </article>
     </div>
   </section>
@@ -319,27 +312,27 @@ import '../styles/portfolio.css';
     <h2 class="section-heading" id="further-title">Further work</h2>
 <article class="project">
       <div>
-        <h3 class="project-title"><a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Moodie <span aria-hidden="true">↗</span></a></h3>
+        <h3 class="project-title"><a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Moodie</a></h3>
         <p class="project-meta">OpenAI Build Week · 2026</p>
       </div>
       <div>
         <div class="project-description"><p>A film diary and recommendation system built around what a film meant to someone. People record their responses and feelings; shared films connect people with similar experiences, then lead them to other films those people loved. The person and response behind each recommendation stay visible.</p></div>
         <p class="project-stack">React · TypeScript · Express · PGlite</p>
         <div class="project-links">
-          <a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Try Moodie <span aria-hidden="true">↗</span></a>
-          <a href="https://github.com/Prashant002-1/Moodie" target="_blank" rel="noopener" aria-label="Moodie source on GitHub">Source <span aria-hidden="true">↗</span></a>
+          <a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Try Moodie</a>
+          <a href="https://github.com/Prashant002-1/Moodie" target="_blank" rel="noopener" aria-label="Moodie source on GitHub">Source</a>
         </div>
       </div>
     </article>
     <article class="project">
       <div>
-        <h3 class="project-title"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener">Hermes JobApps <span aria-hidden="true">↗</span></a></h3>
+        <h3 class="project-title"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener">Hermes JobApps</a></h3>
         <p class="project-meta">Agent workflow system · 2026</p>
       </div>
       <div>
         <div class="project-description"><p>I built a local agent workflow system so work could survive beyond a conversation. SQLite holds the state; Hermes tools act on it. Job search is the working application: researching roles, preparing materials, and tracking the next action, with provenance and human approval for external steps.</p></div>
         <p class="project-stack">Python · SQLite · Hermes Agent · Typst</p>
-        <div class="project-links"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener" aria-label="Hermes JobApps source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+        <div class="project-links"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener" aria-label="Hermes JobApps source on GitHub">Source</a></div>
         <details>
           <summary>How the system is structured</summary>
           <p class="detail-copy">I built the data model, native Hermes plugin and tools, workflow views, material pipeline, and provenance records. Hermes handles sessions, memory, and tool dispatch; the application owns structured state and reviewable transitions.</p>
@@ -348,13 +341,13 @@ import '../styles/portfolio.css';
     </article>
     <article class="project">
       <div>
-        <h3 class="project-title"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener">Canvas Agent <span aria-hidden="true">↗</span></a></h3>
+        <h3 class="project-title"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener">Canvas Agent</a></h3>
         <p class="project-meta">HackRamapo winner · 2026</p>
       </div>
       <div>
         <div class="project-description"><p>An AI study partner that works from a student’s Canvas data. Persistent memory, tool calling, and semantic search let it reason across courses, grades, deadlines, and assignments, then help the student decide what to work on next.</p></div>
         <p class="project-stack">Next.js · PostgreSQL · pgvector · Vercel AI SDK</p>
-        <div class="project-links"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener" aria-label="Canvas Agent source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+        <div class="project-links"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener" aria-label="Canvas Agent source on GitHub">Source</a></div>
       </div>
     </article>
     <div class="other-work">
@@ -363,7 +356,7 @@ import '../styles/portfolio.css';
         <h3>DeepScenario<br/>Collision Predictor</h3>
         <div>
           <p>A screening model for 33,366 driving simulations, using initialization-only features to rank collision risk. My data science capstone examined how predictions transfer across scenario generators.</p>
-          <div class="project-links"><a href="https://github.com/Prashant002-1/DeepScenario-Collision-Predictor-Capstone" target="_blank" rel="noopener" aria-label="DeepScenario Collision Predictor source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/DeepScenario-Collision-Predictor-Capstone" target="_blank" rel="noopener" aria-label="DeepScenario Collision Predictor source on GitHub">Source</a></div>
         </div>
       </article>
       <article class="small-project">
@@ -371,8 +364,8 @@ import '../styles/portfolio.css';
         <div>
           <p>A shared 3D room planner for people and browser agents, built for the WebMCP hackathon. Both work on the same measurable room, with precise edits, spatial checks, and undoable revisions.</p>
           <div class="project-links">
-            <a href="https://roomdex.vercel.app/" target="_blank" rel="noopener">Try RoomDex <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/Prashant002-1/roomdex" target="_blank" rel="noopener" aria-label="RoomDex source on GitHub">Source <span aria-hidden="true">↗</span></a>
+            <a href="https://roomdex.vercel.app/" target="_blank" rel="noopener">Try RoomDex</a>
+            <a href="https://github.com/Prashant002-1/roomdex" target="_blank" rel="noopener" aria-label="RoomDex source on GitHub">Source</a>
           </div>
         </div>
       </article>
@@ -380,7 +373,7 @@ import '../styles/portfolio.css';
         <h3>Legal workflow<br/>design study</h3>
         <div>
           <p>A visual and interaction study for a legal technology project: responsive interfaces, an interactive assessment, and WebGL and WebGPU light treatments. The public study uses anonymized sample content.</p>
-          <div class="project-links"><a href="https://github.com/Prashant002-1/legal-workflow-design-study" target="_blank" rel="noopener">View design study <span aria-hidden="true">↗</span></a></div>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/legal-workflow-design-study" target="_blank" rel="noopener">View design study</a></div>
         </div>
       </article>
     </div>
