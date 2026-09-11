@@ -153,10 +153,11 @@ summary:hover { color: var(--color-accent-hover); }
   .hero-intro { grid-column: 1 / -1; max-width: 540px; margin-top: 24px; }
   .hero-history, .hero-links, .hero-availability { grid-column: 1 / -1; }
   .hero-history { max-width: 500px; }
-  .hero-art { display: contents; }
-  .art-surface { grid-column: 2; grid-row: 1 / span 2; align-self: center; height: 155px; margin: -15px -8px 0 0; }
-  .art-caption { grid-column: 1 / -1; justify-content: flex-start; margin: 16px 0 0; }
-  .art-pause { width: 44px; height: 44px; }
+  .hero-art { grid-column: 2; grid-row: 1 / span 2; align-self: center; min-width: 0; margin: -15px -8px 0 0; }
+  .art-surface { height: 155px; }
+  .art-caption { margin: 0; }
+  .art-caption p { min-width: 0; }
+  .art-pause { flex-shrink: 0; width: 44px; height: 44px; }
   .portfolio-section { padding-block: 34px 39px; }
   .section-heading { margin-bottom: 25px; }
   .project, .research-layout { grid-template-columns: 1fr; gap: 22px; }
