@@ -97,8 +97,8 @@ import '../styles/portfolio.css';
     }
     #now-strip:hover .strip-ticker-track, #now-strip:focus-within .strip-ticker-track { animation-play-state: paused; }
     @keyframes strip-ticker {
-      0%, 12% { transform: translateX(0); }
-      88%, 100% { transform: translateX(calc(-50% - 18px)); }
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 18px)); }
     }
     .strip-dot {
       width: 7px; height: 7px; border-radius: 50%;
