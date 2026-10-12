@@ -17,7 +17,7 @@ h1 { font-size: var(--text-display); font-weight: 600; line-height: 1.25; letter
 .site-nav a, .hero-links a, .project-links a, summary, .section-heading,
 .other-heading, .now-notes dt, .research-results { font-size: var(--text-small); line-height: var(--leading-label); }
 .project-meta, .project-stack, .research-meta, .experience-period, .experience-note,
-.now-date, .research-results caption, .art-caption, .hero-availability,
+.now-date, .research-results caption, .art-caption,
 .research-question-note, .about-education { font-size: var(--text-caption); line-height: var(--leading-label); }
 .hero-history, .detail-copy, .experience-org { font-size: var(--text-small); }
 .now-date, .experience-period { font-variant-numeric: tabular-nums; }
@@ -42,7 +42,6 @@ h1 { margin-bottom: 17px; }
 .hero-history { color: var(--color-muted); margin-top: 18px; }
 .hero-links { display: flex; gap: 23px; flex-wrap: wrap; align-items: center; margin-top: 23px; }
 .hero-links a { padding-block: 8px; }
-.hero-availability { color: var(--color-muted); margin-top: 18px; max-width: 400px; }
 .hero-art { margin: -32px -24px 0 -12px; position: relative; }
 .art-surface { display: block; width: 100%; height: 346px; position: relative; }
 .art-surface canvas, .art-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
@@ -112,8 +111,6 @@ summary:hover { color: var(--color-accent-hover); }
 .experience-org { color: var(--color-muted); }
 .experience-detail { color: var(--color-muted); margin-top: 10px; }
 .experience-note { color: var(--color-faint); margin-top: 10px; }
-.toolbox dl { display: grid; gap: 5px; padding-top: 12px; }
-.toolbox dd { color: var(--color-muted); margin-bottom: 12px; }
 .about-layout { position: sticky; top: 35px; }
 .about-photo { display: block; width: 116px; height: 145px; object-fit: cover; margin-bottom: 27px; }
 .about-prose { color: var(--color-muted); }
@@ -151,7 +148,7 @@ summary:hover { color: var(--color-accent-hover); }
   #hero h1 { grid-column: 1; grid-row: 1; align-self: end; }
   .hero-role { grid-column: 1; grid-row: 2; max-width: 380px; }
   .hero-intro { grid-column: 1 / -1; max-width: 540px; margin-top: 24px; }
-  .hero-history, .hero-links, .hero-availability { grid-column: 1 / -1; }
+  .hero-history, .hero-links { grid-column: 1 / -1; }
   .hero-history { max-width: 500px; }
   .hero-art { grid-column: 2; grid-row: 1 / span 2; align-self: center; min-width: 0; margin: -15px -8px 0 0; }
   .art-surface { height: 155px; }
