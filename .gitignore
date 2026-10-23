@@ -22,7 +22,6 @@ pnpm-debug.log*
 # editor and tool settings
 .idea/
 .claude/
-.impeccable/
 .vercel/
 
 # photo variants generated from public/photo.jpg by astro.config.mjs
