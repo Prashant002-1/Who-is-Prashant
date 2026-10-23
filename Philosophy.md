@@ -1,6 +1,6 @@
 # Portfolio Philosophy
 
-This site is now a single-page personal portfolio. The shipped product is `src/pages/index.astro`.
+This site is a single-page personal portfolio with one companion page. The shipped product is `src/pages/index.astro`, plus `src/pages/freelance.astro` for contract work.
 
 ## Product Shape
 
@@ -15,6 +15,8 @@ The page contains the complete visitor path:
 
 Legacy routes such as `/work`, `/research`, `/about`, and `/now` are intentionally removed. Navigation should use hash links on the home page.
 
+The one intentional route is `/freelance/`: a freelance profile with services, open-source repositories, tools, and an invitation to work together. It shares the home page's tokens, type roles, navigation, and status strip.
+
 ## Design Direction
 
 The site should feel deliberate, dark, editorial, and technical without becoming a generic terminal aesthetic. Typography and spacing carry the page. Motion should support orientation and interaction, not become the point.
@@ -25,7 +27,7 @@ Current core choices:
 - Body: Source Serif 4.
 - Labels and compact metadata: JetBrains Mono.
 - Palette: warm near-black, muted gray text, deep teal accent.
-- Structure: single document with inline CSS and small inline JavaScript.
+- Structure: two pages sharing `src/styles/portfolio.css`, with the navigation and status strip as small components.
 
 ## Engineering Direction
 
@@ -35,7 +37,7 @@ Prefer direct Astro, HTML, CSS, and browser APIs. If the site grows again, make 
 
 ## Guardrails
 
-- No route files unless the product intentionally becomes multi-page again.
+- No route files beyond `/freelance/` unless the product intentionally grows again.
 - No stale navigation to deleted routes.
 - No framework or build dependency without a live use in the shipped page.
 - No fallback content that hides broken data. Fail clearly, fix the issue.

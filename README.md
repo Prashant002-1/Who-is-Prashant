@@ -18,6 +18,7 @@ npm run preview
 
 ## A quick orientation
 
-- `src/pages/index.astro` is the site itself.
+- `src/pages/index.astro` is the site itself; `src/pages/freelance.astro` is the freelance profile.
+- `src/components/` holds the navigation and status strip both pages share.
 - `public/` holds the static assets served from the site root.
 - `public/photo-*` variants are generated from `public/photo.jpg` when development or production builds start (see `astro.config.mjs`) and remain untracked.

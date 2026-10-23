@@ -1,0 +1,18 @@
+---
+interface Props {
+  page: 'home' | 'freelance';
+}
+
+const { page } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const home = page === 'home' ? '' : base;
+---
+<header class="site-header page-shell">
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href={`${home}#work`}>Work</a>
+    <a href={`${home}#research`}>Research</a>
+    <a href={`${home}#experience`}>Background</a>
+    <a href={`${home}#now`}>Contact</a>
+    <a href={`${base}freelance/`} aria-current={page === 'freelance' ? 'page' : undefined}>Freelance</a>
+  </nav>
+</header>

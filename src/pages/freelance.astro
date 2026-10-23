@@ -1,0 +1,213 @@
+---
+import '../styles/portfolio.css';
+import SiteNav from '../components/SiteNav.astro';
+import StatusStrip from '../components/StatusStrip.astro';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Prashant Shah is open to freelance and contract work: AI products, data systems, and web applications. Open-source projects, tools, and how to get in touch." />
+  <meta name="theme-color" content="#03130f" />
+  <meta property="og:title" content="Prashant Shah · Freelance" />
+  <meta property="og:description" content="Software and data engineer, open to contract work." />
+  <link rel="canonical" href="https://www.prashantshah.tech/freelance/" />
+  <meta property="og:url" content="https://www.prashantshah.tech/freelance/" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap" rel="stylesheet" />
+  <title>Prashant Shah · Freelance</title>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<StatusStrip />
+<SiteNav page="freelance" />
+
+<main id="main" class="page-shell" tabindex="-1">
+  <section class="freelance-hero" aria-labelledby="freelance-title">
+    <div class="hero-layout">
+      <h1 id="freelance-title">Prashant Shah</h1>
+      <p class="hero-role">Software and data engineer, open to contract work.</p>
+      <p class="hero-intro">I build AI products, data systems, and web applications end to end, from the first conversation to the infrastructure underneath.</p>
+      <p class="hero-history">I’ve built software at Trimble and Novartis, and data infrastructure for the Center for Food Action (Ramapo DMC). Most of my work is <a href="#open-source">open source</a>, and I’m always building something.</p>
+      <div class="hero-links" aria-label="Contact and profiles">
+        <a href="mailto:shahp0021@gmail.com">Email</a>
+        <a href="https://github.com/Prashant002-1" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/prashant210/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <aside class="availability" aria-labelledby="availability-title">
+      <h2 class="availability-status" id="availability-title"><span class="status-dot" aria-hidden="true"></span>Open to contracts</h2>
+      <dl class="now-notes">
+        <dt>Contracts</dt><dd>Freelance and contract work, short projects or ongoing.</dd>
+        <dt>Advice</dt><dd>A second opinion on an idea, an architecture, or a data problem. It doesn’t need to be paid.</dd>
+        <dt>Nonprofits</dt><dd>I care about nonprofits and giving back to the community, so I’m open to that work too.</dd>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="services" class="portfolio-section" aria-labelledby="services-title">
+    <h2 class="section-heading" id="services-title">What I can help with</h2>
+    <article class="project">
+      <div>
+        <h3 class="project-title">AI products and agent systems</h3>
+      </div>
+      <div>
+        <div class="project-description"><p>Adding AI to a product or workflow you already have, or building a new one around it. Model integration, tool calling, retrieval, memory, and agents with clear boundaries, so a person still reviews the steps that matter. I also set up evaluation, so you can tell whether it’s actually working.</p></div>
+        <p class="project-stack">LLM APIs · Tool calling · Agents · RAG · Evaluation</p>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title">Data pipelines and reporting</h3>
+      </div>
+      <div>
+        <div class="project-description"><p>Moving data from where it’s collected to where people use it. Ingestion, cleaning, validation, storage, and reporting, with review steps where accuracy matters. Recurring manual reports become dashboards that refresh on their own.</p></div>
+        <p class="project-stack">Python · SQL · PostgreSQL · ETL · Power BI</p>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title">Web applications, end to end</h3>
+      </div>
+      <div>
+        <div class="project-description"><p>From the first idea through the interface, the backend, and deployment. That includes search engine optimization, performance, and accessibility compliance, so the site is easy to find and works for everyone. Security is part of the build: authentication, role-based access, and keeping your data protected.</p></div>
+        <p class="project-stack">React · Next.js · Node.js · PostgreSQL · SEO · WCAG · AWS</p>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title">Internal tools and integrations</h3>
+      </div>
+      <div>
+        <div class="project-description"><p>Tools that bring scattered systems, settings, and permissions into one workflow. Connecting the APIs you already rely on, automating the handoffs between them, and setting up access control so the right people see the right things.</p></div>
+        <p class="project-stack">C# · .NET · Azure · REST APIs · Automation</p>
+      </div>
+    </article>
+    <article class="project">
+      <div>
+        <h3 class="project-title">Search and retrieval</h3>
+      </div>
+      <div>
+        <div class="project-description"><p>Organizing your data so people can find what they need. Search across documents and records, semantic search, knowledge graphs, and ranking that reflects what someone asked for, not just the keywords they typed.</p></div>
+        <p class="project-stack">Embeddings · pgvector · Knowledge graphs · Ranking</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="open-source" class="portfolio-section" aria-labelledby="open-source-title">
+    <h2 class="section-heading" id="open-source-title">Open source</h2>
+    <p class="section-intro">Most of what I build is public.</p>
+    <div class="repo-grid">
+      <article class="small-project">
+        <h3>Atlas LMS</h3>
+        <div>
+          <p>A learning system built around teacher-governed AI. Teachers configure the course agent, and grading cites evidence from the student’s session.</p>
+          <p class="project-stack">Next.js · PostgreSQL · AI SDK · MIT</p>
+          <div class="project-links">
+            <a href="https://github.com/Prashant002-1/Atlas-LMS" target="_blank" rel="noopener" aria-label="Atlas LMS source on GitHub">Source</a>
+            <a href="https://atlas-lms.com" target="_blank" rel="noopener">Try Atlas</a>
+          </div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>Trellis-RAG</h3>
+        <div>
+          <p>A graph-aware retrieval library for intent-content conflict. Bring your own embeddings and knowledge graph; it trains a GNN and scores results on content and intent.</p>
+          <p class="project-stack">Python · GNNs · Knowledge graphs</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/Trellis-RAG" target="_blank" rel="noopener" aria-label="Trellis-RAG source on GitHub">Source</a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>KRAG</h3>
+        <div>
+          <p>The research code behind my NGEN-AI 2026 paper: graph-grounded retrieval for intent-content conflict, evaluated on affective movie retrieval.</p>
+          <p class="project-stack">Python · Jupyter · MovieLens 25M</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/knowledge-graph-retrieval-with-affective-grounding" target="_blank" rel="noopener" aria-label="KRAG source on GitHub">Source</a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>Moodie</h3>
+        <div>
+          <p>A film diary and recommendation system built on what films meant to people, with the person behind each recommendation still visible.</p>
+          <p class="project-stack">React · TypeScript · Express · PGlite</p>
+          <div class="project-links">
+            <a href="https://github.com/Prashant002-1/Moodie" target="_blank" rel="noopener" aria-label="Moodie source on GitHub">Source</a>
+            <a href="https://moodie-server-mauve.vercel.app/" target="_blank" rel="noopener">Try Moodie</a>
+          </div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>Hermes JobApps</h3>
+        <div>
+          <p>A local agent workflow system with Hermes tools, structured state, provenance, and human approval for external steps.</p>
+          <p class="project-stack">Python · SQLite · Hermes Agent · Typst</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/hermes-jobapps" target="_blank" rel="noopener" aria-label="Hermes JobApps source on GitHub">Source</a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>staylinked</h3>
+        <div>
+          <p>Context for in-person recruiting: candidate-written meeting notes, shared work, and source-linked role lookups.</p>
+          <p class="project-stack">React · TypeScript · Node.js · SQLite · Rust</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/staylinked" target="_blank" rel="noopener" aria-label="staylinked source on GitHub">Source</a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>Canvas Agent</h3>
+        <div>
+          <p>An AI study partner over a student’s Canvas data, with persistent memory, tool calling, and semantic search. Won HackRamapo.</p>
+          <p class="project-stack">Next.js · PostgreSQL · pgvector</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/Personal-Canvas-Agent" target="_blank" rel="noopener" aria-label="Canvas Agent source on GitHub">Source</a></div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>RoomDex</h3>
+        <div>
+          <p>A shared room-layout canvas for people and browser agents, built on WebMCP.</p>
+          <p class="project-stack">TypeScript · WebMCP</p>
+          <div class="project-links">
+            <a href="https://github.com/Prashant002-1/roomdex" target="_blank" rel="noopener" aria-label="RoomDex source on GitHub">Source</a>
+            <a href="https://roomdex.vercel.app/" target="_blank" rel="noopener">Try RoomDex</a>
+          </div>
+        </div>
+      </article>
+      <article class="small-project">
+        <h3>pbrain</h3>
+        <div>
+          <p>A lean local knowledge base with SQLite, CLI search, and structured distillation, so useful context stays searchable without another cloud dashboard.</p>
+          <p class="project-stack">Python · SQLite</p>
+          <div class="project-links"><a href="https://github.com/Prashant002-1/pbrain" target="_blank" rel="noopener" aria-label="pbrain source on GitHub">Source</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="project-links repo-more"><a href="https://github.com/Prashant002-1?tab=repositories" target="_blank" rel="noopener">Everything on GitHub</a></div>
+  </section>
+
+  <section id="tools" class="portfolio-section split-section" aria-labelledby="tools-title">
+    <h2 class="section-heading" id="tools-title">Tools I work with</h2>
+    <dl class="now-notes tool-notes">
+      <dt>Languages</dt><dd>TypeScript · Python · C# · SQL · Java</dd>
+      <dt>Interfaces</dt><dd>React · Next.js · Blazor</dd>
+      <dt>Backend</dt><dd>Node.js · Express · Flask · .NET · API integrations</dd>
+      <dt>Data</dt><dd>PostgreSQL · pgvector · SQLite · Quarto · Power BI</dd>
+      <dt>AI</dt><dd>Agent systems · Tool calling · Retrieval · Knowledge graphs · Evaluation</dd>
+      <dt>Cloud</dt><dd>AWS · Azure · Vercel</dd>
+    </dl>
+  </section>
+
+  <section id="contact" class="portfolio-section split-section" aria-labelledby="contact-title">
+    <h2 class="section-heading now-heading" id="contact-title">Working together <span class="now-date">Updated October 2026</span></h2>
+    <dl class="now-notes">
+      <dt>Start</dt><dd>Send a few lines about what you’re building, where it’s stuck, and your timeline.</dd>
+      <dt>Collaborate</dt><dd>Open source, research, or a side project that overlaps with mine. Pull requests are welcome on any public repo.</dd>
+      <dt>Ask</dt><dd>Not sure it’s a project yet? Ask anyway. Suggestions are free.</dd>
+    </dl>
+    <p class="footer-contact">You can reach me at <a href="mailto:shahp0021@gmail.com">shahp0021@gmail.com</a>.</p>
+  </section>
+</main>
+</body>
+</html>
